@@ -5,4 +5,4 @@ if num <=0
  else 
     print num + 10
 else
-   printf num - 10    
+   printf num - 10    //chnages
