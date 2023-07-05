@@ -7,7 +7,6 @@ for (int i = 0; i < 20; i++)
 
 //2 Print odd numbers less than 50 using while loop
 
-
 int i=1;
 while (i<50)
 {
@@ -127,9 +126,7 @@ for (int j = 2; j < 100 ; j++)
         {
             flag = true;
             break;
-
         }
-
     }
 
     if (!flag)
@@ -197,25 +194,21 @@ if (amount < 10000)
 
 else if (amount <15000 && amount > 10000)
 {
-
     Console.WriteLine("Tax% is 7.5");
 }
 
 else if (amount < 20000 && amount > 15000)
 {
-
     Console.WriteLine("Tax% is 10");
 }
 
 else if (amount < 20000 && amount > 25000)
 {
-
     Console.WriteLine("Tax% is 12.5");
 }
 
 else 
 {
-
     Console.WriteLine("Tax% is 15");
 }
 
