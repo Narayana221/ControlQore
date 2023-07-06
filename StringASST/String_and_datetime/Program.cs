@@ -62,7 +62,7 @@ last_char(str);
 
 replace_char(str);
 
-Console.WriteLine("Enter the input character whose occurence yoiu have to find ");
+Console.WriteLine("Enter the input character whose occurence you have to find ");
 char.TryParse(Console.ReadLine(), out char input2);
 occurence(str, input2);
 

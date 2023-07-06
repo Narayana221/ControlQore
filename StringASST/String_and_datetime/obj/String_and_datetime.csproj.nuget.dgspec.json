@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\assignments\\ControlQore\\String_and_datetime\\String_and_datetime\\String_and_datetime.csproj": {}
+    "C:\\assignments\\ControlQore\\StringASST\\String_and_datetime\\String_and_datetime.csproj": {}
   },
   "projects": {
-    "C:\\assignments\\ControlQore\\String_and_datetime\\String_and_datetime\\String_and_datetime.csproj": {
+    "C:\\assignments\\ControlQore\\StringASST\\String_and_datetime\\String_and_datetime.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\assignments\\ControlQore\\String_and_datetime\\String_and_datetime\\String_and_datetime.csproj",
+        "projectUniqueName": "C:\\assignments\\ControlQore\\StringASST\\String_and_datetime\\String_and_datetime.csproj",
         "projectName": "String_and_datetime",
-        "projectPath": "C:\\assignments\\ControlQore\\String_and_datetime\\String_and_datetime\\String_and_datetime.csproj",
+        "projectPath": "C:\\assignments\\ControlQore\\StringASST\\String_and_datetime\\String_and_datetime.csproj",
         "packagesPath": "C:\\Users\\CQ-Narayan\\.nuget\\packages\\",
-        "outputPath": "C:\\assignments\\ControlQore\\String_and_datetime\\String_and_datetime\\obj\\",
+        "outputPath": "C:\\assignments\\ControlQore\\StringASST\\String_and_datetime\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CQ-Narayan\\AppData\\Roaming\\NuGet\\NuGet.Config",
