@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CQ-Narayan\\source\\repos\\StringbuilderASST\\StringbuilderASST\\StringbuilderASST.csproj",
+      "projectUniqueName": "C:\\assignments\\ControlQore\\StringbuilderASST\\StringbuilderASST\\StringbuilderASST.csproj",
       "projectName": "StringbuilderASST",
-      "projectPath": "C:\\Users\\CQ-Narayan\\source\\repos\\StringbuilderASST\\StringbuilderASST\\StringbuilderASST.csproj",
+      "projectPath": "C:\\assignments\\ControlQore\\StringbuilderASST\\StringbuilderASST\\StringbuilderASST.csproj",
       "packagesPath": "C:\\Users\\CQ-Narayan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CQ-Narayan\\source\\repos\\StringbuilderASST\\StringbuilderASST\\obj\\",
+      "outputPath": "C:\\assignments\\ControlQore\\StringbuilderASST\\StringbuilderASST\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\CQ-Narayan\\AppData\\Roaming\\NuGet\\NuGet.Config",
