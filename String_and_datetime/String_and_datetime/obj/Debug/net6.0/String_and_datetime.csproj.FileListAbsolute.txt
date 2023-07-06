@@ -1,0 +1,15 @@
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\bin\Debug\net6.0\String_and_datetime.exe
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\bin\Debug\net6.0\String_and_datetime.deps.json
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\bin\Debug\net6.0\String_and_datetime.runtimeconfig.json
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\bin\Debug\net6.0\String_and_datetime.dll
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\bin\Debug\net6.0\String_and_datetime.pdb
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.csproj.AssemblyReference.cache
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.GeneratedMSBuildEditorConfig.editorconfig
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.AssemblyInfoInputs.cache
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.AssemblyInfo.cs
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.csproj.CoreCompileInputs.cache
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.dll
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\refint\String_and_datetime.dll
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.pdb
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\String_and_datetime.genruntimeconfig.cache
+C:\assignments\ControlQore\String_and_datetime\String_and_datetime\obj\Debug\net6.0\ref\String_and_datetime.dll
