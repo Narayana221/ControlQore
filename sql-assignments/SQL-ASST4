@@ -1,0 +1,32 @@
+create database employee
+USE employee 
+
+CREATE TABLE employee
+(
+  employee_id INT NOT NULL IDENTITY  PRIMARY KEY,
+  employee_name  VARCHAR(50),
+  joining_date  DATETIMEOFFSET DEFAULT SYSDATETIMEOFFSET ( )  
+);
+
+DROP TABLE employee
+
+INSERT INTO employee VALUES('John',SYSDATETIMEOFFSET ( ) )
+INSERT INTO employee VALUES('Ram',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('Chris',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('Sita',SYSDATETIMEOFFSET ( )  )
+
+SELECT CONVERT(VARCHAR(MAX), joining_date, 5) FROM employee
+//FORMAT() canbe used for custom formats
+
+SELECT DATEPART(joining_date)
+
+SELECT joining_date FROM employee
+
+SELECT SWITCHOFFSET(joining_date,'+05:30') FROM employee
+SELECT SWITCHOFFSET(joining_date,'-04:00') FROM employee
+
+SELECT CAST(GETDATE() AS DATE - joining_date)
+
+SELECT CONVERT(DATETIME,joining_date,0) FROM employee
+
+SELECT DATEDIFF(DAY,CONVERT(DATETIME,joining_date,0),GETDATE())
