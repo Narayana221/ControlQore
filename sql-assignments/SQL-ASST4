@@ -15,18 +15,28 @@ INSERT INTO employee VALUES('Ram',SYSDATETIMEOFFSET ( )  )
 INSERT INTO employee VALUES('Chris',SYSDATETIMEOFFSET ( )  )
 INSERT INTO employee VALUES('Sita',SYSDATETIMEOFFSET ( )  )
 
+INSERT INTO employee VALUES('REMYA', '2022-07-10 06:00:56.0521229 +00:00')
+INSERT INTO employee VALUES('REMYA', '2022-07-11 06:00:56.0521229 +00:00')
+
 SELECT CONVERT(VARCHAR(MAX), joining_date, 5) FROM employee
 //FORMAT() canbe used for custom formats
 
-SELECT DATEPART(joining_date)
+SELECT DATEPART(day,joining_date) FROM employee
+
+SELECT * FROM employee
 
 SELECT joining_date FROM employee
 
 SELECT SWITCHOFFSET(joining_date,'+05:30') FROM employee
 SELECT SWITCHOFFSET(joining_date,'-04:00') FROM employee
 
-SELECT CAST(GETDATE() AS DATE - joining_date)
+SELECT CAST(joining_date AS DATETIME ) FROM employee
 
-SELECT CONVERT(DATETIME,joining_date,0) FROM employee
+//Date of joining of students dynamic)
+SELECT DATEDIFF(DAY,joining_date,GETUTCDATE()) FROM employee
 
-SELECT DATEDIFF(DAY,CONVERT(DATETIME,joining_date,0),GETDATE())
+//Number of employees joined last year 
+SELECT count(*) FROM employee WHERE YEAR(joining_date) = YEAR(GETUTCDATE()) -1 
+
+//Number of employees who joined last year Mondays
+SELECT count(*) FROM employee WHERE DATENAME(WEEKDAY,joining_date) = 'monday' AND YEAR(joining_date) = YEAR(GETUTCDATE()) -1 
