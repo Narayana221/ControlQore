@@ -1,6 +1,7 @@
 BOOKSTORE 
 -----------------------------------------------------------------------------------------------------
 
+
 create database bookstore
 USE bookstore
 
@@ -10,8 +11,21 @@ CREATE TABLE book_detail
   book_name  VARCHAR(50),
   book_genre  VARCHAR(50),
   book_price  INT,
-  book_author VARCHAR(50)
+  author_id INT,
+  publisher_id INT
 );
+
+ALTER TABLE book_detail
+ADD CONSTRAINT FK_book_publisher
+FOREIGN KEY (publisher_id) REFERENCES publisher(publisher_id)
+
+DROP TABLE book_detail
+DROP TABLE user_detail
+DROP TABLE order_detail
+DROP TABLE publisher
+DROP TABLE author
+DROP TABLE book_author
+
 
 INSERT INTO book_detail VALUES('goosebumps','horror', 200,'RL Stine')
 INSERT INTO book_detail VALUES('hardy boys','thriller', 300,'johnny')
@@ -28,36 +42,61 @@ CREATE TABLE user_detail
 (
   [user_id] INT NOT NULL IDENTITY  PRIMARY KEY,
   [user_name]  VARCHAR(50),
-  user_no  BIGINT
+   user_no  BIGINT
 );
+
 
 CREATE TABLE order_detail 
 (
+ order_id INT NOT NULL IDENTITY  PRIMARY KEY,
  [user_id] INT,
  book_id INT,
  amount INT
  );
 
+ALTER TABLE order_detail
+ADD CONSTRAINT FK_order_user
+FOREIGN KEY ([user_id]) REFERENCES user_detail([user_id]);
+
+ALTER TABLE order_detail
+DROP CONSTRAINT FK_book_user;
+
+ALTER TABLE order_detail
+ADD CONSTRAINT FK_order_book
+FOREIGN KEY (book_id) REFERENCES book_detail(book_id);
+
+
 CREATE TABLE publisher
 (
-  publisher_id INT ,
+  publisher_id INT PRIMARY KEY ,
   publisher_name  VARCHAR(50),
-  book_id INT
 );
+
 
 CREATE TABLE author
 (
- author_id INT,
+ author_id INT PRIMARY KEY,
  author_name VARCHAR(20),
- book_id INT,
- publisher_id INT
 );
 
-CREATE TABLE author_publisher
+CREATE TABLE book_author
 (
- author_id INT,
- publisher_id INT
+ author_id INT NOT NULL ,
+ book_id INT NOT NULL
 );
+
+ALTER TABLE book_author
+ADD CONSTRAINT PK_book_author
+PRIMARY KEY (author_id,book_id)
+
+ALTER TABLE book_author
+ADD CONSTRAINT FK_book_author_suthor
+FOREIGN KEY (author_id) REFERENCES author(author_id);
+
+ALTER TABLE book_author
+ADD CONSTRAINT FK_book_author_book
+FOREIGN KEY (book_id) REFERENCES book_detail(book_id);
+
 
 ALTER TABLE user_detail ALTER COLUMN user_no BIGINT
 
