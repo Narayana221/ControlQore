@@ -1,0 +1,5 @@
+C:\assignments\ControlQore\c# assignments\asst_10-7-2023\asst_10-7-2023\obj\Debug\net6.0\asst_10-7-2023.csproj.AssemblyReference.cache
+C:\assignments\ControlQore\c# assignments\asst_10-7-2023\asst_10-7-2023\obj\Debug\net6.0\asst_10-7-2023.GeneratedMSBuildEditorConfig.editorconfig
+C:\assignments\ControlQore\c# assignments\asst_10-7-2023\asst_10-7-2023\obj\Debug\net6.0\asst_10-7-2023.AssemblyInfoInputs.cache
+C:\assignments\ControlQore\c# assignments\asst_10-7-2023\asst_10-7-2023\obj\Debug\net6.0\asst_10-7-2023.AssemblyInfo.cs
+C:\assignments\ControlQore\c# assignments\asst_10-7-2023\asst_10-7-2023\obj\Debug\net6.0\asst_10-7-2023.csproj.CoreCompileInputs.cache

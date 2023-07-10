@@ -1,3 +1,2 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!"); 
- 
+Employee ob = new Employee(1, "narayanan",50000);
