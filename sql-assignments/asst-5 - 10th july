@@ -1,0 +1,34 @@
+create database employee
+USE employee 
+
+CREATE TABLE employee
+(
+  employee_id INT NOT NULL IDENTITY  PRIMARY KEY,
+  employee_name  VARCHAR(50),
+  joining_date  DATETIMEOFFSET DEFAULT SYSDATETIMEOFFSET ( )  
+);
+
+DROP TABLE employee
+
+INSERT INTO employee VALUES('John',SYSDATETIMEOFFSET ( ) )
+INSERT INTO employee VALUES('Ram',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('Chris',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('Sita',SYSDATETIMEOFFSET ( )  )
+
+INSERT INTO employee VALUES('Johnsmith',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('Jhn matt',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('michael John',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('borris john matt',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('Abin',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('falexis',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('bindoe',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('Alexdoedeo',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('barryo%',SYSDATETIMEOFFSET ( )  )
+INSERT INTO employee VALUES('REMYA', '2022-07-10 06:00:56.0521229 +00:00')
+
+SELECT * FROM employee WHERE employee_name LIKE 'John%'
+SELECT * FROM employee WHERE employee_name LIKE '%John'
+SELECT * FROM employee WHERE employee_name LIKE '%John%'
+SELECT * FROM employee WHERE employee_name LIKE 'A%n'
+SELECT * FROM employee WHERE employee_name LIKE '%alex%' or  employee_name LIKE '%deo%'
+SELECT * FROM employee WHERE employee_name LIKE '%[%]%'

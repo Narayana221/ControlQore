@@ -1,0 +1,105 @@
+BOOKSTORE 
+-----------------------------------------------------------------------------------------------------
+
+create database bookstore
+USE bookstore
+
+CREATE TABLE book_detail
+(
+  book_id INT NOT NULL IDENTITY  PRIMARY KEY,
+  book_name  VARCHAR(50),
+  book_genre  VARCHAR(50),
+  book_price  INT,
+  book_author VARCHAR(50)
+);
+
+INSERT INTO book_detail VALUES('goosebumps','horror', 200,'RL Stine')
+INSERT INTO book_detail VALUES('hardy boys','thriller', 300,'johnny')
+INSERT INTO book_detail VALUES('nancy drew','thriller', 250,'mary jane')
+INSERT INTO book_detail VALUES('harry potter','fantasy', 150,'JK Rowling')
+INSERT INTO book_detail VALUES('Scoobgy doo','fantasy', NULL,'kk hill')
+INSERT INTO book_detail VALUES('Spiderman','fantasy', NULL,'smith')
+
+SELECT * FROM book_detail
+
+5. In the tables created for online bookstore, the primary key value should be updated automatically 
+---------------------------------------------------------------------------------------------------------
+CREATE TABLE user_detail
+(
+  [user_id] INT NOT NULL IDENTITY  PRIMANRY KEY,
+  [user_name]  VARCHAR(50),
+  user_no  BIGINT
+);
+
+CREATE TABLE order_detail 
+(
+ [user_id] INT,
+ book_id INT,
+ amount INT
+ );
+
+CREATE TABLE publisher
+(
+  publisher_id INT ,
+  publisher_name  VARCHAR(50),
+  book_id INT
+);
+
+CREATE TABLE author
+(
+ author_id INT,
+ author_name VARCHAR(20),
+ book_id INT,
+ publisher_id INT
+);
+
+CREATE TABLE author_publisher
+(
+ author_id INT,
+ publisher_id INT
+);
+
+ALTER TABLE user_detail ALTER COLUMN user_no BIGINT
+
+INSERT INTO user_detail VALUES('Ramu',9400320711);
+INSERT INTO user_detail VALUES('sita',9800620789);
+INSERT INTO user_detail VALUES('jackson',8989567464);
+INSERT INTO user_detail VALUES('lyla',7725366736);
+
+SELECT * FROM user_detail
+
+1. Select values such that the students have failed including students whose mark field is NULL
+2. Select fields with the value NULL
+----------------------------------------------------------------------------------------------------------
+
+ SELECT * FROM book_detail WHERE book_price<200 OR book_price IS NULL
+ SELECT * FROM book_detail WHERE  book_price IS NULL
+
+ 6. Each table in the online bookstore must have a field named “created on” which denotes the date and time when each record was inserted. 
+This should be generated automatically.
+--------------------------------------------------------------------------------------------------------------------------------
+
+ CREATE TABLE sample_table
+ (
+ id INT,
+ [name] VARCHAR(30),
+ created_on DATETIME DEFAULT GETDATE()
+ );
+
+ INSERT INTO sample_table VALUES(1,'Narayana',GETDATE())
+ INSERT INTO sample_table VALUES(2,'jonny',GETDATE())
+ INSERT INTO sample_table VALUES(3,'rahul',GETDATE())
+ INSERT INTO sample_table VALUES(4,'wong',GETDATE())
+
+
+3. What happens during a varchar out of bounds situation? How to insert a 10000 sized string?
+ALTER TABLE sample_table ADD input_text varchar(max)
+-----------------------------------------------------------------------------------------------------------------
+
+4. Store name in Malayalam inside the database
+
+ALTER TABLE sample_table ADD malayalam_name nvarchar(20)
+INSERT INTO sample_table VALUES(5,'Sita',GETDATE(),N'സീത')
+
+--------------------------------------------------------------------------------------------------------------------
+
