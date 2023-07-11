@@ -1,0 +1,15 @@
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\bin\Debug\net6.0\StudentClass.exe
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\bin\Debug\net6.0\StudentClass.deps.json
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\bin\Debug\net6.0\StudentClass.runtimeconfig.json
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\bin\Debug\net6.0\StudentClass.dll
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\bin\Debug\net6.0\StudentClass.pdb
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.csproj.AssemblyReference.cache
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.GeneratedMSBuildEditorConfig.editorconfig
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.AssemblyInfoInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.AssemblyInfo.cs
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.csproj.CoreCompileInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.dll
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\refint\StudentClass.dll
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.pdb
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\StudentClass.genruntimeconfig.cache
+C:\assignments\ControlQore\c# assignments\asst-11_7_23\StudentClass\StudentClass\obj\Debug\net6.0\ref\StudentClass.dll
