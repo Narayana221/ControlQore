@@ -1,102 +1,94 @@
 BOOKSTORE 
 -----------------------------------------------------------------------------------------------------
-
-
 create database bookstore
 USE bookstore
 
-CREATE TABLE book_detail
+CREATE TABLE BookDetail
 (
-  book_id INT NOT NULL IDENTITY  PRIMARY KEY,
+  book_id INT NOT NULL ,
   book_name  VARCHAR(50),
   book_genre  VARCHAR(50),
   book_price  INT,
-  author_id INT,
   publisher_id INT
 );
 
-ALTER TABLE book_detail
+ALTER TABLE BookDetail
+ADD CONSTRAINT PK_BookDetail PRIMARY KEY (book_id);
+
+ALTER TABLE BookDetail
 ADD CONSTRAINT FK_book_publisher
 FOREIGN KEY (publisher_id) REFERENCES publisher(publisher_id)
 
-DROP TABLE book_detail
-DROP TABLE user_detail
-DROP TABLE order_detail
-DROP TABLE publisher
-DROP TABLE author
-DROP TABLE book_author
+DROP TABLE BookDetail
 
-
-INSERT INTO book_detail VALUES('goosebumps','horror', 200,'RL Stine')
-INSERT INTO book_detail VALUES('hardy boys','thriller', 300,'johnny')
-INSERT INTO book_detail VALUES('nancy drew','thriller', 250,'mary jane')
-INSERT INTO book_detail VALUES('harry potter','fantasy', 150,'JK Rowling')
-INSERT INTO book_detail VALUES('Scoobgy doo','fantasy', NULL,'kk hill')
-INSERT INTO book_detail VALUES('Spiderman','fantasy', NULL,'smith')
-
-SELECT * FROM book_detail
+SELECT * FROM user_detail
 
 5. In the tables created for online bookstore, the primary key value should be updated automatically 
 ---------------------------------------------------------------------------------------------------------
-CREATE TABLE user_detail
+CREATE TABLE UserDetail
 (
-  [user_id] INT NOT NULL IDENTITY  PRIMARY KEY,
+  [user_id] INT NOT NULL,
   [user_name]  VARCHAR(50),
    user_no  BIGINT
 );
 
+ALTER TABLE UserDetail
+ADD CONSTRAINT PK_UserDetail PRIMARY KEY ([user_id]);
 
-CREATE TABLE order_detail 
+CREATE TABLE OrderDetail 
 (
- order_id INT NOT NULL IDENTITY  PRIMARY KEY,
+ order_id INT NOT NULL,
  [user_id] INT,
  book_id INT,
  amount INT
  );
 
-ALTER TABLE order_detail
-ADD CONSTRAINT FK_order_user
-FOREIGN KEY ([user_id]) REFERENCES user_detail([user_id]);
+ALTER TABLE OrderDetail
+ADD CONSTRAINT PK_OrderDetail PRIMARY KEY (order_id);
 
-ALTER TABLE order_detail
-DROP CONSTRAINT FK_book_user;
+ALTER TABLE OrderDetail
+ADD CONSTRAINT FK_Order_User
+FOREIGN KEY ([user_id]) REFERENCES UserDetail([user_id]);
 
-ALTER TABLE order_detail
-ADD CONSTRAINT FK_order_book
-FOREIGN KEY (book_id) REFERENCES book_detail(book_id);
+ALTER TABLE OrderDetail
+ADD CONSTRAINT FK_Order_Book
+FOREIGN KEY (book_id) REFERENCES BookDetail(book_id);
 
 
 CREATE TABLE publisher
 (
-  publisher_id INT PRIMARY KEY ,
+  publisher_id INT NOT NULL ,
   publisher_name  VARCHAR(50),
 );
 
+ALTER TABLE Publisher
+ADD CONSTRAINT PK_Publisher PRIMARY KEY (publisher_id);
 
-CREATE TABLE author
+CREATE TABLE Author
 (
- author_id INT PRIMARY KEY,
+ author_id INT NOT NULL,
  author_name VARCHAR(20),
 );
 
-CREATE TABLE book_author
+ALTER TABLE Author
+ADD CONSTRAINT PK_Author PRIMARY KEY (author_id);
+
+CREATE TABLE BookAuthor
 (
  author_id INT NOT NULL ,
  book_id INT NOT NULL
 );
-
-ALTER TABLE book_author
-ADD CONSTRAINT PK_book_author
+ALTER TABLE BookAuthor
+ADD CONSTRAINT PK_BookAuthor
 PRIMARY KEY (author_id,book_id)
 
-ALTER TABLE book_author
-ADD CONSTRAINT FK_book_author_suthor
-FOREIGN KEY (author_id) REFERENCES author(author_id);
+ALTER TABLE BookAuthor
+ADD CONSTRAINT FK_BookAuthor_Author
+FOREIGN KEY (author_id) REFERENCES Author(author_id);
 
-ALTER TABLE book_author
-ADD CONSTRAINT FK_book_author_book
-FOREIGN KEY (book_id) REFERENCES book_detail(book_id);
-
+ALTER TABLE BookAuthor
+ADD CONSTRAINT FK_BookAuthor_Book
+FOREIGN KEY (book_id) REFERENCES BookDetail(book_id);
 
 ALTER TABLE user_detail ALTER COLUMN user_no BIGINT
 
@@ -141,4 +133,3 @@ ALTER TABLE sample_table ADD malayalam_name nvarchar(20)
 INSERT INTO sample_table VALUES(5,'Sita',GETDATE(),N'സീത')
 
 --------------------------------------------------------------------------------------------------------------------
-
