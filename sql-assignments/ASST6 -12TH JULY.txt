@@ -1,0 +1,94 @@
+use AdventureWorksLT2019
+
+
+SELECT * FROM SalesLT.Product
+SELECT * FROM SalesLT.ProductModel
+SELECT * FROM SalesLT.ProductCategory
+SELECT * FROM SalesLT.ProductDescription
+SELECT * FROM SalesLT.ProductModelProductDescription
+SELECT * FROM SalesLT.Customer 
+SELECT * FROM SalesLT.CustomerAddress 
+SELECT * FROM SalesLT.Address 
+SELECT * FROM SalesLT.SalesOrderDetail
+SELECT * FROM SalesLT.SalesOrderHeader
+
+1)
+
+SELECT c.CompanyName 
+FROM SalesLT.Customer c
+WHERE c.FirstName='JAMES'
+AND c.MiddleName='D.'
+AND c.LastName='KRAMER'
+
+2)
+
+SELECT AddressLine1,AddressLine2
+FROM SalesLT.CustomerAddress ca
+INNER JOIN SalesLT.Address a
+ON ca.AddressID = a.AddressID
+INNER JOIN SalesLT.Customer c
+ON ca.CustomerID = c.CustomerID
+WHERE c.CompanyName='Modular Cycle Systems'
+
+3)
+
+SELECT OrderQty,Name,ListPrice
+FROM SalesLT.SalesOrderDetail od
+INNER JOIN SalesLT.Product p
+ON od.ProductID = p.ProductID
+INNER JOIN SalesLT.SalesOrderHeader oh
+ON od.SalesOrderID =oh.SalesOrderID
+WHERE oh.CustomerID=30025
+
+4)
+
+SELECT SalesLT.Customer.FirstName,SalesLT.Customer.EmailAddress 
+FROM SalesLT.Customer
+WHERE SalesLT.Customer.CompanyName='Bike World'
+
+5)
+
+SELECT CompanyName
+FROM SalesLT.Customer c
+INNER JOIN SalesLT.CustomerAddress ca
+ON c.CustomerID = ca.CustomerID 
+
+INNER JOIN SalesLT.Address a
+ON ca.AddressID = a.AddressID
+WHERE City = 'Dallas'
+
+6)
+
+SELECT SUM(OrderQty)
+FROM SalesLT.Product p
+INNER JOIN SalesLT.SalesOrderDetail od
+ON p.ProductID = od.ProductID
+WHERE ListPrice > 1000
+
+7)
+
+SELECT  CompanyName                                  
+FROM SalesLT.Product p
+INNER JOIN SalesLT.SalesOrderDetail od
+ON p.ProductID = od.ProductID
+INNER JOIN SalesLT.SalesOrderHeader oh
+ON od.SalesOrderID = oh.SalesOrderID
+INNER JOIN SalesLT.Customer c
+ON oh.CustomerID = c.CustomerID
+GROUP BY CompanyName 
+HAVING SUM((od.UnitPrice + oh.SubTotal + oh.TaxAmt + oh.Freight)*od.OrderQty) >100000
+
+8)
+
+
+
+
+
+
+
+
+
+
+
+
+
