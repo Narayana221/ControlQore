@@ -1,7 +1,7 @@
 use AdventureWorksLT2019
 
 
-SELECT * FROM SalesLT.Product
+SELECT * FROM SalesLT.Product p WHERE P.Name = 'Racing Socks, L'
 SELECT * FROM SalesLT.ProductModel
 SELECT * FROM SalesLT.ProductCategory
 SELECT * FROM SalesLT.ProductDescription
@@ -40,15 +40,23 @@ INNER JOIN SalesLT.SalesOrderHeader oh
 ON od.SalesOrderID =oh.SalesOrderID
 WHERE oh.CustomerID=30025
 
+SELECT OrderQty,Name,ListPrice
+FROM SalesLT.SalesOrderDetail od
+LEFT JOIN SalesLT.Product p
+ON od.ProductID = p.ProductID
+LEFT JOIN SalesLT.SalesOrderHeader oh
+ON od.SalesOrderID =oh.SalesOrderID
+WHERE oh.CustomerID=30025
+
 4)
 
-SELECT SalesLT.Customer.FirstName,SalesLT.Customer.EmailAddress 
+SELECT  DISTINCT SalesLT.Customer.FirstName,SalesLT.Customer.EmailAddress 
 FROM SalesLT.Customer
 WHERE SalesLT.Customer.CompanyName='Bike World'
 
 5)
 
-SELECT CompanyName
+SELECT  DISTINCT CompanyName
 FROM SalesLT.Customer c
 INNER JOIN SalesLT.CustomerAddress ca
 ON c.CustomerID = ca.CustomerID 
@@ -59,11 +67,14 @@ WHERE City = 'Dallas'
 
 6)
 
-SELECT SUM(OrderQty)
-FROM SalesLT.Product p
-INNER JOIN SalesLT.SalesOrderDetail od
-ON p.ProductID = od.ProductID
-WHERE ListPrice > 1000
+SELECT COUNT(*) FROM 
+		(
+		SELECT p.ProductID
+		FROM SalesLT.SalesOrderDetail od
+		LEFT JOIN  SalesLT.Product p 
+		ON p.ProductID = od.ProductID
+		WHERE ListPrice > 1000
+		GROUP BY p.ProductID )    t
 
 7)
 
@@ -80,15 +91,37 @@ HAVING SUM((od.UnitPrice + oh.SubTotal + oh.TaxAmt + oh.Freight)*od.OrderQty) >1
 
 8)
 
+SELECT SUM(OrderQty)
+FROM SalesLT.Product p
+INNER JOIN SalesLT.SalesOrderDetail od
+ON p.ProductID = od.ProductID
+INNER JOIN SalesLT.SalesOrderHeader oh
+ON oh.SalesOrderID = od.SalesOrderID 
+INNER JOIN SalesLT.Customer c
+ON oh.CustomerID = c.CustomerID
+WHERE c.CompanyName = 'Riding Cycles' AND p.Name = 'Racing Socks, L' 
 
+9)
 
+SELECT od.SalesOrderID ,od.UnitPrice
+FROM SalesLT.SalesOrderDetail od 
+WHERE od.SalesOrderID IN 
+	(
+	SELECT od.SalesOrderID
+	FROM SalesLT.SalesOrderDetail od 
+	GROUP BY od.SalesOrderID HAVING COUNT(*) = 1 )
 
+10)
 
-
-
-
-
-
+SELECT pd.ProductDescriptionID,pd.Description
+FROM SalesLT.ProductDescription pd
+INNER JOIN SalesLT.ProductModelProductDescription pmpd
+ON pd.ProductDescriptionID = pmpd.ProductDescriptionID
+INNER JOIN SalesLT.ProductModel pm
+ON pm.ProductModelID = pmpd.ProductModelID
+INNER JOIN SalesLT.Product p
+ON pm.ProductModelID = p.ProductModelID
+WHERE pmpd.Culture = 'fr' AND p.ProductID = 736
 
 
 
