@@ -63,4 +63,4 @@ INNER JOIN SalesLT.Product p
 ON od.ProductID = p.ProductID
 WHERE od.OrderQty*p.Weight IS NOT NULL
 GROUP BY od.SalesOrderID
-ORDER BY oh.SubTotal DESC
+ORDER BY oh.SubTotal DESC // HAVE TO GROUP EACH SALESORDER AND TAKE THE SUM OF WEIGHT 
