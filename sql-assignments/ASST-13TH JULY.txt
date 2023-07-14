@@ -53,7 +53,9 @@ SELECT * FROM SalesLT.Address
 SELECT * FROM SalesLT.SalesOrderDetail
 SELECT * FROM SalesLT.SalesOrderHeader
 
-SELECT  DISTINCT oh.SalesOrderID, c.CompanyName,oh.SubTotal,SUM(od.OrderQty*p.Weight) AS TotalWeight
+1)
+
+SELECT  DISTINCT oh.SalesOrderID --, c.CompanyName,oh.SubTotal,SUM(od.OrderQty*p.Weight) AS TotalWeight
 FROM SalesLT.SalesOrderHeader oh
 INNER JOIN SalesLT.SalesOrderDetail od
 ON oh.SalesOrderID = od.SalesOrderID
@@ -64,3 +66,124 @@ ON od.ProductID = p.ProductID
 WHERE od.OrderQty*p.Weight IS NOT NULL
 GROUP BY od.SalesOrderID
 ORDER BY oh.SubTotal DESC // HAVE TO GROUP EACH SALESORDER AND TAKE THE SUM OF WEIGHT 
+
+
+SELECT od.SalesOrderID,oh.SubTotal AS subtotal
+--, (od.OrderQty * p.Weight) AS TotalWeight
+FROM SalesLT.SalesOrderHeader oh
+	--INNER JOIN SalesLT.Customer c
+	--  ON oh.CustomerID = c.CustomerID
+	INNER JOIN SalesLT.SalesOrderDetail od
+	  ON oh.SalesOrderID = od.SalesOrderID
+	INNER JOIN SalesLT.Product p
+	  ON od.ProductID = p.ProductID
+
+GROUP BY od.SalesOrderID,oh.SubTotal
+HAVING SUM(od.OrderQty*p.Weight) IS NOT NULL
+ORDER BY SUM(oh.SubTotal) DESC
+
+SELECT  * -- od.SalesOrderID,oh.SubTotal AS subtotal ,(od.OrderQty * p.Weight) AS TotalWeight 
+FROM SalesLT.SalesOrderHeader oh
+  INNER JOIN  SalesLT.Customer c
+      ON oh.CustomerID = c.CustomerID
+  INNER JOIN SalesLT.SalesOrderDetail od
+	  ON oh.SalesOrderID = od.SalesOrderID
+  INNER JOIN SalesLT.Product p
+	  ON od.ProductID < p.ProductID
+--GROUP BY C.CompanyName,OH.SalesOrderID
+--ORDER BY (oh.SubTotal) DESC
+
+
+
+SELECT  * -- od.SalesOrderID,oh.SubTotal AS subtotal ,(od.OrderQty * p.Weight) AS TotalWeight 
+FROM SalesLT.SalesOrderHeader oh
+INNER JOIN SalesLT.Customer c
+ON c.CustomerID = oh.CustomerID
+	INNER JOIN SalesLT.SalesOrderDetail od 
+		ON oh.SalesOrderID = od.SalesOrderID
+where oh.SalesOrderID = 71898
+
+  
+ 2)
+
+
+SELECT * FROM SalesLT.Product p
+SELECT * FROM SalesLT.ProductModel
+SELECT * FROM SalesLT.ProductCategory
+SELECT * FROM SalesLT.ProductDescription
+SELECT * FROM SalesLT.ProductModelProductDescription
+SELECT * FROM SalesLT.Customer 
+SELECT * FROM SalesLT.CustomerAddress 
+SELECT * FROM SalesLT.Address a where a.AddressID in (185,861)
+SELECT * FROM SalesLT.SalesOrderDetail
+SELECT * FROM SalesLT.SalesOrderHeader
+
+SELECT * FROM SalesLT.ProductCategory pc
+WHERE pc.Name = 'Cranksets'
+
+SELECT * FROM SalesLT.Product p
+where p.ProductCategoryID = 12
+
+SELECT * FROM SalesLT.Address a
+WHERE a.City = 'london'
+
+SELECT COUNT(DISTINCT OD.ProductID) FROM SalesLT.SalesOrderDetail od
+WHERE od.ProductID IN (949,950,951)
+
+
+SELECT COUNT(DISTINCT od.ProductID)
+FROM SalesLT.ProductCategory pc
+	INNER JOIN SalesLT.Product p
+	ON pc.ProductCategoryID = p.ProductCategoryID
+	INNER JOIN SalesLT.SalesOrderDetail od
+	ON OD.ProductID = P.ProductID
+	INNER JOIN SalesLT.SalesOrderHeader oh
+	ON oh.SalesOrderID = od.SalesOrderID 
+	INNER JOIN SalesLT.Address a
+	ON a.AddressID = oh.ShipToAddressID
+WHERE pc.Name = 'cranksets'
+
+3)
+SELECT * FROM SalesLT.CustomerAddress ca
+	INNER JOIN SalesLT.Customer c
+	ON ca.CustomerID = c.CustomerID
+	INNER JOIN SalesLT.Address a
+	ON a.AddressID = ca.AddressID
+	
+	29959
+
+
+
+SELECT ca.CustomerID,a.AddressLine1 FROM SalesLT.CustomerAddress ca
+	INNER JOIN SalesLT.Address a
+	ON a.AddressID = ca.AddressID
+	WHERE CA.CustomerID IN
+(
+			SELECT ca.CustomerID FROM SalesLT.CustomerAddress ca
+				INNER JOIN SalesLT.Address a
+				ON a.AddressID = ca.AddressID
+				WHERE ca.AddressType = 'Shipping'
+				AND
+				ca.CustomerID IN ( 
+							SELECT * FROM SalesLT.CustomerAddress ca
+								INNER JOIN SalesLT.Customer c
+								ON ca.CustomerID = c.CustomerID
+								INNER JOIN SalesLT.Address a
+								ON a.AddressID = ca.AddressID
+								WHERE ca.AddressType = 'Main Office' AND A.City='DALLAS') )
+
+
+
+
+
+			SELECT * FROM
+				           ( 
+							SELECT C.CustomerID,A.AddressLine1,A.AddressID FROM SalesLT.CustomerAddress ca
+								INNER JOIN SalesLT.Customer c
+								ON ca.CustomerID = c.CustomerID
+								INNER JOIN SalesLT.Address a
+								ON a.AddressID = ca.AddressID
+								WHERE ca.AddressType = 'Main Office' AND A.City='DALLAS') T
+			                    RIGHT JOIN SalesLT.CustomerAddress CA ON ca.CustomerID = t.CustomerID
+
+						WHERE CA.AddressType ='SHIPPING'                                    
