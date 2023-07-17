@@ -47,11 +47,7 @@ namespace StudentClass
             Console.WriteLine($"Name is {Name}");
             Console.WriteLine($"Mark is {Mark}");
             Console.WriteLine($"Grade is {Grade}\n");
-
-
         }
-
-
 
     }
 }
