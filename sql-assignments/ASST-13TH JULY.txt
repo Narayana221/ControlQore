@@ -140,8 +140,22 @@ FROM SalesLT.Product p WHERE p.ProductID IN (
 			GROUP BY od.ProductID 
 			ORDER BY  SUM(od.OrderQty * (p.ListPrice - p.StandardCost)) DESC )
 
+-------------------------------------------------------------------------------------------------------------
 
+-- Combine all the queries without JOIN
 
+SELECT oh.SalesOrderID,oh.SubTotal,'OrderHeader' AS TableName
+     FROM SalesLT.SalesOrderHeader oh
+	 UNION ALL
+SELECT od.SalesOrderID, sum(od.OrderQty*od.UnitPrice),'OrderDetail' AS TableName
+     FROM SalesLT.SalesOrderDetail od 
+     GROUP BY od.SalesOrderID
+	 UNION ALL
+SELECT od.SalesOrderID, SUM(od.OrderQty * p.ListPrice) AS Subtotal,'Product' AS TableName
+     FROM SalesLT.SalesOrderDetail od 
+	 INNER JOIN SalesLT.Product p
+	 ON od.ProductID = p.ProductID
+	 GROUP BY od.SalesOrderID
 6)
 
 
@@ -182,10 +196,3 @@ SELECT DISTINCT City
 	WHERE oh.SalesOrderID IS  NULL
 	
 	
-
-
-
-
-
-
-
