@@ -1,6 +1,7 @@
 use AdventureWorksLT2019
 
 
+
 SELECT * FROM SalesLT.Product p WHERE P.Name = 'Racing Socks, L'
 SELECT * FROM SalesLT.ProductModel
 SELECT * FROM SalesLT.ProductCategory
@@ -9,7 +10,7 @@ SELECT * FROM SalesLT.ProductModelProductDescription
 SELECT * FROM SalesLT.Customer 
 SELECT * FROM SalesLT.CustomerAddress 
 SELECT * FROM SalesLT.Address 
-SELECT * FROM SalesLT.SalesOrderDetail
+SELECT * FROM SalesLT.SalesOrderDetail od WHERE od.ProductID = 680
 SELECT * FROM SalesLT.SalesOrderHeader
 
 1)
@@ -69,12 +70,21 @@ WHERE City = 'Dallas'
 
 SELECT COUNT(*) FROM 
 		(
-		SELECT p.ProductID
+		SELECT (p.ProductID)
 		FROM SalesLT.SalesOrderDetail od
-		LEFT JOIN  SalesLT.Product p 
+		INNER JOIN  SalesLT.Product p 
 		ON p.ProductID = od.ProductID
 		WHERE ListPrice > 1000
 		GROUP BY p.ProductID )    t
+
+-- USING EXISTS
+SELECT COUNT(*)
+FROM SalesLT.Product p 
+WHERE p.ListPrice > 1000  
+AND EXISTS (SELECT *
+		FROM SalesLT.SalesOrderDetail od 
+		WHERE p.ProductID = od.ProductID)
+
 
 7)
 
@@ -111,6 +121,19 @@ WHERE od.SalesOrderID IN
 	FROM SalesLT.SalesOrderDetail od 
 	GROUP BY od.SalesOrderID HAVING COUNT(*) = 1 )
 
+--USING EXISTS
+
+SELECT od1.SalesOrderID ,od1.UnitPrice
+FROM SalesLT.SalesOrderDetail od1
+WHERE EXISTS
+	(
+	SELECT count(*)
+	FROM SalesLT.SalesOrderDetail od2
+	WHERE od1.SalesOrderID = od2.SalesOrderID
+	GROUP BY od2.SalesOrderID HAVING COUNT(*) = 1
+	 )
+
+
 10)
 
 SELECT pd.ProductDescriptionID,pd.Description
@@ -122,6 +145,5 @@ ON pm.ProductModelID = pmpd.ProductModelID
 INNER JOIN SalesLT.Product p
 ON pm.ProductModelID = p.ProductModelID
 WHERE pmpd.Culture = 'fr' AND p.ProductID = 736
-
 
 
