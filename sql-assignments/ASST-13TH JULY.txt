@@ -195,4 +195,6 @@ SELECT DISTINCT City
 	ON a.AddressID= oh.BillToAddressID
 	WHERE oh.SalesOrderID IS  NULL
 	
-	
+	Q) Find the count occurence of a particular character in a column
+	DECLARE @input AS CHAR = 'o'
+  SELECT SUM(LEN(c.FirstName) - LEN(REPLACE(c.FirstName,@input,''))) FROM SalesLT.Customer c
