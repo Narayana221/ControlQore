@@ -13,9 +13,7 @@ namespace shape
        
         public Square(int num, int l) : base(num)
         {
-            NoOfSides = num;
-            length = l;
-            
+            length = l;   
         }
         public override double CalculateArea()
         {

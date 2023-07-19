@@ -12,7 +12,6 @@ namespace shape
         public int Height { get; set; }
         public Triangle(int num, int b, int height) : base(num)
         {
-            NoOfSides = num;
             Base = b;
             Height = height;
         }

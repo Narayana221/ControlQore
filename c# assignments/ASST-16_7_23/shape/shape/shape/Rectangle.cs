@@ -13,7 +13,6 @@ namespace shape
         public int breadth { get; set; }
         public Rectangle(int num, int l, int b) : base(num)
         {
-            NoOfSides = num;
             length = l;
             breadth = b;
         }

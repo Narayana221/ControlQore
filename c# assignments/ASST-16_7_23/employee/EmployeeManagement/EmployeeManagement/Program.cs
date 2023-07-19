@@ -11,13 +11,14 @@
             if ( ob1.JobType == 'p')
             {
                 ib = new PermanentEmployeeBonusCalulator();
-                bonus=ib.CalculateBonus(ob1 );
+                
             }
             else if(ob1.JobType == 'c')
             {
                 ib = new ContractEmployeeBonusCalculator();
-                bonus=ib.CalculateBonus(ob1);
+               
             }
+            bonus = ib.CalculateBonus(ob1);
             Console.WriteLine($"Bonus of {ob1.Name} with JobType as {ob1.JobType} is {bonus}");
         }
     }
