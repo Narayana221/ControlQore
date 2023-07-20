@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\assignments\\ControlQore\\c# assignments\\ASST-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj": {}
+    "C:\\assignments\\ControlQore\\c# assignments\\asst-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj": {}
   },
   "projects": {
-    "C:\\assignments\\ControlQore\\c# assignments\\ASST-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj": {
+    "C:\\assignments\\ControlQore\\c# assignments\\asst-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\assignments\\ControlQore\\c# assignments\\ASST-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj",
+        "projectUniqueName": "C:\\assignments\\ControlQore\\c# assignments\\asst-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj",
         "projectName": "EmployeeManagement",
-        "projectPath": "C:\\assignments\\ControlQore\\c# assignments\\ASST-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj",
+        "projectPath": "C:\\assignments\\ControlQore\\c# assignments\\asst-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\EmployeeManagement.csproj",
         "packagesPath": "C:\\Users\\CQ-Narayan\\.nuget\\packages\\",
-        "outputPath": "C:\\assignments\\ControlQore\\c# assignments\\ASST-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\obj\\",
+        "outputPath": "C:\\assignments\\ControlQore\\c# assignments\\asst-16_7_23\\employee\\EmployeeManagement\\EmployeeManagement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CQ-Narayan\\AppData\\Roaming\\NuGet\\NuGet.Config",
