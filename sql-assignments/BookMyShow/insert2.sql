@@ -115,64 +115,25 @@ EXEC AddSeatCategoryDetails 'Prime',400
 EXEC AddSeatCategoryDetails 'Classic PLus',260
 EXEC AddSeatCategoryDetails 'Classic',200
 
+USE [BookMyShow]
+GO
 
 
-SELECT * FROM Movie
-SELECT * FROM GenreGroup
-SELECT * FROM MovieLanguage
-SELECT * FROM Genre
-SELECT * FROM [Language]
-SELECT * FROM Customer
-SELECT * FROM PaymentName
-SELECT * FROM SeatCategory 
-
-CREATE TYPE EntityName  AS TABLE
+CREATE TYPE Screen  AS TABLE
 (
-  [name] VARCHAR(30)
+  [ScreenName] VARCHAR(30),
+   TotSeats INT
+   )
+GO
+CREATE TYPE Seat  AS TABLE
+(
+  [ScreenName] VARCHAR(30),
+  [SeatName] VARCHAR(30),
+  SeatCategoryId INT 
 )
 GO
 
-
-CREATE TYPE Screen  AS TABLE
-(
-  [ScreenName] VARCHAR(30)
-)
-GO
-CREATE TYPE Seat  AS TABLE
-(
-  [ScreenName] VARCHAR(30),
-  [SeatName] VARCHAR(30),
-  SeatCategoryId INT 
-)
-GO
-
-
-DECLARE @i Screen
-DECLARE @j Seat
-
-INSERT INTO @i 
-SELECT 'Vanitha'
-UNION ALL 
-SELECT 'Vineetha'
-
-
-INSERT INTO @j 
-SELECT 'Vanitha','1',1
-UNION ALL 
-SELECT 'Vineetha','1',1
-UNION ALL 
-SELECT 'Vanitha','1',1
-UNION ALL 
-SELECT 'Vineetha','1',1
-
-
-SELECT * FROM TheatreSeat
-
-
-EXEC AddTheatreDetails 'PVR',1,@screens = @i,@theatreseats = @j 
-
-GO
-CREATE OR ALTER PROCEDURE AddTheatreDetails
+CREATE OR ALTER  PROCEDURE AddTheatreDetails
 @Name VARCHAR(30),
 @cityID int,
 @screens AS Screen READONLY,
@@ -182,31 +143,187 @@ BEGIN
    INSERT INTO Theatre VALUES(@Name,@cityID)
    declare @theatreID int = SCOPE_IDENTITY()
 
-   DECLARE @inserted Table (
+   DECLARE @Temp_inserted Table (
 	InsertedId INT,
 	[Name] varchar(30)
    )
 
-   INSERT INTO Screen (  ScreenName,TheatreID ) 
-   OUTPUT inserted.ScreenID,inserted.ScreenName INTO @inserted
-   SELECT [ScreenName],@theatreID FROM @screens
-      
+   INSERT INTO Screen (  ScreenName,TheatreID,TOTSEATS) 
+   OUTPUT inserted.ScreenID,inserted.ScreenName INTO @Temp_inserted
+   SELECT [ScreenName],@theatreID,TotSeats FROM @screens
+   
+  
    INSERT INTO TheatreSeat(SeatNumber,SeatCategoryID,ScreenID)
    SELECT SeatName,SeatCategoryId,i.InsertedId
    FROM @theatreseats t 
-   INNER JOIN @inserted i 
+   INNER JOIN @Temp_inserted i 
 	ON i.Name = t.ScreenName 
 END
-
-DECLARE @ScreenTemp EntityIds
-
-INSERT INTO @ScreenTemp 
-SELECT 'SANGEETHA'
-UNION ALL
-SELECT 'SARITHA'
+GO
 
 
-DECLARE @TheatreSeatTemp EntityIds
+DECLARE @i Screen
+DECLARE @j Seat
 
-INSERT INTO @TheatreSeatTemp 
-SELECT 1
+INSERT INTO @i 
+SELECT 'AUDI-1',300
+UNION ALL 
+SELECT 'AUDI-2',350
+UNION ALL 
+SELECT 'AUDI-3',400
+
+
+
+INSERT INTO @j 
+SELECT 'AUDI-1','1',1
+UNION ALL 
+SELECT 'AUDI-1','2',1
+UNION ALL 
+SELECT 'AUDI-1','3',1
+UNION ALL 
+SELECT 'AUDI-1','1',2
+UNION ALL 
+SELECT 'AUDI-1','2',2
+UNION ALL 
+SELECT 'AUDI-1','3',2
+UNION ALL 
+SELECT 'AUDI-1','1',3
+UNION ALL 
+SELECT 'AUDI-2','1',2
+UNION ALL 
+SELECT 'AUDI-2','2',2
+UNION ALL 
+SELECT 'AUDI-2','1',3
+UNION ALL 
+SELECT 'AUDI-2','2',3
+UNION ALL 
+SELECT 'AUDI-2','3',3
+UNION ALL 
+SELECT 'AUDI-3','1',1
+UNION ALL 
+SELECT 'AUDI-3','1',2
+
+--EXEC AddTheatreDetails @Name='PVR', @cityID = 1, @screens = @i, @theatreseats = @j
+EXEC AddTheatreDetails @Name='Cinepolis', @cityID = 1, @screens = @i, @theatreseats = @j
+
+SELECT * FROM Theatre
+SELECT * FROM Screen
+SELECT * FROM TheatreSeat
+SELECT * FROM SeatCategory
+select * from Movie
+select * from MovieLanguage
+select * from Projection
+SELECT * FROM Show
+GO
+CREATE OR ALTER PROCEDURE AddShowDetails
+  @date DATETIME,
+  @showtime DATETIME,
+  @screenID INT,
+  @movieProjectionID INT,
+  @movieLanguageID INT
+
+  AS
+  BEGIN
+     INSERT INTO Show VALUES(@date,@showtime,@screenID,@movieProjectionID,@movieLanguageID) 
+
+  END
+  GO
+
+  alter table show alter column [date] date
+ EXEC AddShowDetails @date = '2023-06-21', @showtime = '2023-06-21 09:30:00', @screenID = 18,
+                     @movieProjectionID = 4, @movieLanguageID = 2
+ EXEC AddShowDetails @date = '2023-06-21', @showtime = '2023-06-21 12:30:00', @screenID = 19,
+                     @movieProjectionID = 2, @movieLanguageID = 5
+ EXEC AddShowDetails @date = '2023-06-21', @showtime = '2023-06-22 01:00:00', @screenID = 18,
+                    @movieProjectionID = 3, @movieLanguageID = 7
+
+
+
+
+select * from Show 
+select * from Customer
+
+SELECT * FROM Theatre
+SELECT * FROM Screen
+SELECT * FROM TheatreSeat
+SELECT * FROM SeatCategory
+select * from Movie
+select * from MovieLanguage
+select * from Projection
+SELECT * FROM Show
+
+
+
+GO
+CREATE OR ALTER PROCEDURE AddBookingDetails
+@NumOfSeats INT,
+@price FLOAT,
+@showID INT,
+@CustomerID INT,
+@TheatreSeatID AS EntityIds READONLY,
+@paymentID INT
+AS 
+BEGIN
+   INSERT INTO Booking VALUES(@NumOfSeats,@price,@showID,@CustomerID)
+   declare @BookingID int = SCOPE_IDENTITY()
+
+   INSERT INTO BookedSeat            
+   SELECT @BookingID,Id FROM @TheatreSeatID
+
+   INSERT INTO Payment 
+   VALUES( @BookingID,@paymentID )
+END
+
+DECLARE @i EntityIds
+
+--INSERT INTO @i
+--SELECT 37
+--UNION ALL 
+--SELECT 38
+--UNION ALL 
+--SELECT 39
+
+
+
+
+INSERT INTO @i
+SELECT 41
+
+
+
+
+
+
+--EXEC AddBookingDetails @NumOfseats = 2, @price = 1210 , @showID = 3, @customerID  = 1, @TheatreSeatID = @i ,@paymentID = 3
+
+--EXEC AddBookingDetails @NumOfseats = 3, @price = 1100 , @showID = 4, @customerID  = 2, @TheatreSeatID = @i ,@paymentID = 1
+
+EXEC AddBookingDetails @NumOfseats = 1, @price = 1210 , @showID = 4, @customerID  = 3, @TheatreSeatID = @i ,@paymentID = 1
+
+SELECT * FROM Booking
+
+SELECT * FROM BookedSeat
+
+select * from payment
+
+--calculated price of customer 1
+SELECT sum(sc.price)
+FROM BookedSeat bs
+inner join Booking b
+ON BS.BookingID = B.BookingID
+inNER JOIN TheatreSeat TH
+on TH.TheatreSeatID = bs.TheatreSeatID
+INNER JOIN SeatCategory SC
+on sc.SeatCategoryID = TH.SeatCategoryID
+INNER JOIN Customer C
+ON b.CustomerID = c.CustomerID
+where c.CustomerID = 1
+
+exec sp_rename 'booking.price','TotPrice','column'
+
+select * from BookedSeat
+select * from Booking
+
+DELETE FROM BookedSeat
+DELETE FROM Booking
+
