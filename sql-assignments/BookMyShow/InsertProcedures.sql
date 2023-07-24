@@ -67,7 +67,37 @@ EXECUTE AddLanguageDetails @LanguageName = 'Telugu'
 EXECUTE AddLanguageDetails @LanguageName = 'Tamil'
 EXECUTE AddLanguageDetails @LanguageName = 'Malayalam'
 
+CREATE PROCEDURE AddGenreDetailsOutput
+@GenreName VARCHAR(30),
+@GenreID INT OUTPUT
+AS 
+BEGIN
+   INSERT INTO Genre VALUES(@GenreName)
+   SELECT @GenreID = SCOPE_IDENTITY() 
+END 
+GO
 
+DECLARE @id INT
+EXECUTE AddGenreDetailsOutput @GenreName='Action',@GenreID = @id OUTPUT
+SELECT @id AS 'Current scope identity'
+
+
+select * from Genre
+go
+CREATE PROCEDURE AddLanguageDetailsOutput
+@LanguageName VARCHAR(30),
+@languageID INT OUTPUT
+AS 
+BEGIN
+   INSERT INTO Language VALUES(@LanguageName) 
+    SELECT @languageID = SCOPE_IDENTITY() 
+END 
+
+DECLARE @id INT
+EXECUTE AddLanguageDetailsOutput @LanguageName = 'Urdu',@languageID = @id OUTPUT
+SELECT @id AS 'Current scope identity'
+
+select * from Language
 
 select * from Genre
 SELECT * FROM Movie
