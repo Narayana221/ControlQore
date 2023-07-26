@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    table {
+      width: 60%;
+    }
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(1) {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+    th {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+
+    td,
+    th {
+      text-align: left;
+      height: 30px;
+      padding: 10px;
+    }
+    .mytable {
+      padding-bottom: 40px;
+    }
+    .mylink,a {
+      text-align: left;
+      font-family: 'Times New Roman', Times, serif;
+      font-size: large;
+    }
+    button
+    {
+        padding: 20px;
+        margin-top: 10px;
+    }
+  </style>
+  <body>
+    <h1>First Assignment</h1>
+    <div class="mytable">
+      <table>
+        <tr>
+          <th>State</th>
+          <th>Chief Minister</th>
+          <th>Capital</th>
+        </tr>
+        <tr>
+          <th>Andhra</th>
+          <td>Jagan</td>
+          <td>Amaravati</td>
+        </tr>
+        <tr>
+          <th>Telengana</th>
+          <td>KCR</td>
+          <td>Hyderabad</td>
+        </tr>
+        <tr>
+          <th>Karnataka</th>
+          <td>Bommai</td>
+          <td>Banglore</td>
+        </tr>
+        <tr>
+          <th>Maharashtra</th>
+          <td>Uddav Thakery</td>
+          <td>Mumbai</td>
+        </tr>
+        <tr>
+          <th>Kerala</th>
+          <td>Pinnarai</td>
+          <td>Trivandrum</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="mylink">
+      <a href="https://www.google.com/">google</a>
+    </div>
+    <button
+        onclick="alertFunction()">Alert me
+    </button>
+
+    <script>
+        function alertFunction() { 
+         alert("Hello World");
+        }
+        </script>
+  </body>
+</html>
