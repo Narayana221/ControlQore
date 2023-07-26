@@ -1,5 +1,5 @@
 is_global = true
-build_property.TargetFramework = net7.0
+build_property.TargetFramework = net6.0
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = 
 build_property.ProjectTypeGuids = 
@@ -7,5 +7,5 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
-build_property.RootNamespace = ConsoleApp1
-build_property.ProjectDir = c:\assignments\ControlQore\c# assignments\consoleApp1\ConsoleApp1\
+build_property.RootNamespace = Employee.App
+build_property.ProjectDir = C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\Employee.App\Employee.App\
