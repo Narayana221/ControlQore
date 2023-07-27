@@ -1,0 +1,12 @@
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\bin\Debug\net6.0\EmployeeModel.deps.json
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\bin\Debug\net6.0\EmployeeModel.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\bin\Debug\net6.0\EmployeeModel.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\EmployeeModel.csproj.AssemblyReference.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\EmployeeModel.GeneratedMSBuildEditorConfig.editorconfig
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\EmployeeModel.AssemblyInfoInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\EmployeeModel.AssemblyInfo.cs
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\EmployeeModel.csproj.CoreCompileInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\EmployeeModel.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\refint\EmployeeModel.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\EmployeeModel.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst1\EmployeeApp\EmployeeModel\obj\Debug\net6.0\ref\EmployeeModel.dll
