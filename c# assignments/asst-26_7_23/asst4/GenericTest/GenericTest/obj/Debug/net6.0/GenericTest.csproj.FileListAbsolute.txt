@@ -1,0 +1,15 @@
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.csproj.AssemblyReference.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.AssemblyInfoInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.AssemblyInfo.cs
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.csproj.CoreCompileInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\bin\Debug\net6.0\GenericTest.exe
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\bin\Debug\net6.0\GenericTest.deps.json
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\bin\Debug\net6.0\GenericTest.runtimeconfig.json
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\bin\Debug\net6.0\GenericTest.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\bin\Debug\net6.0\GenericTest.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\refint\GenericTest.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\GenericTest.genruntimeconfig.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst4\GenericTest\GenericTest\obj\Debug\net6.0\ref\GenericTest.dll
