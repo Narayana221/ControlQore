@@ -1,7 +1,7 @@
 ﻿namespace Custom
 {
     internal class Program
-    {
+     
         static void Main(string[] args)
         {
             Console.WriteLine("Enter the input character ");
