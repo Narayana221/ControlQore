@@ -1,0 +1,15 @@
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\bin\Debug\net6.0\Custom.exe
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\bin\Debug\net6.0\Custom.deps.json
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\bin\Debug\net6.0\Custom.runtimeconfig.json
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\bin\Debug\net6.0\Custom.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\bin\Debug\net6.0\Custom.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.csproj.AssemblyReference.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.GeneratedMSBuildEditorConfig.editorconfig
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.AssemblyInfoInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.AssemblyInfo.cs
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.csproj.CoreCompileInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\refint\Custom.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\Custom.genruntimeconfig.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst2\Custom\Custom\obj\Debug\net6.0\ref\Custom.dll
