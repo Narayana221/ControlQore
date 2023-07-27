@@ -1,5 +1,7 @@
-﻿namespace ExtensionTest
+﻿namespace ExtensionTest2
+
 {
+    using ExtensionTest;
     internal class Program
     {
         static void Main(string[] args)
