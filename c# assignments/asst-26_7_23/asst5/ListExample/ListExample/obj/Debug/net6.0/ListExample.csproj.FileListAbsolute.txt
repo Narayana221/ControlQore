@@ -1,0 +1,15 @@
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\bin\Debug\net6.0\ListExample.exe
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\bin\Debug\net6.0\ListExample.deps.json
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\bin\Debug\net6.0\ListExample.runtimeconfig.json
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\bin\Debug\net6.0\ListExample.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\bin\Debug\net6.0\ListExample.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.csproj.AssemblyReference.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.GeneratedMSBuildEditorConfig.editorconfig
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.AssemblyInfoInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.AssemblyInfo.cs
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.csproj.CoreCompileInputs.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\refint\ListExample.dll
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.pdb
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ListExample.genruntimeconfig.cache
+C:\assignments\ControlQore\c# assignments\asst-26_7_23\asst5\ListExample\ListExample\obj\Debug\net6.0\ref\ListExample.dll
