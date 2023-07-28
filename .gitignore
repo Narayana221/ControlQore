@@ -1,1 +1,8 @@
 /docker
+/.vs
+/bin
+*/bin
+/obj
+*/obj
+/.vscode
+*./.vscode
