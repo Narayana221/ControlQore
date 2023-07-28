@@ -24,9 +24,17 @@ namespace StudentList
             }
             Console.WriteLine("\n");
 
-            var maxMark = students.Max(x => x.Mark);
 
-            Console.WriteLine($"The maximum mark in the list is {maxMark}\r\n");
+
+            var maxMark = students.Max(x => x.Mark);
+            var ans = students.Where(x => x.Mark.Equals(maxMark)).Select(x => x.Name);
+            Console.WriteLine($"The students with  maximum mark in the list is");
+            foreach (string item in ans)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("\n");
 
             var mark75 = students.Where(x => x.Mark > 75).Select(x => x.Name);
             Console.WriteLine("List of students whose mark is greater than 75\r\n");
