@@ -1,6 +1,6 @@
 ﻿namespace EmployeeModel
 {
-    public class Class1
+    public class Employee
     {
         static int count;
 
@@ -9,12 +9,12 @@
         public string Name;
         public double Salary { get; set; }
         public string? EmployeeType { get; set; }
-        static Class1()
+        static Employee()
         {
             count = 1000;
         } 
 
-        public Class1(string name, double salary, string employeeType)
+        public Employee(string name, double salary, string employeeType)
         {
             Id = "EMP" + count++;
             Name = name;
