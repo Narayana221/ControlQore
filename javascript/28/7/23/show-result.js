@@ -36,7 +36,8 @@ let details = [
       "Department": "Computer Science"
     }
   ]
-  //console.log(details)
+
+function Display(){
 
   let a = details.filter(x => x.Department === "Computer Science").map(x => `${x.FirstName}  ${x.LastName}`)
   console.log(a)
@@ -53,5 +54,7 @@ let details = [
   a = details.every(x => x.Age > 18)
   console.log(a)
 
-  a = details.find(x => x.FirstName === "Robert").map(x => x.Department)
+  a = details.filter(x => x.FirstName === "Robert").map(x => x.Department)
   console.log(a)
+
+}
