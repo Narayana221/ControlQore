@@ -107,15 +107,13 @@ movies_withdate.splice(2,0,{
 }
 
  )
-
+console.log("-----------------------------------------")
 console.log(movies_withdate);
  
 //11) Display the count of distinct actor names in array
 
  actor_names = movies_withdate.map(x => x.ActorName);
 console.log(actor_names);
-//
-
 distinct_actor_names = actor_names.filter((value,index,array) => {return index === array.indexOf(value)});
 console.log(distinct_actor_names.length);
 
