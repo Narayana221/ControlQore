@@ -24,7 +24,6 @@ const students = [
 console.log(students);
 
 let concatNames = "";
-// using foreach
 students.forEach((item) => {
   concatNames === ""
     ? (concatNames = item.name)
