@@ -68,7 +68,7 @@ namespace DatabaseTest
             con.Open();
 
 
-            string query = "AddStudentsUsingProc";
+            string query = "AddStudentsUsingProc"; 
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = query;
             cmd.Connection = con;
