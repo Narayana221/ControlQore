@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    table {
+      width: 60%;
+    }
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(1) {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+    td,
+    th {
+      text-align: left;
+      height: 30px;
+      padding: 10px;
+    }
+    .mytable {
+      padding-bottom: 40px;
+    }
+  </style>
+  <body>
+    <div class="mytable">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Date of Birth</th>
+        <th>Age</th>
+        <th>Joining Date</th>
+        <th>Country</th>
+      </tr>
+      <tr *ngFor="let i of arr">
+        <td>{{i.FirstName}}</td>
+        <td>{{ i.LastName }}</td>
+        <td>{{ i.DOB }}</td>
+        <td>{{ i.age }}</td>
+        <td>{{ i.JoiningDate }}</td>
+        <td>{{ i.Country }}</td>
+      </tr>
+    </div>
+  </body>
+</html>
