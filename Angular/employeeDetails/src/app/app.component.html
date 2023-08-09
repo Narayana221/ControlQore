@@ -1,0 +1,3 @@
+
+<app-employee-full-details  *ngIf="!showTable" [obtainedObject]="selectedObject" (goBack)="changeDisplayInApp()"> </app-employee-full-details>
+<app-employee-names *ngIf="showTable" (newDisplayEvent)="showGridInApp($event)"></app-employee-names>
