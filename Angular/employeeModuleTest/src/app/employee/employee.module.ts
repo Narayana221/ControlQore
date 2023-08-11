@@ -11,7 +11,7 @@ import { EmployeeDetailsComponent } from './employee-details/employee-details.co
     EmployeeDetailsComponent
   ],
   imports: [
-    CommonModule,
+     CommonModule,
     
   ],
   exports :[
