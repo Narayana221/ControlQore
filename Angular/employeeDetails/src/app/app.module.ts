@@ -7,12 +7,13 @@ import { EmployeeFullDetailsComponent } from './employee-full-details/employee-f
 
 @NgModule({
   declarations: [
-    AppComponent,
-    EmployeeNamesComponent,
-    EmployeeFullDetailsComponent
+    AppComponent
+   
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    EmployeeNamesComponent,
+    EmployeeFullDetailsComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
