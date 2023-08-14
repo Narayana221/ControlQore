@@ -1,0 +1,33 @@
+<style>
+    table {
+      width: 60%;
+    }
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(1) {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+    td,
+    th {
+      text-align: left;
+      height: 30px;
+      padding: 10px;
+    }
+  
+  </style>
+  <body>
+      <h1>Department Names</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+      </tr>
+      <tr *ngFor="let i of dept">
+        <td><button (click)="changeDisplay(i)"> {{ i.deptName }}</button></td>
+      </tr>
+    </table>
+  </body>

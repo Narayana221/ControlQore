@@ -1,0 +1,3 @@
+<app-dept-name *ngIf="showGrid" (newDisplayEvent)="displayFullDetails($event)"></app-dept-name>
+<app-dept-details *ngIf="!showGrid" [obtainedObject]="selectObject" (goBack)="changeDisplayInApp()"></app-dept-details>
+

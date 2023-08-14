@@ -1,0 +1,35 @@
+<style>
+    table {
+      width: 60%;
+    }
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(1) {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+    td,
+    th {
+      text-align: left;
+      height: 30px;
+      padding: 10px;
+    }
+  
+  </style>
+  <body>
+      <h1>Employee Names</h1>
+    <table>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+      <tr *ngFor="let i of emp">
+        <td><button (click)="changeDisplay(i)"> {{ i.firstName }}</button></td>
+        <td>{{ i.lastName }}</td>
+      </tr>
+    </table>
+  </body>
