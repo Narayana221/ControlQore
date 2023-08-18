@@ -1,0 +1,25 @@
+<div class="heading"><h2>Add New Employee Details</h2></div>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName" />
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName" />
+
+  <label for="dateOfBirth">Date of birth: </label>
+  <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+
+  <label for="age">Age: </label>
+  <input id="age" type="text" formControlName="age" />
+
+  <label for="joiningDate">Joining date: </label>
+  <input id="joiningDate" type="date" formControlName="joiningDate" />
+
+  <label for="country">Country: </label>
+  <input id="country" type="text" formControlName="country" />
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>
