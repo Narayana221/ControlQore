@@ -1,0 +1,24 @@
+<div class="heading"><h2>Add New Employee Details</h2></div>
+
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName" />
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName" />
+
+  <label for="email">Email: </label>
+  <input id="email" type="text" formControlName="eMail" />
+
+  <label for="age">Phone: </label>
+  <input id="age" type="text" formControlName="phone" />
+
+  <label for="departmentId">DepartmentID: </label>
+  <input id="departmentId" type="text" formControlName="departmentId" />
+
+
+  <p>Complete the form to enable button.</p>
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+</form>

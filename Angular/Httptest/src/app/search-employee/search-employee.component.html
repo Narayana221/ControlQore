@@ -1,0 +1,57 @@
+
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <br />
+  <br />
+  <label for="searchEmployee">Enter Employee Name </label>
+  <input id="searchEmployee" type="text" formControlName="searchEmployee" />
+  <button type="submit" [disabled]="!searchForm.valid">Search</button>
+  <!-- <p *ngFor ="let i of chosen">{{i.firstName}}</p> -->
+
+</form>
+
+<style>
+  table {
+    width: 60%;
+  
+  }
+  table,
+  td,
+  th {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  tr:nth-child(1) {
+    background-color: rgb(163, 163, 163);
+    color: rgb(0, 0, 0);
+  }
+  td,
+  th {
+    text-align: left;
+    height: 30px;
+    padding: 10px;
+  }
+  input {
+    margin: 20px
+  }
+
+  
+</style>
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>DepartmentID </th>
+      
+    </tr>
+    <tr *ngFor ="let i of chosen">
+      <td>{{ i.firstName }}</td>
+      <td>{{ i?.lastName }}</td>
+      <td>{{ i?.eMail }}</td>
+      <td>{{ i?.phone }}</td>
+      <td>{{ i?.departmentId }}</td>
+      
+    </tr>
+  </table>
+
