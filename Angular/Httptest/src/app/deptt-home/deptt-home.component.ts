@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DeptType } from './dept-name/deptType';
+import { Idept } from './idept';
+
 
 @Component({
   selector: 'app-deptt-home',
@@ -8,8 +9,8 @@ import { DeptType } from './dept-name/deptType';
 })
 export class DepttHomeComponent {
  public showGrid = true;
- public  selectObject! : DeptType;
- displayFullDetails(value : DeptType)
+ public  selectObject! : Idept;
+ displayFullDetails(value : Idept)
  { 
    this.showGrid = false;
    this.selectObject = value;

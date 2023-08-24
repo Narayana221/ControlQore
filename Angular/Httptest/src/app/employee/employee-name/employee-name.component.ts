@@ -3,6 +3,7 @@ import { IEmployee } from '../iemployee';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { async } from 'rxjs';
 
 @Component({
   selector: 'app-employee-name',
@@ -41,6 +42,7 @@ export class EmployeeNameComponent  {
   updateDisplay(value: IEmployee) {
     this.route.navigate([`./${value.id}/updates`], {
       relativeTo: this.activatedRoute,
+      
     });
   }
   ngOnInit()
@@ -48,8 +50,10 @@ export class EmployeeNameComponent  {
     this.fetchEmployeeData()
   }
 
-  delete(id : number){
-    this.empService.deleteEmployee(id).subscribe((data) => console.log(data))
+   delete(id : number){
+    this.empService.deleteEmployee(id).subscribe((data) => {console.log(data); this.fetchEmployeeData();})
+    
+    this.fetchEmployeeData()
   }
 
 

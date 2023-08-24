@@ -26,8 +26,8 @@
       <tr>
         <th>Name</th>
       </tr>
-      <tr *ngFor="let i of dept">
-        <td><button (click)="changeDisplay(i)"> {{ i.deptName }}</button></td>
+      <tr *ngFor="let i of deptList">
+        <td><button (click)="changeDisplay(i)"> {{ i.name }}</button></td>
       </tr>
     </table>
   </body>

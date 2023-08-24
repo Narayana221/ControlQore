@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { DeptType } from '../dept-name/deptType';
+import { Idept } from '../idept';
+
 
 @Component({
   selector: 'app-dept-details',
@@ -8,7 +9,7 @@ import { DeptType } from '../dept-name/deptType';
 })
 export class DeptDetailsComponent {
   @Input()
-  public obtainedObject!: DeptType;
+  public obtainedObject!: Idept;
   @Output()  goBack = new EventEmitter<boolean>();
 
   changeDisplay(){

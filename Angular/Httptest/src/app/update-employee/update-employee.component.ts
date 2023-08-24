@@ -39,6 +39,11 @@ export class UpdateEmployeeComponent {
         (x) => x.id === this.employeeId
       )!;
       console.log(this.detailsofEmp);
+      this.profileForm.controls.firstName.setValue(this.detailsofEmp.firstName);
+      this.profileForm.controls.lastName.setValue(this.detailsofEmp.lastName);
+      this.profileForm.controls.eMail.setValue(this.detailsofEmp.eMail);
+      this.profileForm.controls.phone.setValue(this.detailsofEmp.phone);
+      this.profileForm.controls.departmentId.setValue((this.detailsofEmp.departmentId).toString());
     });
   }
   constructor(
@@ -51,11 +56,10 @@ export class UpdateEmployeeComponent {
 
   ngOnInit() {
     const id: string = this.route.snapshot.params['id'];
-    console.log(this.route);
     this.employeeId = Number(id);
-    console.log(this.employeeId);
-  }
-  //id: number = 0;
+    
+  };
+ 
   firstName: string = '';
   lastName: string = '';
   eMail: string = '';
@@ -68,6 +72,7 @@ export class UpdateEmployeeComponent {
     phone: new FormControl(''),
     departmentId: new FormControl(''),
   });
+  
 
   onSubmit() {
     this.firstName = this.profileForm.get('firstName')?.value!;
@@ -75,9 +80,17 @@ export class UpdateEmployeeComponent {
     this.eMail = this.profileForm.get('eMail')?.value!;
     this.phone = this.profileForm.get('phone')?.value!;
     this.departmentId = Number(this.profileForm.get('departmentId')?.value!);
-
+   
+    this.newEmp.firstName = this.firstName;
+    this.newEmp.lastName = this.lastName;
+    this.newEmp.eMail = this.eMail;
+    this.newEmp.phone = this.phone;
+    this.newEmp.departmentId = this.departmentId;
+    console.log(this.detailsofEmp.firstName)
     this.empService
     .updateEmployee(this.newEmp,this.detailsofEmp?.id)
     .subscribe((data) => console.log(data));
+    alert("Submit Successful")
+    this.router.navigate(['./employee']);
   }
 }
