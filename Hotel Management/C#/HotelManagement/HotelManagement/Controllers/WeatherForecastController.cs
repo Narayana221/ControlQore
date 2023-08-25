@@ -8,7 +8,7 @@ namespace HotelManagement.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+        "Freezing", "Bracing","hello I Havr changed some line of code"
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
