@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IEmployeeDetailsType } from '../employee-names/IEmployeeDetailsType';
+//import { IEmployeeDetailsType } from '../employee-names/IEmployeeDetailsType';
 
 
 @Component({
@@ -8,8 +8,8 @@ import { IEmployeeDetailsType } from '../employee-names/IEmployeeDetailsType';
   styleUrls: ['./employee-full-details.component.sass']
 })
 export class EmployeeFullDetailsComponent {
-  @Input()
-  obtainedObject!: IEmployeeDetailsType;
+  // @Input()
+  // obtainedObject!: IEmployeeDetailsType;
   @Output()  goBack = new EventEmitter<boolean>();
 
 changeDisplay(){
