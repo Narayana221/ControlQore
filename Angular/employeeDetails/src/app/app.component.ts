@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IEmployeeDetailsType } from './employee-names/IEmployeeDetailsType';
+import { IEmployeeDetailsType } from './employee/employee-names/IEmployeeDetailsType';
 
 @Component({
   selector: 'app-root',

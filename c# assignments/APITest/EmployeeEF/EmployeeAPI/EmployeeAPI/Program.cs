@@ -21,7 +21,26 @@ namespace EmployeeAPI
                 option.UseSqlServer(builder.Configuration["ConnectionString:SqlServer"]);
             });
 
+            
+              builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost",
+                                        "https://localhost:4200",
+                                        "https://localhost:7178",
+                                        "http://localhost:65268",
+                                        "http://localhost:4200"
+                                        )
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod()
+                                        .SetIsOriginAllowedToAllowWildcardSubdomains();
+                });
+            });
+
             var app = builder.Build();
+            app.UseCors("AllowAngularOrigins");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

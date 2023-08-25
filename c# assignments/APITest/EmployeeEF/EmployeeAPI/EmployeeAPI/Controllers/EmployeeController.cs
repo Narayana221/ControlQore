@@ -57,11 +57,12 @@ namespace EmployeeAPI.Controllers
         public void put(EmployeeClone employeeClone, int id)
         {
             var x = dbContext?.Employees.Find(id);
-            x!.FirstName = employeeClone.FirstName;
+            x.FirstName = employeeClone.FirstName;
             x.LastName = employeeClone.LastName;
             x.EMail = employeeClone.EMail;
             x.Phone = employeeClone.Phone;
             x.departmentId = employeeClone.departmentId;
+            
             dbContext?.SaveChanges();
         }
     }

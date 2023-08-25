@@ -19,6 +19,7 @@ constructor(private empService: EmployeeService, private route: ActivatedRoute,
 }
 ngOnInit(): void{
   const id: string = this.route.snapshot.params['id'];
+  console.log(this.route);
   this.employeeId = Number(id);
   this.detailsofEmp = this.empList.find(x => x.id === this.employeeId);
 }
