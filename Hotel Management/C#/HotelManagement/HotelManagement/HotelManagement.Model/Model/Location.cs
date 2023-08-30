@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class Class1
+public class Location
 {
-	public Class1()
-	{
-	}
+	public int LocationId { get; set; }
+	public string Name { get; set; }
+
 }

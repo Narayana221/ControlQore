@@ -1,8 +1,11 @@
 ﻿using System;
 
-public class Class1
+public class Hotel
 {
-	public Class1()
-	{
-	}
+	public int HotelId { get; set; }
+	public string Name { get; set; }
+
+	public Location Location { get; set; }
+
+	public float Rating { get; set; }
 }
