@@ -24,15 +24,17 @@ export class LoginPageComponent {
   
   passUserName: string | undefined;
   passPassword: string | undefined;
-  userData?: Icustomer;
+  userData?: string = "Enter a valid username";
   onSubmit(){
     this.passUserName = String(this.loginForm.value.userName)
     this.passPassword = String(this.loginForm.value.passWord)
-    this.apiService.getUserDetails(this.passUserName).subscribe((data)=>{
+    this.apiService.getUserDetails(this.passUserName, this.passPassword).subscribe((data)=>{
       this.userData = data;
     })
 
-    
+    console.log(this.userData);
+
+
 
   }
 
