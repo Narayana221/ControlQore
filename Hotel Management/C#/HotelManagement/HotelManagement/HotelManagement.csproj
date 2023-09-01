@@ -21,4 +21,8 @@
     <ProjectReference Include="..\HotelManagement.Repo\HotelManagement.Repo.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Queries\LoginPageQuery\" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,6 @@
 ﻿using HotelManagement.Commands.AddStudent;
+using HotelManagement.Commands.AddUser;
 using HotelManagement.HotelManagement.Model.Model;
-using HotelManagement.Queries.LoginPageQuery;
 using HotelManagement.Repo.Context;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,11 +23,11 @@ namespace HotelManagement.Controllers
             return Ok(await _mediator.Send(command));
         }
 
-        [HttpGet("GetUser")]
+        [HttpPost("GetUser")]
 
-        public async Task<ActionResult<string>> GetUser(LoginPageQuery command)
+        public async Task<ActionResult<User>> GetUser([FromBody]LoginPageQuery command)
         {
-            return await _mediator.Send(command);
+            return Ok(await _mediator.Send(command));
         }
     }
 }

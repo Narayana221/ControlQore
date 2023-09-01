@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpParams} from '@angular/common/http'
 import { Icustomer } from './icustomer';
 import { Observable } from 'rxjs';
 import { Iloginuser } from './iloginuser';
@@ -15,16 +15,18 @@ export class AppServiceService {
   login?: Iloginuser
 
   baseUrl: string = 'https://localhost:7118';
+  queryParams = new HttpParams();
+  name?: string;
 
   addUser(user: Icustomer): Observable<object>{
     return this.http.post(`${this.baseUrl}/AddUser`, user)
   }
 
   getUserDetails(username: string, password: string): Observable<string>{
-    this.login ={
-      name: username,
-      pass: password
+    this.login=  {
+      username: username,
+      password: password
     }
-    return this.http.get<string>(`${this.baseUrl}/GetUser`)
+    return this.http.post(`${this.baseUrl}/GetUser`, this.login, {responseType: 'text'})
   }
 }
