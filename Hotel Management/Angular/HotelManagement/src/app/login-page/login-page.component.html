@@ -1,0 +1,19 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<div class="master">
+    <h1>OYO</h1>
+    <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
+
+    <h2>Login/SignUp</h2>
+
+    <form [formGroup]="loginForm"    (ngSubmit)="onSubmit()">
+        <label >Username: </label>
+        <input formControlName="userName"/>
+        <label >Password: </label>
+        <input formControlName="passWord"/>
+        <button type="submit">Submit</button>
+    </form>
+    <button (click)="newAccount()">New Account</button>
+</div>
