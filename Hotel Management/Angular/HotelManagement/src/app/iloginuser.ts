@@ -1,4 +1,4 @@
 export interface Iloginuser {
-    name: string,
-    pass: string
+    username: string,
+    password: string
 }

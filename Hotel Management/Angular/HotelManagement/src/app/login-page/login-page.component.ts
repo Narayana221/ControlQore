@@ -6,6 +6,7 @@ import { Icustomer } from '../icustomer';
 
 
 
+
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -24,15 +25,36 @@ export class LoginPageComponent {
   
   passUserName: string | undefined;
   passPassword: string | undefined;
-  userData?: string = "Enter a valid username";
+  userData?: String = "Enter a valid username";
+  loginFlag: boolean = true;
+  loginedUser: boolean = false;
+
   onSubmit(){
     this.passUserName = String(this.loginForm.value.userName)
     this.passPassword = String(this.loginForm.value.passWord)
     this.apiService.getUserDetails(this.passUserName, this.passPassword).subscribe((data)=>{
       this.userData = data;
+      if (this.userData == null){
+        this.loginFlag = false;
+        this.loginedUser = false;
+      }
+      else{
+        console.log(this.userData)
+        this.loginFlag = true;
+        this.loginedUser = true;
+        
+      } 
+      
     })
 
-    console.log(this.userData);
+
+
+
+  
+
+    
+
+    
 
 
 
