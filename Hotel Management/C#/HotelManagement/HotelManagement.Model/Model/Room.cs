@@ -16,5 +16,7 @@ namespace HotelManagement.Model.Model
         public int HotelId { get; set; }
         public bool RoomActive { get; set; }
         public float RoomCost { get; set; }
+
+        public BookedRoom BookedRoom { get; set; }
     }
 }

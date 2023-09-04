@@ -6,13 +6,19 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    NewUserComponent
+    NewUserComponent,
+    HomeComponent,
+    DisplayhotelComponent,
+
   ],
   imports: [
     BrowserModule,

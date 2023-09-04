@@ -8,5 +8,9 @@ namespace HotelManagement.Queries.GetHotel
     {
         public float Rating { get; set; }
         public string LocationName { get; set; }
+        public DateTime StartDate { get; set;}
+        public DateTime EndDate { get; set;}
+
+        public int NoOfRooms { get; set; }
     }
 }

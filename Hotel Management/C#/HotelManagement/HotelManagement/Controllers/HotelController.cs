@@ -1,7 +1,7 @@
 ﻿using HotelManagement.Dtos;
 using HotelManagement.Model.Model;
 using HotelManagement.Queries.GetHotel;
-using HotelManagement.Queries.LoginPageQuery;
+
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -29,16 +29,39 @@ namespace HotelManagement.Queries.GetHotel
                 HotelName = y.Name
             }).Select(x => new Location = x.Name,
                 HotelName = y.Name).ToListAsync();*/
-            return await _context.Hotel.Where(x => x.Location.Name == request.LocationName &&  x.Rating > request.Rating)
-                .Select(x => new ViewHotelDto
-                {
-                    Id = x.HotelId,
-                    Name = x.Name,
-                    Location  = x.Location.Name,
-                    Rating = x.Rating,
-                })
-                .ToListAsync();
 
+
+            //return await _context.Hotel.Where(x => x.Location.Name == request.LocationName &&  x.Rating > request.Rating && request.StartDate > x. )
+            //    .Select(x => new ViewHotelDto
+            //    {
+            //        Id = x.HotelId,
+            //        Name = x.Name,
+            //        Location  = x.Location.Name,
+            //        Rating = x.Rating,
+            //    })
+            //    .ToListAsync();
+
+            //return await _context.BookedRoom.Where(x => x.Room.Hotel.Location.Name == request.LocationName && x.Room.Hotel.Rating > request.Rating
+            //&& (request.StartDate > x.EndDate || request.EndDate < x.StartDate))
+            //.Select(x => new ViewHotelDto
+            //{
+            //    Id = x.Room.Hotel.HotelId,
+            //    Name = x.Room.Hotel.Name,
+            //    Location = x.Room.Hotel.Location.Name,
+            //    Rating = x.Room.Hotel.Rating,
+            //    RoomId = x.Room.RoomId
+            //}).ToListAsync();
+
+            return await _context.Room.Where(x => x.Hotel.Location.Name == request.LocationName && x.Hotel.Rating > request.Rating
+           && (request.StartDate > x.BookedRoom.EndDate || request.EndDate < x.BookedRoom.StartDate))
+           .Select(x => new ViewHotelDto
+           {
+               Id = x.Hotel.HotelId,
+               Name = x.Hotel.Name,
+               Location = x.Hotel.Location.Name,
+               Rating = x.Hotel.Rating,    
+               RoomId = x.RoomId
+           }).ToListAsync();
         }
     }
 }

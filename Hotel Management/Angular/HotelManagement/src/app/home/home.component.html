@@ -1,0 +1,32 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+<div class="master">
+    <h1>OYO</h1>
+    <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
+
+
+    <form [formGroup]="HotelForm"    (ngSubmit)="onSubmit()">
+        <label >Location: </label>
+        <input  type="text"  formControlName="location"/>
+        <label >Start Date: </label>
+        <input  type="date"  formControlName="startDate"/>
+        <label >End Date: </label>
+        <input  type="date"  formControlName="endDate"/>
+        <label >No: of Rooms </label>
+        <input type="number"  formControlName="noOfRooms"/>
+        <label >Min. Rating</label>
+        <input type="number"  formControlName="rating"/>
+        <button type="submit">Search</button>
+    </form>
+    
+    <tr *ngFor ="let i of room">
+        <td>{{ i.id }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.location }}</td>
+        <td>{{ i.rating }}</td>
+        <td>{{ i.roomId }}</td>
+    </tr>
+   
+</div>

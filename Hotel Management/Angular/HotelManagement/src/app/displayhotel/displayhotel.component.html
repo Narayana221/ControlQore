@@ -1,0 +1,41 @@
+<style>
+    table {
+      width: 60%;
+    
+    }
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(1) {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+    td,
+    th {
+      text-align: left;
+      height: 30px;
+      padding: 10px;
+    }
+    input {
+      margin: 20px
+    }
+</style>
+<table>
+    <tr>
+      <th>Id</th>
+      <th>Hotel</th>
+      <th>Location</th>
+      <th>Rating</th>
+      <th>RoomId </th>
+      
+    </tr>
+<tr *ngFor ="let i of obtainedHotel">
+    <td>{{ i.id }}</td>
+    <td>{{ i.name }}</td>
+    <td>{{ i.location }}</td>
+    <td>{{ i.rating }}</td>
+    <td>{{ i.roomId }}</td>
+</tr>
