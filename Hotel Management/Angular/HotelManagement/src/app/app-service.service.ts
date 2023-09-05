@@ -4,6 +4,8 @@ import { Icustomer } from './icustomer';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Iloginuser } from './iloginuser';
 import { IFilterroom } from './ifilterroom';
+import { Ibooking } from './ibooking';
+
 
 @Injectable({
   providedIn: 'root',
@@ -49,5 +51,9 @@ export class AppServiceService {
     return this.http.get<Array<IFilterroom>>(
       `${this.baseUrl}/GetHotel?Rating=${rating}&LocationName=${location}&StartDate=${startDate}&EndDate=${endDate}&NoOfRooms=${noOfRooms}`
     );
+  }
+
+  addBooking(booking:Ibooking){
+    return this.http.post(`${this.baseUrl}/Addbooking`, booking)
   }
 }

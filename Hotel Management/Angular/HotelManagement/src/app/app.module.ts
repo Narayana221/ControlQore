@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
 
+import { BookingPageComponent } from './booking-page/booking-page.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
     HomeComponent,
     DisplayhotelComponent,
 
+    BookingPageComponent
   ],
   imports: [
     BrowserModule,

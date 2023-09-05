@@ -1,6 +1,6 @@
 ﻿using HotelManagement.Commands.AddStudent;
-using HotelManagement.Commands.AddUser;
 using HotelManagement.HotelManagement.Model.Model;
+using HotelManagement.Queries.LoginPageQuery;
 using HotelManagement.Repo.Context;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

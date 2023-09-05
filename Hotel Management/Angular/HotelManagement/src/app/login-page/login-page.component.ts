@@ -42,21 +42,11 @@ export class LoginPageComponent {
         console.log(this.userData)
         this.loginFlag = true;
         this.loginedUser = true;
+        this.router.navigate(['./book'])
         
       } 
       
     })
-
-
-
-
-  
-
-    
-
-    
-
-
 
   }
 

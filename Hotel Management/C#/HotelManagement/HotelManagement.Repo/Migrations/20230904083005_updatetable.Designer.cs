@@ -4,6 +4,7 @@ using HotelManagement.Repo.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelManagement.Repo.Migrations
 {
     [DbContext(typeof(HotelManagementContext))]
-    partial class HotelManagementContextModelSnapshot : ModelSnapshot
+    [Migration("20230904083005_updatetable")]
+    partial class updatetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,16 +88,16 @@ namespace HotelManagement.Repo.Migrations
                     b.Property<int>("BookingId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("CheckedIn")
+                    b.Property<DateTime>("CheckedIn")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("CheckedOut")
+                    b.Property<DateTime>("CheckedOut")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool?>("IsCanelled")
+                    b.Property<bool>("IsCanelled")
                         .HasColumnType("bit");
 
                     b.Property<int>("RoomId")
@@ -107,8 +110,7 @@ namespace HotelManagement.Repo.Migrations
 
                     b.HasIndex("BookingId");
 
-                    b.HasIndex("RoomId")
-                        .IsUnique();
+                    b.HasIndex("RoomId");
 
                     b.ToTable("BookedRoom");
                 });
@@ -246,8 +248,8 @@ namespace HotelManagement.Repo.Migrations
                         .IsRequired();
 
                     b.HasOne("HotelManagement.Model.Model.Room", "Room")
-                        .WithOne("BookedRoom")
-                        .HasForeignKey("HotelManagement.Model.Model.BookedRoom", "RoomId")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -295,12 +297,6 @@ namespace HotelManagement.Repo.Migrations
                     b.Navigation("Hotel");
 
                     b.Navigation("RoomType");
-                });
-
-            modelBuilder.Entity("HotelManagement.Model.Model.Room", b =>
-                {
-                    b.Navigation("BookedRoom")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
