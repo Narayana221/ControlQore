@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http'
 import { Icustomer } from './icustomer';
 import { Observable } from 'rxjs';
 import { Iloginuser } from './iloginuser';
+import { Ibooking } from './ibooking';
 
 
 @Injectable({
@@ -28,5 +29,9 @@ export class AppServiceService {
       password: password
     }
     return this.http.post(`${this.baseUrl}/GetUser`, this.login, {responseType: 'text'})
+  }
+
+  addBooking(booking:Ibooking){
+    return this.http.post(`${this.baseUrl}/Addbooking`, booking)
   }
 }

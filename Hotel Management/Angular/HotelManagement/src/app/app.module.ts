@@ -6,13 +6,15 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BookingPageComponent } from './booking-page/booking-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    NewUserComponent
+    NewUserComponent,
+    BookingPageComponent
   ],
   imports: [
     BrowserModule,

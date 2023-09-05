@@ -1,7 +1,7 @@
 ﻿using HotelManagement.HotelManagement.Model.Model;
 using MediatR;
 
-namespace HotelManagement.Commands.AddUser
+namespace HotelManagement.Queries.LoginPageQuery
 {
     public class LoginPageQuery : IRequest<string>
     {
