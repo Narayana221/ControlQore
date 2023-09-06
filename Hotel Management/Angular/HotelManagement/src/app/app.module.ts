@@ -7,12 +7,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NewUserComponent } from './new-user/new-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
-
 import { BookingPageComponent } from './booking-page/booking-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoomtypeComponent } from './roomtype/roomtype.component';
 import { ManagerComponent } from './manager/manager.component';
+
+
 
 
 @NgModule({
@@ -21,11 +21,9 @@ import { ManagerComponent } from './manager/manager.component';
     LoginPageComponent,
     NewUserComponent,
     HomeComponent,
-   // DisplayhotelComponent,
-
     BookingPageComponent,
-   RoomtypeComponent,
-   ManagerComponent
+    RoomtypeComponent,
+    ManagerComponent,
   ],
   imports: [
     BrowserModule,

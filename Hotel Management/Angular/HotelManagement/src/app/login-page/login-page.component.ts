@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppServiceService } from '../app-service.service';
 import { Icustomer } from '../icustomer';
+import { IUserDto } from '../i-user-dto';
 
 
 
@@ -25,7 +26,7 @@ export class LoginPageComponent {
   
   passUserName: string | undefined;
   passPassword: string | undefined;
-  userData?: String = "Enter a valid username";
+  userData?:  IUserDto
   loginFlag: boolean = true;
   loginedUser: boolean = false;
 
@@ -42,7 +43,16 @@ export class LoginPageComponent {
         console.log(this.userData)
         this.loginFlag = true;
         this.loginedUser = true;
-        this.router.navigate(['./book'])
+        if (Number(this.userData.userRoleId) == 1)
+        {
+          this.apiService.editUserId(this.userData.userId)
+          this.router.navigate(['./home'])
+        }
+        else{
+          this.router.navigate(['./manager'])
+        }
+        
+        
         
       } 
       

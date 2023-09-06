@@ -6,6 +6,7 @@ import { Iloginuser } from './iloginuser';
 import { IFilterroom } from './ifilterroom';
 import { Ibooking } from './ibooking';
 import { Iroomtype } from './iroomtype';
+import { Ibookhome } from './ibookhome';
 
 
 @Injectable({
@@ -22,6 +23,31 @@ export class AppServiceService {
 
   private dataSource = new BehaviorSubject<Array<IFilterroom>>([]);
   data = this.dataSource.asObservable();
+
+  //Temperory data for booking page
+  private tempuserId = new BehaviorSubject<number>(0)
+  userId = this.tempuserId.asObservable()
+
+  tempbooking: Ibookhome = {
+    noOfRooms: 0,
+    StartDate: '',
+    EndDate: ''
+  }
+
+
+
+  private bookingDetail = new BehaviorSubject<Ibookhome>(this.tempbooking)
+  editbooking(value: Ibookhome){
+    this.bookingDetail.next(value)
+  }
+
+  book = this.bookingDetail.asObservable()
+
+
+  editUserId(value: number){
+    this.tempuserId.next(value)
+  }
+  
 
   emitData(value : Array<IFilterroom>)
   {
@@ -48,14 +74,12 @@ export class AppServiceService {
     return this.http.post(`${this.baseUrl}/AddUser`, user);
   }
 
-  getUserDetails(username: string, password: string): Observable<string> {
+  getUserDetails(username: string, password: string): Observable<any> {
     this.login = {
       username: username,
       password: password,
     };
-    return this.http.post(`${this.baseUrl}/GetUser`, this.login, {
-      responseType: 'text',
-    });
+    return this.http.post(`${this.baseUrl}/GetUser`, this.login);
   }
 
   getHotelDetails(
