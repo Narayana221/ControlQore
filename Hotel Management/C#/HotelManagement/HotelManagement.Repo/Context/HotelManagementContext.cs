@@ -25,7 +25,8 @@ namespace HotelManagement.Repo.Context
 
         public DbSet<Location> Location { get; set; }
 
-
+        public DbSet<ManagerHotel> ManagerHotel { get; set; }
+        
 
 
 

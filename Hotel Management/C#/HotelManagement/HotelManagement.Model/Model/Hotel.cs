@@ -8,5 +8,5 @@ public class Hotel
 	public Location Location { get; set; }
 	 public int LocationId { get; set; }
 
-	public float Rating { get; set; }
+	public float? Rating { get; set; }
 }

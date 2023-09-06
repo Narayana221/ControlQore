@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace HotelManagement.Commands.AddStudent
+namespace HotelManagement.Commands.AddManager
 {
-    public class AddUserCommand : IRequest<bool>
+    public class ManagerCommand: IRequest<bool>
     {
         public int UserRoleId { get; set; }
         public string Name { get; set; }
@@ -10,6 +10,8 @@ namespace HotelManagement.Commands.AddStudent
         public string Password { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string HotelName { get; set; } = string.Empty;
+        public string LocationName { get; set; } = string.Empty;
 
 
     }

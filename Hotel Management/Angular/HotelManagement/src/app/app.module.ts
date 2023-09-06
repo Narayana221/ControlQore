@@ -12,6 +12,7 @@ import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
 import { BookingPageComponent } from './booking-page/booking-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoomtypeComponent } from './roomtype/roomtype.component';
+import { ManagerComponent } from './manager/manager.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RoomtypeComponent } from './roomtype/roomtype.component';
    // DisplayhotelComponent,
 
     BookingPageComponent,
-   RoomtypeComponent
+   RoomtypeComponent,
+   ManagerComponent
   ],
   imports: [
     BrowserModule,

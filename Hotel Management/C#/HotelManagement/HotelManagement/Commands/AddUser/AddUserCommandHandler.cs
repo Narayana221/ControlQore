@@ -1,4 +1,5 @@
 ﻿using HotelManagement.HotelManagement.Model.Model;
+using HotelManagement.Model.Model;
 using HotelManagement.Repo.Context;
 using MediatR;
 
@@ -24,6 +25,8 @@ namespace HotelManagement.Commands.AddStudent
                 UserName = request.UserName,
                 Password = request.Password,   
             };
+
+
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return true;
