@@ -3,6 +3,7 @@ using HotelManagement.Model.Model;
 using HotelManagement.Repo.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace HotelManagement.Queries.GetHotel
 {
@@ -52,16 +53,28 @@ namespace HotelManagement.Queries.GetHotel
             //    RoomId = x.Room.RoomId
             //}).ToListAsync();
 
-            return await _context.Room.Where(x => x.Hotel.Location.Name == request.LocationName && x.Hotel.Rating > request.Rating
-           && (request.StartDate > x.BookedRoom.EndDate || request.EndDate < x.BookedRoom.StartDate))
+           // return await _context.Room.Where(x => x.Hotel.Location.Name == request.LocationName && x.Hotel.Rating > request.Rating
+           //&& (request.StartDate > x.BookedRoom.EndDate || request.EndDate < x.BookedRoom.StartDate))
+           //.Select(x => new ViewHotelDto
+           //{
+           //    Id = x.Hotel.HotelId,
+           //    Name = x.Hotel.Name,
+           //    Location = x.Hotel.Location.Name,
+           //    Rating = x.Hotel.Rating,
+           //    RoomId = x.RoomId
+           //}).ToListAsync();
+
+            return await _context.Room
+                .Where(x => x.Hotel.Location.Name == request.LocationName && x.Hotel.Rating > request.Rating
+           && !_context.BookedRoom
+           .Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) && x.RoomId == y.RoomId))
            .Select(x => new ViewHotelDto
            {
                Id = x.Hotel.HotelId,
                Name = x.Hotel.Name,
                Location = x.Hotel.Location.Name,
-               Rating = x.Hotel.Rating,    
-               RoomId = x.RoomId
-           }).ToListAsync();
+               Rating = x.Hotel.Rating
+           }).Distinct().ToListAsync();
         }
     }
 }

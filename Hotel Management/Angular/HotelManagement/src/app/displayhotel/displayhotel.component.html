@@ -23,19 +23,37 @@
       margin: 20px
     }
 </style>
+<h1>OYO</h1>
+<h3>Hotels and homes across 800 cities, 24+ Countries</h3>
 <table>
     <tr>
-      <th>Id</th>
       <th>Hotel</th>
       <th>Location</th>
       <th>Rating</th>
-      <th>RoomId </th>
+      <th></th>
+  
       
     </tr>
 <tr *ngFor ="let i of obtainedHotel">
-    <td>{{ i.id }}</td>
     <td>{{ i.name }}</td>
     <td>{{ i.location }}</td>
     <td>{{ i.rating }}</td>
-    <td>{{ i.roomId }}</td>
+    <td><button (click)="proceed(i.id)">Proceed</button></td>
 </tr>
+<!-- <div *ngFor ="let i of obtainedHotel">
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{i.name}}</mat-card-title>
+      <mat-card-subtitle>{{ i.location }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ i.rating }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>View Details</button>
+      <button mat-button>Book Now</button>
+    </mat-card-actions>
+  </mat-card>
+   
+</div> -->
+

@@ -1,0 +1,40 @@
+
+<style>
+    table {
+      width: 60%;
+    
+    }
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(1) {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+    td,
+    th {
+      text-align: left;
+      height: 30px;
+      padding: 10px;
+    }
+    input {
+      margin: 20px
+    }
+</style>
+<h1>OYO</h1>
+<h3>Hotels and homes across 800 cities, 24+ Countries</h3>
+<table>
+    <tr>
+      <th>Room Name</th>
+      <th>Cost</th>
+      <th></th>  
+    </tr>
+
+<tr *ngFor ="let i of obtainedRoomTypeinfo">
+    <td>{{ i.roomName }}</td>
+    <td>{{ i.roomCost }}</td>
+    <td><button (click)="bookNow(i.roomTypeId)">Book Now</button></td>
+</tr>

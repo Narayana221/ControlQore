@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
 
 import { BookingPageComponent } from './booking-page/booking-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RoomtypeComponent } from './roomtype/roomtype.component';
 
 
 @NgModule({
@@ -18,15 +20,17 @@ import { BookingPageComponent } from './booking-page/booking-page.component';
     LoginPageComponent,
     NewUserComponent,
     HomeComponent,
-    DisplayhotelComponent,
+   // DisplayhotelComponent,
 
-    BookingPageComponent
+    BookingPageComponent,
+   RoomtypeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

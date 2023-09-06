@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Iloginuser } from './iloginuser';
 import { IFilterroom } from './ifilterroom';
 import { Ibooking } from './ibooking';
+import { Iroomtype } from './iroomtype';
 
 
 @Injectable({
@@ -25,6 +26,22 @@ export class AppServiceService {
   emitData(value : Array<IFilterroom>)
   {
     this.dataSource.next(value);
+  }
+
+  private hotelId = new BehaviorSubject<number>(0);
+  selectedHotelId = this.hotelId.asObservable();
+
+  emitHotelId(value:number)
+  {
+    this.hotelId.next(value); 
+  }
+
+  private roomTypeId = new BehaviorSubject<number>(0);
+  selectedroomTypeId = this.roomTypeId.asObservable();
+
+  emitroomTypeId(value:number)
+  {
+    this.roomTypeId.next(value); 
   }
 
   addUser(user: Icustomer): Observable<object> {
@@ -55,5 +72,10 @@ export class AppServiceService {
 
   addBooking(booking:Ibooking){
     return this.http.post(`${this.baseUrl}/Addbooking`, booking)
+  }
+
+  getRoomType(hotelId:number){
+    return this.http.get<Array<Iroomtype>>(`${this.baseUrl}/GetRoomType?HotelId=${hotelId}`)
+
   }
 }
