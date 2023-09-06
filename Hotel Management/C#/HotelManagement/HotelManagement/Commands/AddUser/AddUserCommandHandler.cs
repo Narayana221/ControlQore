@@ -17,12 +17,12 @@ namespace HotelManagement.Commands.AddStudent
         {
             User user = new User
             {
-                Name = request.Name,
-                UserRoleId = request.UserRoleId,
-                Email = request.Email,
-                Phone = request.Phone,
-                UserName = request.UserName,
-                Password = request.Password,   
+                name = request.Name,
+                userRoleId = request.UserRoleId,
+                email = request.Email,
+                phone = request.Phone,
+                userName = request.UserName,
+                password = request.Password,   
             };
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync(cancellationToken);

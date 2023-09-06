@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
 import { BookingPageComponent } from './booking-page/booking-page.component';
 
+
 const routes: Routes = [{
   path:'' , component: LoginPageComponent
 },{
@@ -23,7 +24,6 @@ const routes: Routes = [{
       path: 'book', component: BookingPageComponent
     }
   ]
-  
 }];
 
 @NgModule({

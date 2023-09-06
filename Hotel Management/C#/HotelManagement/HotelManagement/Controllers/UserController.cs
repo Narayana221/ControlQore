@@ -1,4 +1,5 @@
 ﻿using HotelManagement.Commands.AddStudent;
+using HotelManagement.Dtos;
 using HotelManagement.HotelManagement.Model.Model;
 using HotelManagement.Queries.LoginPageQuery;
 using HotelManagement.Repo.Context;
@@ -25,7 +26,7 @@ namespace HotelManagement.Controllers
 
         [HttpPost("GetUser")]
 
-        public async Task<ActionResult<User>> GetUser([FromBody]LoginPageQuery command)
+        public async Task<ActionResult<UserDto>> GetUser([FromBody]LoginPageQuery command)
         {
             return Ok(await _mediator.Send(command));
         }

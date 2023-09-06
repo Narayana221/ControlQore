@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class NewUserComponent {
 
-  constructor(private userService:AppServiceService ){}
+  constructor(private userService:AppServiceService, private router: Router ){}
   userForm = new FormGroup(
     {
       name: new FormControl(''),
@@ -33,11 +33,15 @@ export class NewUserComponent {
       password: this.userForm.value.password
     }
     console.log(this.newUser);
-
-    return this.userService.addUser(this.newUser).subscribe((data)=>{
+     return this.userService.addUser(this.newUser).subscribe((data)=>{
       console.log(data);
+      window.alert("Created New User");
     })
 
+  }
+
+  back(){
+    this.router.navigate(['']);
   }
 
 

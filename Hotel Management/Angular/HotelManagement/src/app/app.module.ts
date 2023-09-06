@@ -8,8 +8,8 @@ import { NewUserComponent } from './new-user/new-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
-
 import { BookingPageComponent } from './booking-page/booking-page.component';
+
 
 
 @NgModule({
@@ -19,7 +19,6 @@ import { BookingPageComponent } from './booking-page/booking-page.component';
     NewUserComponent,
     HomeComponent,
     DisplayhotelComponent,
-
     BookingPageComponent
   ],
   imports: [

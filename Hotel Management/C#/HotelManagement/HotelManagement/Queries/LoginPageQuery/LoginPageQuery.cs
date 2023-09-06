@@ -1,9 +1,10 @@
-﻿using HotelManagement.HotelManagement.Model.Model;
+﻿using HotelManagement.Dtos;
+using HotelManagement.HotelManagement.Model.Model;
 using MediatR;
 
 namespace HotelManagement.Queries.LoginPageQuery
 {
-    public class LoginPageQuery : IRequest<string>
+    public class LoginPageQuery : IRequest<UserDto>
     {
         public string? username { get; set; }
 
