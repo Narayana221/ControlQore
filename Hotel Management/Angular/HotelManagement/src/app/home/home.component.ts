@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppServiceService } from '../app-service.service';
 import { IFilterroom } from '../ifilterroom';
+import { Ibookhome } from '../ibookhome';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,11 @@ export class HomeComponent {
   endDate:string=''
   noOfRooms: number= 0
   rating : number = 0
+  bookingDetails: Ibookhome = {
+    noOfRooms: 0,
+    StartDate: '',
+    EndDate: ''
+  }
  
 
   onSubmit(){
@@ -39,6 +45,15 @@ export class HomeComponent {
     this.endDate = (this.HotelForm.value.endDate!)
     this.noOfRooms = Number(this.HotelForm.value.noOfRooms)
     this.rating = Number(this.HotelForm.value.rating)
+    this.bookingDetails= {
+      noOfRooms: this.noOfRooms,
+      StartDate: this.startDate,
+      EndDate: this.endDate
+
+    }
+    this.apiService.editbooking(this.bookingDetails)
+    
+    
 
     console.log(this.location);
     console.log(this.startDate);
