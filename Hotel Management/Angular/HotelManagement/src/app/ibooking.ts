@@ -3,7 +3,8 @@ export interface Ibooking {
     NoOfRooms?: number,
     StartDate?: string,
     EndDate?: string,
-    TotalPrice: number,
+    TotalPrice?: number,
     PaymentStatus: boolean,
-    HotelId: number
+    HotelId: number,
+    RoomTypeId: number
 }

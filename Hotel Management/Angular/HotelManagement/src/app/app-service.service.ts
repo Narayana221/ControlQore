@@ -20,13 +20,7 @@ export class AppServiceService {
   baseUrl: string = 'https://localhost:7118';
   queryParams = new HttpParams();
   name?: string;
-
-  private dataSource = new BehaviorSubject<Array<IFilterroom>>([]);
-  data = this.dataSource.asObservable();
-
-  //Temperory data for booking page
-  private tempuserId = new BehaviorSubject<number>(0)
-  userId = this.tempuserId.asObservable()
+  
 
   tempbooking: Ibookhome = {
     noOfRooms: 0,
@@ -34,26 +28,32 @@ export class AppServiceService {
     EndDate: ''
   }
 
-
-
   private bookingDetail = new BehaviorSubject<Ibookhome>(this.tempbooking)
-  editbooking(value: Ibookhome){
+  book = this.bookingDetail.asObservable()
+
+  emitbookingDetail(value: Ibookhome){
     this.bookingDetail.next(value)
   }
 
-  book = this.bookingDetail.asObservable()
-
+  private tempuserId = new BehaviorSubject<number>(0)
+  userId = this.tempuserId.asObservable()
 
   editUserId(value: number){
     this.tempuserId.next(value)
   }
   
+  private dataSource = new BehaviorSubject<Array<IFilterroom>>([]);
+  data = this.dataSource.asObservable();
 
   emitData(value : Array<IFilterroom>)
   {
     this.dataSource.next(value);
   }
-
+  tempRoomType: Iroomtype ={
+    roomCost: 0,
+    roomTypeId:0,
+    roomName: ''
+  }
   private hotelId = new BehaviorSubject<number>(0);
   selectedHotelId = this.hotelId.asObservable();
 
@@ -62,10 +62,10 @@ export class AppServiceService {
     this.hotelId.next(value); 
   }
 
-  private roomTypeId = new BehaviorSubject<number>(0);
+  private roomTypeId = new BehaviorSubject<Iroomtype>(this.tempRoomType);
   selectedroomTypeId = this.roomTypeId.asObservable();
 
-  emitroomTypeId(value:number)
+  emitroomTypeId(value:Iroomtype)
   { 
     this.roomTypeId.next(value); 
   }

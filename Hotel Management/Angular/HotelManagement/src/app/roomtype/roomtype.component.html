@@ -36,5 +36,5 @@
 <tr *ngFor ="let i of obtainedRoomTypeinfo">
     <td>{{ i.roomName }}</td>
     <td>{{ i.roomCost }}</td>
-    <td><button (click)="bookNow(i.roomTypeId)">Book Now</button></td>
+    <td><button (click)="bookNow(i)">Book Now</button></td>
 </tr>

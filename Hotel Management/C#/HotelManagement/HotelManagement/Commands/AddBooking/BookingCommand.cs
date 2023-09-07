@@ -13,6 +13,7 @@ namespace HotelManagement.Commands.AddBooking
         public bool PaymentStatus { get; set; }
 
         public int HotelId { get; set; }
+        public int RoomTypeId { get; set; }
 
         
         
