@@ -30,12 +30,12 @@ export class DisplayhotelComponent {
       (x:  Array<IFilterroom>) => (this.obtainedHotel = x)
     );
   }
-  proceed(id:number)
+  proceed(hotel: IFilterroom)
   {
     this.router.navigate(['./home/roomtypelist']),{
       //relativeTo: this.activatedRoute,
     }
-    this.apiService.emitHotelId(id);
+    this.apiService.emitHotelId(hotel);
   
   }
 

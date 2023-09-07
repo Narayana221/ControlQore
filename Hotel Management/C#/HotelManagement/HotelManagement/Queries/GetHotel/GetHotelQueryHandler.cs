@@ -73,7 +73,9 @@ namespace HotelManagement.Queries.GetHotel
                Id = x.Hotel.HotelId,
                Name = x.Hotel.Name,
                Location = x.Hotel.Location.Name,
-               Rating = x.Hotel.Rating
+               Rating = x.Hotel.Rating,
+               RoomTypeId = x.RoomTypeId
+               
            }).Distinct().ToListAsync();
         }
     }
