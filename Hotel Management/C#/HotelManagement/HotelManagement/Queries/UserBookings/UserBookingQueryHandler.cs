@@ -1,10 +1,11 @@
-﻿using HotelManagement.Repo.Context;
+﻿using HotelManagement.Dtos;
+using HotelManagement.Repo.Context;
 using MediatR;
 using System.Reflection.Metadata.Ecma335;
 
 namespace HotelManagement.Queries.UserBookings
 {
-    public class UserBookingQueryHandler:IRequestHandler<UserBookingQuery, bool>
+    public class UserBookingQueryHandler:IRequestHandler<UserBookingQuery, List<UserBookingsDto>>
     {
         private readonly HotelManagementContext _context;
 
@@ -13,9 +14,9 @@ namespace HotelManagement.Queries.UserBookings
             _context = context;
         }
 
-        public Task<bool> Handle(UserBookingQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserBookingsDto>> Handle(UserBookingQuery request, CancellationToken cancellationToken)
         {
-            public
+            return await _context.Booking.Where(x => x.UserId == request.Id).Select(x => x).ToList();
         }
     }
 }
