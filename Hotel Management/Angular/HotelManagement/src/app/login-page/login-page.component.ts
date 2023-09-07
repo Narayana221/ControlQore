@@ -45,7 +45,7 @@ export class LoginPageComponent {
         this.loginedUser = true;
         if (Number(this.userData.userRoleId) == 1)
         {
-          this.apiService.editUserId(this.userData.userId)
+          this.apiService.editUserId(this.userData.userId)  
           this.router.navigate(['./home'])
         }
         else{
