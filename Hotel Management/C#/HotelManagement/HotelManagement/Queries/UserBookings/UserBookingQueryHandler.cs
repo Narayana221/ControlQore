@@ -15,7 +15,7 @@ namespace HotelManagement.Queries.UserBookings
 
         public Task<bool> Handle(UserBookingQuery request, CancellationToken cancellationToken)
         {
-            
+            public
         }
     }
 }
