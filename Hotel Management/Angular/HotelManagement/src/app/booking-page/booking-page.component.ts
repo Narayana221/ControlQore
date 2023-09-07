@@ -6,6 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Ibookhome } from '../ibookhome';
 import { Iroomtype } from '../iroomtype';
+import { IFilterroom } from '../ifilterroom';
 
 @Component({
   selector: 'app-booking-page',
@@ -36,7 +37,14 @@ export class BookingPageComponent {
       roomTypeId:0,
       roomName: ''
     }
-    HotelId: number = 0
+    
+    HotelId: IFilterroom ={
+      id: 0, 
+      name: '', 
+      location: '', 
+      rating: 0,
+      roomId : 0
+    }
 
     
     ngOnInit()
@@ -44,7 +52,7 @@ export class BookingPageComponent {
     this.subscription = this.apiService.userId.subscribe((data: number)=> this.userId = data)
     this.subscription = this.apiService.book.subscribe((data: Ibookhome)=> this.bookingDetails = data)
     this.subscription = this.apiService.selectedroomTypeId.subscribe((data: Iroomtype)=> this.roomtype = data)
-    this.subscription = this.apiService.selectedHotelId.subscribe((data: number)=> this.HotelId = data)
+    this.subscription = this.apiService.selectedHotelId.subscribe((data: IFilterroom)=> this.HotelId = data)
   }
 
     onSubmit(){
@@ -55,7 +63,7 @@ export class BookingPageComponent {
         NoOfRooms: this.bookingDetails?.noOfRooms,
         PaymentStatus: true,
         TotalPrice: (this.roomtype.roomCost* this.bookingDetails.noOfRooms),
-        HotelId: this.HotelId,
+        HotelId: this.HotelId.id,
         RoomTypeId: this.roomtype.roomTypeId
       }
       console.log(this.book.UserId)
