@@ -66,7 +66,7 @@ export class AppServiceService {
   selectedroomTypeId = this.roomTypeId.asObservable();
 
   emitroomTypeId(value:number)
-  {
+  { 
     this.roomTypeId.next(value); 
   }
 
