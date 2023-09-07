@@ -7,6 +7,7 @@ import { IFilterroom } from './ifilterroom';
 import { Ibooking } from './ibooking';
 import { Iroomtype } from './iroomtype';
 import { Ibookhome } from './ibookhome';
+import { Imanager } from './imanager';
 
 
 @Injectable({
@@ -83,19 +84,24 @@ export class AppServiceService {
   }
 
   getHotelDetails(
-    location: string,
+    locationId: number,
     startDate: string,
     endDate: string,
     noOfRooms: number,
     rating: number
   ) {
     return this.http.get<Array<IFilterroom>>(
-      `${this.baseUrl}/GetHotel?Rating=${rating}&LocationName=${location}&StartDate=${startDate}&EndDate=${endDate}&NoOfRooms=${noOfRooms}`
+      `${this.baseUrl}/GetHotel?Rating=${rating}&LocationId=${locationId}&StartDate=${startDate}&EndDate=${endDate}&NoOfRooms=${noOfRooms}`
     );
   }
 
   addBooking(booking:Ibooking){
     return this.http.post(`${this.baseUrl}/Addbooking`, booking)
+  }
+
+  addManager(manager : Imanager)
+  {
+    return this.http.post(`${this.baseUrl}/AddManager`, manager)
   }
 
   getRoomType(hotelId:number){

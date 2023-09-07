@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
 import { BookingPageComponent } from './booking-page/booking-page.component';
 import { RoomtypeComponent } from './roomtype/roomtype.component';
+import { ManagerComponent } from './manager/manager.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: NewUserComponent,
+  },
+  {
+    path: 'manager',
+    component: ManagerComponent,
   },
   {
     path: 'home',

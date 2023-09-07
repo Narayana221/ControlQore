@@ -19,7 +19,7 @@ export class HomeComponent {
   public room : Array<IFilterroom> = [];
   HotelForm = new FormGroup(
     {
-      location: new FormControl(''),
+      locationId: new FormControl(0),
       startDate: new FormControl(''),
       endDate: new FormControl(''),
       noOfRooms: new FormControl(''),
@@ -27,7 +27,7 @@ export class HomeComponent {
     }
   )
   
-  location: string = ''
+  locationId: number = 0
   startDate:string=''
   endDate:string=''
   noOfRooms: number= 0
@@ -40,7 +40,7 @@ export class HomeComponent {
  
 
   onSubmit(){
-    this.location = (this.HotelForm.value.location!)
+    
     this.startDate = (this.HotelForm.value.startDate!)
     this.endDate = (this.HotelForm.value.endDate!)
     this.noOfRooms = Number(this.HotelForm.value.noOfRooms)
@@ -52,15 +52,10 @@ export class HomeComponent {
 
     }
     this.apiService.editbooking(this.bookingDetails)
-    
-    
-
-    console.log(this.location);
-    console.log(this.startDate);
-    console.log(this.endDate)
+    console.log(this.locationId);
     console.log(this.noOfRooms)
 
-    this.apiService.getHotelDetails(this.location,this.startDate,this.endDate,this.noOfRooms,this.rating).subscribe(
+    this.apiService.getHotelDetails(this.locationId,this.startDate,this.endDate,this.noOfRooms,this.rating).subscribe(
       (data: Array<IFilterroom>) =>
       {
         this.room = data;
@@ -74,5 +69,10 @@ export class HomeComponent {
     this.router.navigate(['./home/HotelList'])
 
     
+}
+changeCity(e:any)
+{
+  this.locationId = Number(e.target.value);
+  //console.log(this.managerForm.value.locationId)
 }
 }

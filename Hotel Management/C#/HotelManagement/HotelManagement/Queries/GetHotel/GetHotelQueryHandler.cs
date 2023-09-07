@@ -65,7 +65,7 @@ namespace HotelManagement.Queries.GetHotel
            //}).ToListAsync();
 
             return await _context.Room
-                .Where(x => x.Hotel.Location.Name == request.LocationName && x.Hotel.Rating > request.Rating
+                .Where(x => x.Hotel.LocationId == request.LocationId && x.Hotel.Rating > request.Rating
            && !_context.BookedRoom
            .Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) && x.RoomId == y.RoomId))
            .Select(x => new ViewHotelDto

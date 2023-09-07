@@ -11,7 +11,7 @@ namespace HotelManagement.Commands.AddManager
         public string Phone { get; set; }
         public string Email { get; set; }
         public string HotelName { get; set; } = string.Empty;
-        public string LocationName { get; set; } = string.Empty;
+        public int LocationId { get; set; }
 
 
     }

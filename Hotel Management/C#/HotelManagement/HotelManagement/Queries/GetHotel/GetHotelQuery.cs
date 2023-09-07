@@ -7,7 +7,7 @@ namespace HotelManagement.Queries.GetHotel
     public class GetHotelQuery : IRequest<List<ViewHotelDto>>
     {
         public float Rating { get; set; }
-        public string LocationName { get; set; }
+        public int LocationId { get; set; }
         public DateTime StartDate { get; set;}
         public DateTime EndDate { get; set;}
 

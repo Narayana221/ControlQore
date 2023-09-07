@@ -30,5 +30,6 @@ namespace HotelManagement.Controllers
         {
             return Ok(await _mediator.Send(command));
         }
+      
     }
 }

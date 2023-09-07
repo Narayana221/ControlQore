@@ -44,6 +44,11 @@ export class NewUserComponent {
     this.router.navigate(['']);
   }
 
+  register()
+  {
+    this.router.navigate(['./manager'])
+  }
+
 
 
 }

@@ -27,23 +27,31 @@ namespace HotelManagement.Commands.AddManager
                 password = request.Password,
             };
 
-            Location location = new Location
-            { 
-                Name = request.LocationName
-            };
+            //Location location = new Location
+            //{ 
+            //    Name = request.LocationName
+            //};
 
 
             Hotel hotel = new Hotel
             { 
                 Name = request.HotelName,
-                Location = location,
+                //Location = location,
+                LocationId = request.LocationId
+            };
+
+            ManagerHotel managerHotel = new ManagerHotel
+            {
+                User = user,
+                Hotel = hotel,
             };
 
 
 
             _dbContext.Users.Add(user);
-            _dbContext.Location.Add(location);
+           // _dbContext.Location.Add(location);
             _dbContext.Hotel.Add(hotel);
+            _dbContext.ManagerHotel.Add(managerHotel);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return true;
         }

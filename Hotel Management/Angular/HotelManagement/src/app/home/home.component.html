@@ -9,7 +9,14 @@
 
     <form [formGroup]="HotelForm"    (ngSubmit)="onSubmit()">
         <label >Location: </label>
-        <input  type="text"  formControlName="location"/>
+        <select (change)="changeCity($event)" formControlname="locationId">
+            <option value="none" selected disabled hidden>Select Location</option>
+            <option value="1">Kochi</option>
+            <option value="2">Trivandrum</option>
+            <option value="3">Kollam</option>
+            <option value="4">Allapuzha</option>
+            <option value="5">Palakkad</option>
+           </select>
         <label >Start Date: </label>
         <input  type="date"  formControlName="startDate"/>
         <label >End Date: </label>
@@ -21,12 +28,12 @@
         <button type="submit">Search</button>
     </form>
     
-    <tr *ngFor ="let i of room">
+    <!-- <tr *ngFor ="let i of room">
         <td>{{ i.id }}</td>
         <td>{{ i.name }}</td>
         <td>{{ i.location }}</td>
         <td>{{ i.rating }}</td>
         <td>{{ i.roomId }}</td>
-    </tr>
+    </tr> -->
    
 </div>
