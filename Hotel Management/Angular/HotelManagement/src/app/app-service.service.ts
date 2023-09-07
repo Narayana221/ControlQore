@@ -55,10 +55,18 @@ export class AppServiceService {
     roomTypeId:0,
     roomName: ''
   }
-  private hotelId = new BehaviorSubject<number>(0);
+  tempHotelDetials: IFilterroom ={
+    id: 0, 
+    name: '', 
+    location: '', 
+    rating: 0,
+    roomId : 0
+  }
+
+  private hotelId = new BehaviorSubject<IFilterroom>(this.tempHotelDetials);
   selectedHotelId = this.hotelId.asObservable();
 
-  emitHotelId(value:number)
+  emitHotelId(value:IFilterroom)
   {
     this.hotelId.next(value); 
   }

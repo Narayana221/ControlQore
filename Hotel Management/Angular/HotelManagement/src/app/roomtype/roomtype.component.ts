@@ -4,6 +4,7 @@ import { AppServiceService } from '../app-service.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Iroomtype } from '../iroomtype';
 import { Route, Router } from '@angular/router';
+import { IFilterroom } from '../ifilterroom';
 
 @Component({
   selector: 'app-roomtype',
@@ -17,8 +18,8 @@ export class RoomtypeComponent {
   constructor(private apiService: AppServiceService, private router:Router) {}
   ngOnInit() {
     this.subscription = this.apiService.selectedHotelId.subscribe(
-      (x: number) => {
-        (this.obtainedHotelId = x)
+      (x: IFilterroom) => {
+        (this.obtainedHotelId = x.id)
           this.apiService
             .getRoomType(this.obtainedHotelId)
             .subscribe((data: Array<Iroomtype>) => {

@@ -5,12 +5,9 @@
 
 <div class="master">
     <h1>Confirm Booking</h1>
-    
-    <form [formGroup]="addBooking">
-        <label>Checked-in</label>
-        <input type="date" formControlName="Start">
-        <label>Checked-out</label>
-        <input type="date" formControlName="End">
-        <button (click)="onSubmit()">Confirm</button>
-    </form>
+    <p>hotel Name: {{HotelId.name}}</p>
+    <p>Number of Rooms Booked: {{bookingDetails.noOfRooms}}</p>
+    <p>Start Date: {{bookingDetails.StartDate}}</p>
+    <p>Start Date: {{bookingDetails.EndDate}}</p>
+    <button (click)="onSubmit()">Confirm</button>
 </div>
