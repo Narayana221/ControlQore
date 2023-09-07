@@ -39,8 +39,6 @@ export class DisplayhotelComponent {
   
   }
 
-  booking(){
-    this.router.navigate(['./home/book'])
-  }
+  
 
 }

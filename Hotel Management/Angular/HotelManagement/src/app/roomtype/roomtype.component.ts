@@ -18,17 +18,18 @@ export class RoomtypeComponent {
   ngOnInit() {
     this.subscription = this.apiService.selectedHotelId.subscribe(
       (x: number) => {
-        (this.obtainedHotelId = x),
+        (this.obtainedHotelId = x)
           this.apiService
             .getRoomType(this.obtainedHotelId)
             .subscribe((data: Array<Iroomtype>) => {
               this.obtainedRoomTypeinfo = data;
               console.log(this.obtainedRoomTypeinfo);
+
             });
       }
     );
   }
-  bookNow(id:number)
+  bookNow(id:Iroomtype)
   {
     this.router.navigate(['./home/book'])
     this.apiService.emitroomTypeId(id);
