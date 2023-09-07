@@ -23,6 +23,7 @@ namespace HotelManagement.Queries.RoomType
                        RoomCost = x.RoomCost
                    }).Distinct().ToListAsync();
 
+        
         }
 
       

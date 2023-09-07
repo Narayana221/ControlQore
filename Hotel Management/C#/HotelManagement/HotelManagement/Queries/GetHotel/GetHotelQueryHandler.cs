@@ -53,18 +53,21 @@ namespace HotelManagement.Queries.GetHotel
             //    RoomId = x.Room.RoomId
             //}).ToListAsync();
 
-           // return await _context.Room.Where(x => x.Hotel.Location.Name == request.LocationName && x.Hotel.Rating > request.Rating
-           //&& (request.StartDate > x.BookedRoom.EndDate || request.EndDate < x.BookedRoom.StartDate))
-           //.Select(x => new ViewHotelDto
-           //{
-           //    Id = x.Hotel.HotelId,
-           //    Name = x.Hotel.Name,
-           //    Location = x.Hotel.Location.Name,
-           //    Rating = x.Hotel.Rating,
-           //    RoomId = x.RoomId
-           //}).ToListAsync();
 
-            return await _context.Room
+            // return await _context.Room
+            //     .Where(x => x.Hotel.LocationId == request.LocationId && x.Hotel.Rating > request.Rating
+            //&& !_context.BookedRoom
+            //.Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) && x.RoomId == y.RoomId))
+            //.Select(x => new ViewHotelDto
+            //{
+            //    Id = x.Hotel.HotelId,
+            //    Name = x.Hotel.Name,
+            //    Location = x.Hotel.Location.Name,
+            //    Rating = x.Hotel.Rating
+            //}).ToListAsync();
+
+
+            var availRooms = await _context.Room
                 .Where(x => x.Hotel.LocationId == request.LocationId && x.Hotel.Rating > request.Rating
            && !_context.BookedRoom
            .Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) && x.RoomId == y.RoomId))
@@ -73,8 +76,60 @@ namespace HotelManagement.Queries.GetHotel
                Id = x.Hotel.HotelId,
                Name = x.Hotel.Name,
                Location = x.Hotel.Location.Name,
-               Rating = x.Hotel.Rating
-           }).Distinct().ToListAsync();
+               Rating = x.Hotel.Rating,
+               RoomTypeId = x.RoomTypeId
+           }).ToListAsync();
+
+            var selectedHotelRooms= availRooms.GroupBy(x => new { x.RoomTypeId, x.Id })
+                .Select(x => new ViewRoomCount
+                { Id = x.Key.RoomTypeId,
+                  CountofRooms = x.Count()
+                }).ToList();
+
+            for (var i = 0; i < selectedHotelRooms.Count; i++)
+            {
+                if(selectedHotelRooms[i].CountofRooms >= request.NoOfRooms)
+                {
+                   return await _context.Room
+                 .Where(x => x.Hotel.LocationId == request.LocationId && x.RoomTypeId == selectedHotelRooms[i].Id && x.Hotel.Rating > request.Rating
+            && !_context.BookedRoom 
+            .Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) && x.RoomId == y.RoomId))
+            .Select(x => new ViewHotelDto
+            {
+                Id = x.Hotel.HotelId,
+                Name = x.Hotel.Name,
+                Location = x.Hotel.Location.Name,
+                Rating = x.Hotel.Rating,
+                RoomTypeId = x.RoomTypeId
+            }).Distinct().ToListAsync();       
+                }
+
+                else
+                {
+                    return await _context.Room.Select(
+                        x => new ViewHotelDto
+                        {
+                            Id =0,
+                            Name = "",
+                            Location ="",
+                            Rating = 0,
+                            RoomTypeId = 0
+                        }).ToListAsync();
+                }
+            }
+
+            return await _context.Room.Select(
+                        x => new ViewHotelDto
+                        {
+                            Id = 0,
+                            Name = "",
+                            Location = "",
+                            Rating = 0,
+                            RoomTypeId = 0
+                        }).ToListAsync();
+
+
+
         }
     }
 }

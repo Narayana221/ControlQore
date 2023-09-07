@@ -73,4 +73,9 @@ changeCity(e:any)
   this.locationId = Number(e.target.value);
   //console.log(this.managerForm.value.locationId)
 }
+
+previousBooking()
+{
+  
+}
 }
