@@ -51,7 +51,7 @@ export class HomeComponent {
       EndDate: this.endDate
 
     }
-    this.apiService.editbooking(this.bookingDetails)
+    this.apiService.emitbookingDetail(this.bookingDetails)
     console.log(this.locationId);
     console.log(this.noOfRooms)
 
@@ -63,8 +63,6 @@ export class HomeComponent {
       },
     
     );
-
-    //this.apiService.emitData(this.room);
 
     this.router.navigate(['./home/HotelList'])
 
