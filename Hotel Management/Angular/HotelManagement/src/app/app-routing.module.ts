@@ -8,6 +8,7 @@ import { BookingPageComponent } from './booking-page/booking-page.component';
 import { RoomtypeComponent } from './roomtype/roomtype.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ManagerloginComponent } from './managerlogin/managerlogin.component';
+import { PreviousbookingComponent } from './previousbooking/previousbooking.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'PreviousBooking',
+        component: PreviousbookingComponent,
       },
       {
         path: 'HotelList',

@@ -8,6 +8,8 @@ import { Ibooking } from './ibooking';
 import { Iroomtype } from './iroomtype';
 import { Ibookhome } from './ibookhome';
 import { Imanager } from './imanager';
+import { Ipreviousbooking } from './ipreviousbooking';
+import { Irating } from './irating';
 
 
 @Injectable({
@@ -39,7 +41,7 @@ export class AppServiceService {
   private tempuserId = new BehaviorSubject<number>(0)
   userId = this.tempuserId.asObservable()
 
-  editUserId(value: number){
+  emitUserId(value: number){
     this.tempuserId.next(value)
   }
   
@@ -107,6 +109,10 @@ export class AppServiceService {
     return this.http.post(`${this.baseUrl}/Addbooking`, booking)
   }
 
+  addRating(rateInfo : Irating){
+    return this.http.put(`${this.baseUrl}/Rating`,rateInfo);
+  }
+
   addManager(manager : Imanager)
   {
     return this.http.post(`${this.baseUrl}/AddManager`, manager)
@@ -115,5 +121,9 @@ export class AppServiceService {
   getRoomType(hotelId:number){
     return this.http.get<Array<Iroomtype>>(`${this.baseUrl}/GetRoomType?HotelId=${hotelId}`)
 
+  }
+
+  getPreviousBooking(userId:number){
+    return this.http.get<Array<Ipreviousbooking>>(`${this.baseUrl}/GetUserBookings?Id=${userId}`)
   }
 }

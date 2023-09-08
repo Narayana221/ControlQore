@@ -1,0 +1,49 @@
+<style>
+    table {
+      width: 60%;
+    
+    }
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    tr:nth-child(1) {
+      background-color: rgb(163, 163, 163);
+      color: rgb(0, 0, 0);
+    }
+    td,
+    th {
+      text-align: left;
+      height: 30px;
+      padding: 10px;
+    }
+    input {
+      margin: 20px
+    }
+</style>
+<h1>OYO</h1>
+<h3>Hotels and homes across 800 cities, 24+ Countries</h3>
+<table>
+    <tr>
+      <th>Booking ID</th>
+      <th>Hotel</th>
+      <th>No: of Rooms</th>
+      <th>Start date</th>
+      <th>End date</th>   
+      <th></th>
+    </tr>
+<tr *ngFor ="let i of previousBookings">
+    <td>{{ i.bookingId }}</td>
+    <td>{{ i.hotelName }}</td>
+    <td>{{ i.noOfRooms }}</td>
+    <td>{{ i.startDate }}</td>
+    <td>{{ i.endDate }}</td>
+    <td> <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
+        <label>Rate Us</label>
+        <input formControlName="rating" />
+        <button type="submit">Rate</button>
+    </form></td>
+   
+</tr>

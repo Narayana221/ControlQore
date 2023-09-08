@@ -76,6 +76,6 @@ changeCity(e:any)
 
 previousBooking()
 {
-  
+  this.router.navigate(['./home/PreviousBooking'])
 }
 }

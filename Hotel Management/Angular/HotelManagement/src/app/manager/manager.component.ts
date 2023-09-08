@@ -20,9 +20,6 @@ export class ManagerComponent {
     locationId: new FormControl(0),
   });
 
-  /**
-   *
-   */
   constructor(private apiService:AppServiceService, private router:Router) {
     
     

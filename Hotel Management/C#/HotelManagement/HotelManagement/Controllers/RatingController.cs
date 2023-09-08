@@ -17,7 +17,7 @@ namespace HotelManagement.Controllers
 
         [HttpPut("Rating")]
 
-        public async Task<ActionResult<bool>> AddRating(AddRatingCommand command)
+        public async Task<ActionResult<bool>> AddRating([FromBody] AddRatingCommand command)
         {
             return await _mediator.Send(command);
         }
