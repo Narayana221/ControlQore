@@ -7,5 +7,7 @@
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public float TotalPrice { get; set; }
+        public DateTime? CheckOutStatus { get; set; }
+        public int BookingId { get; set; }
     }
 }
