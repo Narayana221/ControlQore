@@ -38,6 +38,7 @@ namespace HotelManagement.Commands.AddManager
                 Name = request.HotelName,
                 //Location = location,
                 LocationId = request.LocationId
+                
             };
 
             ManagerHotel managerHotel = new ManagerHotel

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NewUserComponent } from './new-user/new-user.component';
@@ -7,6 +7,7 @@ import { DisplayhotelComponent } from './displayhotel/displayhotel.component';
 import { BookingPageComponent } from './booking-page/booking-page.component';
 import { RoomtypeComponent } from './roomtype/roomtype.component';
 import { ManagerComponent } from './manager/manager.component';
+import { ManagerloginComponent } from './managerlogin/managerlogin.component';
 
 const routes: Routes = [
   {
@@ -41,7 +42,10 @@ const routes: Routes = [
         component: BookingPageComponent,
       },
     ],
-  },
+  },{
+    path: 'managerlogin',
+    component: ManagerloginComponent
+  }
 ];
 
 @NgModule({
