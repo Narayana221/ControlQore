@@ -15,66 +15,65 @@ import { IFilterroom } from '../ifilterroom';
 })
 export class BookingPageComponent {
 
-    constructor(private route: Router, private apiService: AppServiceService){}
+  constructor(private route: Router, private apiService: AppServiceService) { }
 
-    addBooking = new FormGroup({
-      Start: new FormControl(''),
-      End: new FormControl('')
-    })
+  addBooking = new FormGroup({
+    Start: new FormControl(''),
+    End: new FormControl('')
+  })
 
-    book?: Ibooking
-    sdate: Date =  new  Date( this.addBooking.value.Start!);
+  book?: Ibooking
+  sdate: Date = new Date(this.addBooking.value.Start!);
 
-    userId?: number
-    bookingDetails: Ibookhome ={
-      noOfRooms: 0,
-      StartDate: '',
-      EndDate: ''
-    }
-    subscription!: Subscription ;
-    roomtype: Iroomtype = {
-      roomCost: 0,
-      roomTypeId:0,
-      roomName: ''
-    }
-    
-    HotelId: IFilterroom ={
-      id: 0, 
-      name: '', 
-      location: '', 
-      rating: 0,
-      roomId : 0
-    }
-
-    
-    ngOnInit()
-  {
-    this.subscription = this.apiService.userId.subscribe((data: number)=> this.userId = data)
-    this.subscription = this.apiService.book.subscribe((data: Ibookhome)=> this.bookingDetails = data)
-    this.subscription = this.apiService.selectedroomTypeId.subscribe((data: Iroomtype)=> this.roomtype = data)
-    this.subscription = this.apiService.selectedHotelId.subscribe((data: IFilterroom)=> this.HotelId = data)
+  userId?: number
+  bookingDetails: Ibookhome = {
+    noOfRooms: 0,
+    StartDate: '',
+    EndDate: ''
+  }
+  subscription!: Subscription;
+  roomtype: Iroomtype = {
+    roomCost: 0,
+    roomTypeId: 0,
+    roomName: ''
   }
 
-    onSubmit(){
-      this.book = {
-        StartDate:  (this.bookingDetails?.StartDate),
-        EndDate: (this.bookingDetails?.EndDate),
-        UserId: this.userId,
-        NoOfRooms: this.bookingDetails?.noOfRooms,
-        PaymentStatus: true,
-        TotalPrice: (this.roomtype.roomCost* this.bookingDetails.noOfRooms),
-        HotelId: this.HotelId.id,
-        RoomTypeId: this.roomtype.roomTypeId
-      }
-      console.log(this.book.UserId)
-      this.apiService.addBooking(this.book).subscribe((data)=>{
-        console.log(data)
-      })
-      window.alert("Successufully Booked Your Room")
-    }
+  HotelId: IFilterroom = {
+    id: 0,
+    name: '',
+    location: '',
+    rating: 0,
+    roomId: 0
+  }
 
-    home(){
-      this.route.navigate([""]);
+
+  ngOnInit() {
+    this.subscription = this.apiService.userId.subscribe((data: number) => this.userId = data)
+    this.subscription = this.apiService.book.subscribe((data: Ibookhome) => this.bookingDetails = data)
+    this.subscription = this.apiService.selectedroomTypeId.subscribe((data: Iroomtype) => this.roomtype = data)
+    this.subscription = this.apiService.selectedHotelId.subscribe((data: IFilterroom) => this.HotelId = data)
+  }
+
+  onSubmit() {
+    this.book = {
+      StartDate: (this.bookingDetails?.StartDate),
+      EndDate: (this.bookingDetails?.EndDate),
+      UserId: this.userId,
+      NoOfRooms: this.bookingDetails?.noOfRooms,
+      PaymentStatus: true,
+      TotalPrice: (this.roomtype.roomCost * this.bookingDetails.noOfRooms),
+      HotelId: this.HotelId.id,
+      RoomTypeId: this.roomtype.roomTypeId
     }
+    console.log(this.book.UserId)
+    this.apiService.addBooking(this.book).subscribe((data) => {
+      console.log(data)
+    })
+    window.alert("Successufully Booked Your Room")
+  }
+
+  home() {
+    this.route.navigate([""]);
+  }
 
 }

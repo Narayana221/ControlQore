@@ -33,7 +33,7 @@ namespace HotelManagement.Commands.AddBooking
             //await _dbContext.SaveChangesAsync();
             //int scopeIdentity = book.BookingId;
             //List<int> Rooms = new List<int>();
-
+           
             var Rooms = _dbContext.Room.Where(x => x.HotelId == request.HotelId && x.RoomTypeId== request.RoomTypeId && !_dbContext.BookedRoom.
             Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) && x.RoomId == y.RoomId)).
             Take(request.NoOfRooms).Select(x=> x.RoomId).ToList();
