@@ -4,7 +4,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace HotelManagement.Queries.UserBookings
 {
-    public class UserBookingQueryHandler:IRequestHandler<UserBookingQuery, bool>
+    public class UserBookingQueryHandler : IRequestHandler<UserBookingQuery, bool>
     {
         private readonly HotelManagementContext _context;
 
@@ -15,7 +15,7 @@ namespace HotelManagement.Queries.UserBookings
 
         public Task<bool> Handle(UserBookingQuery request, CancellationToken cancellationToken)
         {
-            public
+            throw new NotImplementedException();
         }
     }
 }
