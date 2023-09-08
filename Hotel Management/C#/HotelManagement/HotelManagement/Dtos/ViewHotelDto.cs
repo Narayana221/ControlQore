@@ -7,6 +7,7 @@
         public string Location { get; set; }
         public float? Rating { get; set; }
         public int RoomTypeId { get; set; }
+        public int RoomId { get; set; }
 
     }
 }

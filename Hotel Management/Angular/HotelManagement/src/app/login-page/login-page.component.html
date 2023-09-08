@@ -15,7 +15,6 @@
         <input formControlName="passWord"/>
         <button type="submit">Submit</button>
         <label  *ngIf="!loginFlag">Incorrect Username or Password</label>
-        <label  *ngIf="loginedUser">Hello {{userData}}</label>
     </form>
     <button (click)="goToNewAccount()">New Account</button>
 </div>

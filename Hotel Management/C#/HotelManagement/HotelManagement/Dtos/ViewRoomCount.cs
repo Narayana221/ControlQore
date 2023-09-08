@@ -4,5 +4,6 @@
     {
         public int Id { get; set; }
         public int CountofRooms { get; set; }
+        public int RoomTypeId { get; set; }
     }
 }

@@ -73,4 +73,8 @@ export class BookingPageComponent {
       window.alert("Successufully Booked Your Room")
     }
 
+    home(){
+      this.route.navigate([""]);
+    }
+
 }

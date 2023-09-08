@@ -11,6 +11,7 @@ import { BookingPageComponent } from './booking-page/booking-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoomtypeComponent } from './roomtype/roomtype.component';
 import { ManagerComponent } from './manager/manager.component';
+import { ManagerloginComponent } from './managerlogin/managerlogin.component';
 
 
 
@@ -24,6 +25,7 @@ import { ManagerComponent } from './manager/manager.component';
     BookingPageComponent,
     RoomtypeComponent,
     ManagerComponent,
+    ManagerloginComponent,
   ],
   imports: [
     BrowserModule,
