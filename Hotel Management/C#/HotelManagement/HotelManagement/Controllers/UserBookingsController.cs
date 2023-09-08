@@ -17,7 +17,7 @@ namespace HotelManagement.Controllers
 
         [HttpGet("GetUserBookings")]
 
-        public async Task<ActionResult<bool>> GetUserBookings(UserBookingQuery command)
+        public async Task<ActionResult<List<UserBookingsDto>>> GetUserBookings(UserBookingQuery command)
         {
             return await _mediator.Send(command);
         }

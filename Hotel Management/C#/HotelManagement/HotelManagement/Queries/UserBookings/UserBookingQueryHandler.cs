@@ -1,10 +1,12 @@
-﻿using HotelManagement.Repo.Context;
+﻿using HotelManagement.Dtos;
+using HotelManagement.Repo.Context;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata.Ecma335;
 
 namespace HotelManagement.Queries.UserBookings
 {
-    public class UserBookingQueryHandler : IRequestHandler<UserBookingQuery, bool>
+    public class UserBookingQueryHandler:IRequestHandler<UserBookingQuery, bool>
     {
         private readonly HotelManagementContext _context;
 
@@ -13,9 +15,22 @@ namespace HotelManagement.Queries.UserBookings
             _context = context;
         }
 
-        public Task<bool> Handle(UserBookingQuery request, CancellationToken cancellationToken)
+        public async Task<List<UserBookingsDto>> Handle(UserBookingQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _context.BookedRoom.Where(x => x.Booking.UserId == request.Id)
+                .Select(x => new UserBookingsDto
+                {
+                    HotelName = x.Room.Hotel.Name,
+                    NoOfRooms = x.Booking.NoOfRooms,
+                    StartDate = x.Booking.StartDate,
+                    EndDate = x.Booking.EndDate,
+                    TotalPrice = x.Booking.TotalPrice,
+                    CheckOutStatus = x.CheckedOut,
+                    BookingId = x.Booking.BookingId
+
+
+                }).Distinct().ToListAsync();
         }
+           
     }
 }
