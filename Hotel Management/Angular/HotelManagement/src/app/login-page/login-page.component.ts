@@ -49,10 +49,8 @@ export class LoginPageComponent {
           this.router.navigate(['./home'])
         }
         else{
-          this.router.navigate(['./manager'])
-        }
-        
-        
+          this.router.navigate(['./managerlogin'])
+        } 
         
       } 
       

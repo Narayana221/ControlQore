@@ -17,6 +17,6 @@ namespace HotelManagement.Model.Model
         public bool RoomActive { get; set; }
         public float RoomCost { get; set; }
 
-        public BookedRoom BookedRoom { get; set; }
+        public List<BookedRoom> BookedRoom { get; set; } = new();
     }
 }

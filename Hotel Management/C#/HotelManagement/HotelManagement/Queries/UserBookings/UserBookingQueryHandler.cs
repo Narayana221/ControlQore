@@ -28,7 +28,6 @@ namespace HotelManagement.Queries.UserBookings
                     CheckOutStatus = x.CheckedOut,
                     BookingId = x.Booking.BookingId
 
-
                 }).Distinct().ToListAsync();
         }
            
