@@ -6,7 +6,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace HotelManagement.Queries.UserBookings
 {
-    public class UserBookingQueryHandler:IRequestHandler<UserBookingQuery, bool>
+    public class UserBookingQueryHandler:IRequestHandler<UserBookingQuery, List<UserBookingsDto>>
     {
         private readonly HotelManagementContext _context;
 
