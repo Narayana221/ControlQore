@@ -119,6 +119,6 @@ export class AppServiceService {
   }
 
   getBookingDetailManager(userId: number){
-    return this.http.get<Array<IRoomDetails>>(`${this.baseUrl}/GetRoomDetails?id==${userId}`)
+    return this.http.get<Array<IRoomDetails>>(`${this.baseUrl}/GetRoomDetails?id=${userId}`)
   }
 }
