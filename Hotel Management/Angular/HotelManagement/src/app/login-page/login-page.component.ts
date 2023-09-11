@@ -49,7 +49,7 @@ export class LoginPageComponent {
           this.router.navigate(['./home'])
         }
         else{
-          this.apiService.editUserId(this.userData.userId)
+          this.apiService.emitUserId(this.userData.userId)
           this.router.navigate(['./managerlogin'])
         } 
         
