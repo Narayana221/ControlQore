@@ -17,6 +17,11 @@ export class PreviousbookingComponent {
   obtainedUserId!: number;
   subscription!: Subscription;
   ratingInfo!: Irating;
+  iteratorOne: number = 0;
+  iteratorTwo: number = 0;
+  currdate = new Date();
+  ratingFlag: Array<boolean> = [false];
+  cancelFlag: Array<boolean> = [false];
   RatingForm = new FormGroup({
     rating: new FormControl(''),
   });
@@ -30,19 +35,44 @@ export class PreviousbookingComponent {
         .subscribe((data: Array<Ipreviousbooking>) => {
           this.previousBookings = data;
           console.log(this.previousBookings);
+          const startDate = new Date(this.previousBookings[0].startDate)
+          console.log(startDate);
+
+          this.previousBookings.forEach((element) => {
+            if (element.checkOutStatus != null) {
+              this.ratingFlag[this.iteratorOne++] = true;
+            } else {
+              this.ratingFlag[this.iteratorOne++] = false;
+            }
+          });
+          
+          this.previousBookings.forEach((element) => {
+            if (startDate < this.currdate) {
+              this.cancelFlag[this.iteratorTwo++] = true;
+            } else {
+              this.cancelFlag[this.iteratorTwo++] = false;
+            }
+          });
+
+  
         });
     });
   }
 
   rate(bookingId: number) {
     this.ratingInfo = {
-      rating : Number(this.RatingForm.value.rating),
-      bookingId: bookingId
-    }
-   
+      rating: Number(this.RatingForm.value.rating),
+      bookingId: bookingId,
+    };
+
     this.apiService.addRating(this.ratingInfo).subscribe((data) => {
       console.log(data);
       window.alert('Successfully rated');
     });
+  }
+
+  cancel()
+  {
+    
   }
 }

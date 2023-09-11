@@ -33,17 +33,24 @@
       <th>Start date</th>
       <th>End date</th>   
       <th></th>
-    </tr>
-<tr *ngFor ="let i of previousBookings">
+      <th></th>
+    </tr> 
+<tr *ngFor ="let i of previousBookings;let j = index;">
     <td>{{ i.bookingId }}</td>
     <td>{{ i.hotelName }}</td>
     <td>{{ i.noOfRooms }}</td>
     <td>{{ i.startDate }}</td>
     <td>{{ i.endDate }}</td>
-    <td> <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
+    <td *ngIf="ratingFlag[j]"> <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
         <label>Rate Us</label>
         <input formControlName="rating" />
         <button type="submit">Rate</button>
     </form></td>
+    <td *ngIf="!ratingFlag[j]">Can Rate only after checkout</td>
+
+    <td *ngIf="cancelFlag[j]"> 
+      <button (click)="cancel()">Cancel</button>
+  </td>
+  <td *ngIf="!cancelFlag[j]">Cannot Cancel</td>
    
 </tr>
