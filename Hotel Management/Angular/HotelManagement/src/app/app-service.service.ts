@@ -8,6 +8,8 @@ import { Ibooking } from './ibooking';
 import { Iroomtype } from './iroomtype';
 import { Ibookhome } from './ibookhome';
 import { Imanager } from './imanager';
+import { Iroom } from './iroom';
+import { IRoomDetails } from './i-room-details';
 import { Ipreviousbooking } from './ipreviousbooking';
 import { Irating } from './irating';
 
@@ -120,7 +122,10 @@ export class AppServiceService {
 
   getRoomType(hotelId:number){
     return this.http.get<Array<Iroomtype>>(`${this.baseUrl}/GetRoomType?HotelId=${hotelId}`)
+  }
 
+  getBookingDetailManager(userId: number){
+    return this.http.get<Array<IRoomDetails>>(`${this.baseUrl}/GetRoomDetails?id=${userId}`)
   }
 
   getPreviousBooking(userId:number){
