@@ -24,7 +24,7 @@ namespace HotelManagement.Queries.BookedRoomDetails
             //    }).ToListAsync();
             //var rooms = _context.BookedRoom.Where(x => x.Room.HotelId == hotelDetails.hotelId).Select(x=>x.RoomId).ToListAsync();
             var hotelID = await _context.ManagerHotel.Where(x => x.UserId == request.id).Select(x => x.HotelId).FirstOrDefaultAsync();
-            return await _context.BookedRoom.Where(x => x.Room.HotelId == hotelID).
+            return await _context.BookedRoom.Where(x => x.Room.HotelId == hotelID && x.CheckedOut > DateTime.Now).
                 Select( x=> new BookedRoomDto
                 {
                     StartDate = x.StartDate,

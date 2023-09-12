@@ -126,7 +126,7 @@ export class AppServiceService {
     return this.http.get<Array<Iroomtype>>(`${this.baseUrl}/GetRoomType?HotelId=${hotelId}`)
   }
 
-  getBookingDetailManager(userId: number){
+  getBookingDetailManager(userId: number,){
     return this.http.get<Array<IRoomDetails>>(`${this.baseUrl}/GetRoomDetails?id=${userId}`)
   }
 
@@ -138,11 +138,11 @@ export class AppServiceService {
 
   updateCheckIn(checkIn: Date, checkOut: Date, roomId: number){
     this.checkInOut={
-      icheckIn: checkIn,
-      icheckOut: checkOut,
-      iroomId: roomId
+      checkIn: checkIn,
+      checkOut: checkOut,
+      roomId: roomId
     }
-    return this.http.post(`${this.baseUrl}/UpdateBookedRoom`, this.checkInOut )
+    return this.http.put(`${this.baseUrl}/UpdateBookedRoom`, this.checkInOut )
   }
 
 
