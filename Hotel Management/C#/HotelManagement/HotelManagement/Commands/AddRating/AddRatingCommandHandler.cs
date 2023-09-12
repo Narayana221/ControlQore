@@ -16,16 +16,18 @@ namespace HotelManagement.Commands.AddRating
         }
         public async Task<bool> Handle(AddRatingCommand request, CancellationToken cancellationToken)
         {
-            var x = _dbContext.Booking.Find(request.BookingId);
-            x.Rank = request.Rating;
+            var bookingId = _dbContext.Booking.Find(request.BookingId);
+            if(bookingId == null) { }
+            else
+            bookingId.Rank = request.Rating;
 
-            var y = _dbContext.BookedRoom.Find(request.BookingId);
-            int z = y.RoomId;
+            var roomId = _dbContext.BookedRoom.Where(x => x.BookingId == request.BookingId).Select(x => x.RoomId).FirstOrDefault();
+            
 
-            var s = _dbContext.Room.Find(z);
-            var t = s.HotelId;
+            var hotelIdRow = _dbContext.Room.Find(roomId);
+            var hotelId = hotelIdRow.HotelId;
 
-            var a = _dbContext.Hotel.Find(t);
+            var a = _dbContext.Hotel.Find(hotelId);
             var newRating = (a.Rating + request.Rating)/2;
             a.Rating = newRating;
 

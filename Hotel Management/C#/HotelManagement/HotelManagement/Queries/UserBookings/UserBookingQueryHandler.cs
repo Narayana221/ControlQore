@@ -26,7 +26,8 @@ namespace HotelManagement.Queries.UserBookings
                     EndDate = x.Booking.EndDate,
                     TotalPrice = x.Booking.TotalPrice,
                     CheckOutStatus = x.CheckedOut,
-                    BookingId = x.Booking.BookingId
+                    BookingId = x.Booking.BookingId,
+                    Rating = x.Booking.Rank
 
                 }).Distinct().ToListAsync();
         }

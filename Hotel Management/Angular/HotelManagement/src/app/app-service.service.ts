@@ -13,7 +13,6 @@ import { IRoomDetails } from './i-room-details';
 import { Ipreviousbooking } from './ipreviousbooking';
 import { Irating } from './irating';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -25,62 +24,58 @@ export class AppServiceService {
   baseUrl: string = 'https://localhost:7118';
   queryParams = new HttpParams();
   name?: string;
-  
 
   tempbooking: Ibookhome = {
     noOfRooms: 0,
     StartDate: '',
-    EndDate: ''
+    EndDate: '',
+  };
+
+  private bookingDetail = new BehaviorSubject<Ibookhome>(this.tempbooking);
+  book = this.bookingDetail.asObservable();
+
+  emitbookingDetail(value: Ibookhome) {
+    this.bookingDetail.next(value);
   }
 
-  private bookingDetail = new BehaviorSubject<Ibookhome>(this.tempbooking)
-  book = this.bookingDetail.asObservable()
+  private tempuserId = new BehaviorSubject<number>(0);
+  userId = this.tempuserId.asObservable();
 
-  emitbookingDetail(value: Ibookhome){
-    this.bookingDetail.next(value)
+  emitUserId(value: number) {
+    this.tempuserId.next(value);
   }
 
-  private tempuserId = new BehaviorSubject<number>(0)
-  userId = this.tempuserId.asObservable()
-
-  emitUserId(value: number){
-    this.tempuserId.next(value)
-  }
-  
   private dataSource = new BehaviorSubject<Array<IFilterroom>>([]);
   data = this.dataSource.asObservable();
 
-  emitData(value : Array<IFilterroom>)
-  {
+  emitData(value: Array<IFilterroom>) {
     this.dataSource.next(value);
   }
-  tempRoomType: Iroomtype ={
+  tempRoomType: Iroomtype = {
     roomCost: 0,
-    roomTypeId:0,
-    roomName: ''
-  }
-  tempHotelDetials: IFilterroom ={
-    id: 0, 
-    name: '', 
-    location: '', 
+    roomTypeId: 0,
+    roomName: '',
+  };
+  tempHotelDetials: IFilterroom = {
+    id: 0,
+    name: '',
+    location: '',
     rating: 0,
-    roomId : 0
-  }
+    roomId: 0,
+  };
 
   private hotelId = new BehaviorSubject<IFilterroom>(this.tempHotelDetials);
   selectedHotelId = this.hotelId.asObservable();
 
-  emitHotelId(value:IFilterroom)
-  {
-    this.hotelId.next(value); 
+  emitHotelId(value: IFilterroom) {
+    this.hotelId.next(value);
   }
 
   private roomTypeId = new BehaviorSubject<Iroomtype>(this.tempRoomType);
   selectedroomTypeId = this.roomTypeId.asObservable();
 
-  emitroomTypeId(value:Iroomtype)
-  { 
-    this.roomTypeId.next(value); 
+  emitroomTypeId(value: Iroomtype) {
+    this.roomTypeId.next(value);
   }
 
   addUser(user: Icustomer): Observable<object> {
@@ -107,28 +102,37 @@ export class AppServiceService {
     );
   }
 
-  addBooking(booking:Ibooking){
-    return this.http.post(`${this.baseUrl}/Addbooking`, booking)
+  cancelBooking(bookingId: number) {
+     return this.http.delete(`${this.baseUrl}/Cancel?BookingId=${bookingId}`);
   }
 
-  addRating(rateInfo : Irating){
-    return this.http.put(`${this.baseUrl}/Rating`,rateInfo);
+  addBooking(booking: Ibooking) {
+    return this.http.post(`${this.baseUrl}/Addbooking`, booking);
   }
 
-  addManager(manager : Imanager)
-  {
-    return this.http.post(`${this.baseUrl}/AddManager`, manager)
+  addRating(rateInfo: Irating) {
+    return this.http.put(`${this.baseUrl}/Rating`, rateInfo);
   }
 
-  getRoomType(hotelId:number){
-    return this.http.get<Array<Iroomtype>>(`${this.baseUrl}/GetRoomType?HotelId=${hotelId}`)
+  addManager(manager: Imanager) {
+    return this.http.post(`${this.baseUrl}/AddManager`, manager);
   }
 
-  getBookingDetailManager(userId: number){
-    return this.http.get<Array<IRoomDetails>>(`${this.baseUrl}/GetRoomDetails?id=${userId}`)
+  getRoomType(hotelId: number) {
+    return this.http.get<Array<Iroomtype>>(
+      `${this.baseUrl}/GetRoomType?HotelId=${hotelId}`
+    );
   }
 
-  getPreviousBooking(userId:number){
-    return this.http.get<Array<Ipreviousbooking>>(`${this.baseUrl}/GetUserBookings?Id=${userId}`)
+  getBookingDetailManager(userId: number) {
+    return this.http.get<Array<IRoomDetails>>(
+      `${this.baseUrl}/GetRoomDetails?id=${userId}`
+    );
+  }
+
+  getPreviousBooking(userId: number) {
+    return this.http.get<Array<Ipreviousbooking>>(
+      `${this.baseUrl}/GetUserBookings?Id=${userId}`
+    );
   }
 }

@@ -19,15 +19,19 @@ export class PreviousbookingComponent {
   ratingInfo!: Irating;
   iteratorOne: number = 0;
   iteratorTwo: number = 0;
+  iteratorThree: number = 0;
+  iteratorFour: number = 0;
   currdate = new Date();
+
   ratingFlag: Array<boolean> = [false];
   cancelFlag: Array<boolean> = [false];
+  alreadyRated: Array<number> = [0];
+  startDate: Array<Date> = [];
   RatingForm = new FormGroup({
     rating: new FormControl(''),
   });
 
-  constructor(private apiService: AppServiceService, private router: Router) {}
-  ngOnInit() {
+  private fetchPreviousBookings(): void {
     this.subscription = this.apiService.userId.subscribe((x: number) => {
       this.obtainedUserId = x;
       this.apiService
@@ -35,28 +39,49 @@ export class PreviousbookingComponent {
         .subscribe((data: Array<Ipreviousbooking>) => {
           this.previousBookings = data;
           console.log(this.previousBookings);
-          const startDate = new Date(this.previousBookings[0].startDate)
-          console.log(startDate);
+          
 
-          this.previousBookings.forEach((element) => {
-            if (element.checkOutStatus != null) {
-              this.ratingFlag[this.iteratorOne++] = true;
-            } else {
-              this.ratingFlag[this.iteratorOne++] = false;
+
+          this.previousBookings.forEach((element,index) => {
+            if(element.rating == null)
+            {
+                this.alreadyRated[index]=0
+                console.log(element.rating)
             }
+            else
+            {
+              this.alreadyRated[index]= element.rating
+              console.log(element.rating)
+            }
+            
+          });
+          this.previousBookings.forEach((element, index) => {
+            this.startDate[index] = new Date(element.startDate);
+            console.log(this.startDate[index]);
           });
           
-          this.previousBookings.forEach((element) => {
-            if (startDate < this.currdate) {
-              this.cancelFlag[this.iteratorTwo++] = true;
+          this.previousBookings.forEach((element, index) => {
+            if (element.checkOutStatus != null) {
+              this.ratingFlag[index] = true;
             } else {
-              this.cancelFlag[this.iteratorTwo++] = false;
+              this.ratingFlag[index] = false;
             }
           });
 
-  
+          this.previousBookings.forEach((element, index) => {
+            if (this.startDate[index].getTime() > this.currdate.getTime()) {
+              this.cancelFlag[index] = true;
+            } else {
+              this.cancelFlag[index] = false;
+            }
+          });
         });
     });
+  }
+
+  constructor(private apiService: AppServiceService, private router: Router) {}
+  ngOnInit() {
+    this.fetchPreviousBookings();
   }
 
   rate(bookingId: number) {
@@ -68,11 +93,14 @@ export class PreviousbookingComponent {
     this.apiService.addRating(this.ratingInfo).subscribe((data) => {
       console.log(data);
       window.alert('Successfully rated');
+      this.fetchPreviousBookings();
     });
   }
 
-  cancel()
-  {
-    
+  cancel(bookingId: number) {
+    this.apiService.cancelBooking(bookingId).subscribe((data) => {
+      window.alert('Booking Canceled');
+      this.fetchPreviousBookings();
+    });
   }
 }

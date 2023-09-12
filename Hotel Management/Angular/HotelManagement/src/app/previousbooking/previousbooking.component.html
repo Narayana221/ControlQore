@@ -41,15 +41,18 @@
     <td>{{ i.noOfRooms }}</td>
     <td>{{ i.startDate }}</td>
     <td>{{ i.endDate }}</td>
-    <td *ngIf="ratingFlag[j]"> <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
+    <td *ngIf="ratingFlag[j] && alreadyRated[j]==0"> <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
         <label>Rate Us</label>
         <input formControlName="rating" />
         <button type="submit">Rate</button>
+        
     </form></td>
-    <td *ngIf="!ratingFlag[j]">Can Rate only after checkout</td>
+    <td *ngIf="alreadyRated[j]!=0">Already Rated</td>
+    <td *ngIf="!ratingFlag[j] && alreadyRated[j]==0">Can Rate only after checkout</td>
+  
 
     <td *ngIf="cancelFlag[j]"> 
-      <button (click)="cancel()">Cancel</button>
+      <button (click)="cancel(i.bookingId)">Cancel</button>
   </td>
   <td *ngIf="!cancelFlag[j]">Cannot Cancel</td>
    
