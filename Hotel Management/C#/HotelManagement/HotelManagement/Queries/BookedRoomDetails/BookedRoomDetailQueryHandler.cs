@@ -23,15 +23,32 @@ namespace HotelManagement.Queries.BookedRoomDetails
             //        hotelId = x.HotelId,
             //    }).ToListAsync();
             //var rooms = _context.BookedRoom.Where(x => x.Room.HotelId == hotelDetails.hotelId).Select(x=>x.RoomId).ToListAsync();
-            var hotelID = await _context.ManagerHotel.Where(x => x.UserId == request.id).Select(x => x.HotelId).FirstOrDefaultAsync();
-            return await _context.BookedRoom.Where(x => x.Room.HotelId == hotelID).
-                Select( x=> new BookedRoomDto
-                {
-                    StartDate = x.StartDate,
-                    EndDate = x.EndDate,
-                    RoomId = x.RoomId,
-                    HotelName = x.Room.Hotel.Name
-                }).ToListAsync();
+            if (request.flag == false)
+            {
+                var hotelID = await _context.ManagerHotel.Where(x => x.UserId == request.id).Select(x => x.HotelId).FirstOrDefaultAsync();
+                return await _context.BookedRoom.Where(x => x.Room.HotelId == hotelID && (x.CheckedOut >= DateTime.Now || x.CheckedOut == null)).
+                    Select(x => new BookedRoomDto
+                    {
+                        StartDate = x.StartDate,
+                        EndDate = x.EndDate,
+                        RoomId = x.RoomId,
+                        BookingId = x.BookingId,
+                        HotelName = x.Room.Hotel.Name   
+                    }).ToListAsync();
+            }
+            else
+            {
+                var hotelID = await _context.ManagerHotel.Where(x => x.UserId == request.id).Select(x => x.HotelId).FirstOrDefaultAsync();
+                return await _context.BookedRoom.Where(x => x.Room.HotelId == hotelID).
+                    Select(x => new BookedRoomDto
+                    {
+                        StartDate = x.StartDate,
+                        EndDate = x.EndDate,
+                        RoomId = x.RoomId,
+                        HotelName = x.Room.Hotel.Name
+                    }).ToListAsync();
+            }
+            
 
             
 

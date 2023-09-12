@@ -132,6 +132,12 @@ export class AppServiceService {
     );
   }
 
+  getAllBookingDetailManager(userId: number, flag:boolean = true) {
+    return this.http.get<Array<IRoomDetails>>(
+      `${this.baseUrl}/GetRoomDetails?id=${userId}&flag=${flag}`
+    );
+  }
+
   getPreviousBooking(userId: number) {
     return this.http.get<Array<Ipreviousbooking>>(
       `${this.baseUrl}/GetUserBookings?Id=${userId}`
@@ -140,13 +146,14 @@ export class AppServiceService {
 
   checkInOut?: Ichechinout
 
-  updateCheckIn(checkIn: Date, checkOut: Date, roomId: number){
+  updateCheckIn(checkIn: Date, checkOut: Date, roomId: number, bookingId: number){
     this.checkInOut={
-      icheckIn: checkIn,
-      icheckOut: checkOut,
-      iroomId: roomId
+      checkIn: checkIn,
+      checkOut: checkOut,
+      roomId: roomId,
+      bookingId: bookingId
     }
-    return this.http.post(`${this.baseUrl}/UpdateBookedRoom`, this.checkInOut )
+    return this.http.put(`${this.baseUrl}/UpdateBookedRoom`, this.checkInOut )
   }
 
 

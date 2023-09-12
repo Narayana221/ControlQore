@@ -13,7 +13,7 @@ namespace HotelManagement.Controllers
         {
             _mediator = mediator;
         }
-        [HttpPost("UpdateBookedRoom")]
+        [HttpPut("UpdateBookedRoom")]
 
         public async Task<ActionResult<bool>> UpdateBookedRoom([FromBody] UpdateBooekdRoomCommand command)
         {
