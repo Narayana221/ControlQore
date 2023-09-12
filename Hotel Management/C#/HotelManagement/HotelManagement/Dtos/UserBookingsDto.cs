@@ -9,5 +9,6 @@
         public float TotalPrice { get; set; }
         public DateTime? CheckOutStatus { get; set; }
         public int BookingId { get; set; }
+        public int? Rating { get; set; }
     }
 }
