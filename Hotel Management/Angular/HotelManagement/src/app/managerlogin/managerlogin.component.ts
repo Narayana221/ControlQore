@@ -3,6 +3,7 @@ import { RouteReuseStrategy, Router } from '@angular/router';
 import { AppServiceService } from '../app-service.service';
 import { Subscription } from 'rxjs';
 import { IRoomDetails } from '../i-room-details';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-managerlogin',
@@ -16,6 +17,23 @@ export class ManagerloginComponent {
   userId: number = 0;
   RoomDetails?: Array<IRoomDetails>;
   subscription!: Subscription;
+  viewTableFlag: boolean = false;
+  updateBookings: boolean = false;
+
+  formGroup = new FormGroup({
+    bookings: new FormArray([])
+  });
+  // formGroup = new FormGroup({
+  //   checkIn: new FormControl(''),
+  //   checkOut: new FormControl('')
+  // });
+  CheckInGroup = new FormGroup({
+    checkInControl: new FormControl('')
+  });
+  CheckOutGroup = new FormGroup({
+    checkOutControl: new FormControl('')
+  });
+
   // ngOnInit(){
   //   this.subscription = this.apiService.userId.subscribe((data: number) => {
   //     this.userId = data
@@ -24,11 +42,21 @@ export class ManagerloginComponent {
   // }
 
   getCurrentBooking() {
+    this.viewTableFlag = true;
     this.subscription = this.apiService.userId.subscribe(
       (data: number) => {
         (this.userId = data)
         this.apiService.getBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
           this.RoomDetails = data;
+          data.forEach((d, index) => {
+            const fg = this.getFormControlGroup(this.parseDate(new Date(d.startDate)),
+            this.parseDate(new Date(d.endDate)));
+            this.formArray.push(fg);
+            // this.formArray.at(index).patchValue({
+            //   checkIn: d.startDate.toLocaleDateString(),
+            //   checkOut: d.endDate.toLocaleDateString()
+            // });
+          });
           console.log(this.userId);
           console.log(this.RoomDetails);
         })
@@ -36,6 +64,38 @@ export class ManagerloginComponent {
 
   }
 
+  private parseDate(date: Date) {
+    // return `${date.getDay()+1}-${date.getMonth() + 1}-${date.getFullYear()}`
+    return `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate()}`;
+  }
+  updateCurrentBooking() {
+    this.updateBookings = true;
+  }
 
+  getFormGroup(index: number): FormGroup {
+    return this.formArray.at(index) as FormGroup
+  }
 
+  get formArray() {
+    return this.formGroup.get('bookings') as FormArray;
+  }
+
+  private getFormControlGroup(startDate: string, endDate: string): FormGroup {
+    return new FormGroup({
+      checkIn: new FormControl(startDate),
+      checkOut: new FormControl(endDate)
+    });
+  }
+  checkIn: Date = new Date('1999-09-09')
+  checkOut: Date= new Date('1999-09-09');
+  
+
+  updateCheckIn(index: number, roomId: number){
+    this.checkIn = this.formArray.at(index).value.checkIn
+    this.checkOut = this.formArray.at(index).value.checkOut
+    console.log(this.checkIn)
+    console.log(this.checkOut)
+    this.apiService.updateCheckIn(this.checkIn, this.checkOut, roomId).subscribe((data)=> data)
+    
+  }
 }

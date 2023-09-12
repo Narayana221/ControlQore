@@ -1,12 +1,57 @@
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
-
 <div class="master">
     <h1>Manager Portal</h1>
     
-    <button (click)="getCurrentBooking()">View Current Bookings</button>
-    <button>Update check-In/ Check-Out Status</button>
+    <button (click)="updateCurrentBooking()">View Current Bookings</button>
+    <button (click)="getCurrentBooking()">Update check-In/ Check-Out Status</button>
+    
 </div>
+<table *ngIf="updateBookings">
+        <tr>
+            <th>Hotel Name</th>
+            <th>Room No</th>
+            <th>Check-In</th>
+            <th>Chech-Out</th>
+        </tr>
+        <tr *ngFor ="let i of RoomDetails">
+            <td>{{i.hotelName}}</td>
+            <td>{{i.roomId}}</td>
+            <td>{{i.startDate | date: 'fullDate'}}</td>
+            <td>{{i.endDate | date: 'fullDate'}}</td>
+        </tr>
+    </table>
 
+<ng-container [formGroup]="formGroup">
+    <table formArrayName="bookings" *ngIf="viewTableFlag">
+        <tr>
+            <th>Hotel Name</th>
+            <th>Room No</th>
+            <th>Current Check-In</th>
+            <th>Current Chech-Out</th>
+            <th>Update Check-In</th>
+            <th>Update Check-Out</th>
+        </tr>
+        <tr *ngFor ="let rd of RoomDetails; let ind = index" [formGroup]="getFormGroup(ind)">
+            <td>{{rd.hotelName}}</td>
+            <td>{{rd.roomId}}</td>
+            <td>{{rd.startDate | date: 'fullDate'}}</td>
+            <td>{{rd.endDate | date: 'fullDate'}}</td>
+            <td>
+                <label>Check-In</label>
+                <input type="date" formControlName="checkIn"/>
+                </td>
+            <td>
+                <label>Check-Out</label>
+                <input formControlName="checkOut" type="date"/>
+            </td>
+            <td>
+                <button (click)="updateCheckIn(ind, rd.roomId)">Update</button>
+            </td>
+        </tr>
+    </table>
+
+</ng-container>

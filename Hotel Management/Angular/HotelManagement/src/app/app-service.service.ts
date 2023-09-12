@@ -12,6 +12,7 @@ import { Iroom } from './iroom';
 import { IRoomDetails } from './i-room-details';
 import { Ipreviousbooking } from './ipreviousbooking';
 import { Irating } from './irating';
+import { Ichechinout } from './ichechinout';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class AppServiceService {
   constructor(private http: HttpClient) {}
 
   login?: Iloginuser;
+
 
   baseUrl: string = 'https://localhost:7118';
   queryParams = new HttpParams();
@@ -135,4 +137,17 @@ export class AppServiceService {
       `${this.baseUrl}/GetUserBookings?Id=${userId}`
     );
   }
+
+  checkInOut?: Ichechinout
+
+  updateCheckIn(checkIn: Date, checkOut: Date, roomId: number){
+    this.checkInOut={
+      icheckIn: checkIn,
+      icheckOut: checkOut,
+      iroomId: roomId
+    }
+    return this.http.post(`${this.baseUrl}/UpdateBookedRoom`, this.checkInOut )
+  }
+
+
 }

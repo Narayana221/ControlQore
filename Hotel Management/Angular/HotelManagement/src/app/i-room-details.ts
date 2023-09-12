@@ -1,6 +1,6 @@
 export interface IRoomDetails {
-    Stratdate: Date,
-    EndDate: Date,
-    RoomId: number,
-    HotelName: string
+    startDate: Date,
+    endDate: Date,
+    roomId: number,
+    hotelName: string
 }
