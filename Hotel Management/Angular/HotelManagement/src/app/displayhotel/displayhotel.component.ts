@@ -4,6 +4,8 @@ import { IFilterroom } from '../ifilterroom';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Iroomtype } from '../iroomtype';
+import { Inoofrooms } from '../inoofrooms';
 
 
 @Component({
@@ -19,6 +21,7 @@ export class DisplayhotelComponent {
  
   obtainedHotel! : Array<IFilterroom>;
   subscription!: Subscription ;
+  
   constructor(private apiService : AppServiceService,private router: Router, private activatedRoute: ActivatedRoute ) {
   }
 
@@ -30,12 +33,25 @@ export class DisplayhotelComponent {
       (x:  Array<IFilterroom>) => (this.obtainedHotel = x)
     );
   }
-  proceed(hotel: IFilterroom)
+
+  tempNoOfRooms: Inoofrooms = {
+    id: 0,
+    noofrooms: 0,
+    hotelName: ''
+  }
+
+  NoOfRooms: number = 0;
+  noOfRoomsSubscription = this.apiService.noOfROoms.subscribe(((x: number) =>(this.NoOfRooms = x)))
+
+  proceed(hotelid: number, hotelName: string)
   {
-    this.router.navigate(['./home/roomtypelist']),{
-      //relativeTo: this.activatedRoute,
+    this.router.navigate(['./home/roomtypelist'])
+    this.tempNoOfRooms = {
+      id: hotelid,
+      noofrooms: this.NoOfRooms,
+      hotelName: hotelName
     }
-    this.apiService.emitHotelId(hotel);
+    this.apiService.emitHotelId(this.tempNoOfRooms);
   
   }
 

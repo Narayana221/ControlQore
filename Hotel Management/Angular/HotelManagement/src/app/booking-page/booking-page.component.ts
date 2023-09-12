@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { Ibookhome } from '../ibookhome';
 import { Iroomtype } from '../iroomtype';
 import { IFilterroom } from '../ifilterroom';
+import { Inoofrooms } from '../inoofrooms';
 
 @Component({
   selector: 'app-booking-page',
@@ -38,12 +39,10 @@ export class BookingPageComponent {
     roomName: ''
   }
 
-  HotelId: IFilterroom = {
+  HotelId: Inoofrooms = {
     id: 0,
-    name: '',
-    location: '',
-    rating: 0,
-    roomId: 0
+    noofrooms: 0,
+    hotelName: ''
   }
 
 
@@ -51,7 +50,7 @@ export class BookingPageComponent {
     this.subscription = this.apiService.userId.subscribe((data: number) => this.userId = data)
     this.subscription = this.apiService.book.subscribe((data: Ibookhome) => this.bookingDetails = data)
     this.subscription = this.apiService.selectedroomTypeId.subscribe((data: Iroomtype) => this.roomtype = data)
-    this.subscription = this.apiService.selectedHotelId.subscribe((data: IFilterroom) => this.HotelId = data)
+    this.subscription = this.apiService.selectedHotelId.subscribe((data: Inoofrooms) => this.HotelId = data)
   }
 
   onSubmit() {

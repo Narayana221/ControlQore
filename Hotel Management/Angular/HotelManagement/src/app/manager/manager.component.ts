@@ -34,7 +34,7 @@ export class ManagerComponent {
   {
     this.newManager = {
       name: this.managerForm.value.name,
-      userRoleId: 2,
+      userRoleId: 4,
       email: this.managerForm.value.email,
       phone: this.managerForm.value.phone,
       userName: this.managerForm.value.userName,

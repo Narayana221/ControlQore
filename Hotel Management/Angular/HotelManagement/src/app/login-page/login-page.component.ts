@@ -43,7 +43,7 @@ export class LoginPageComponent {
         console.log(this.userData)
         this.loginFlag = true;
         this.loginedUser = true;
-        if (Number(this.userData.userRoleId) == 1)
+        if (Number(this.userData.userRoleId) == 3)
         {
           this.apiService.emitUserId(this.userData.userId)  
           this.router.navigate(['./home'])

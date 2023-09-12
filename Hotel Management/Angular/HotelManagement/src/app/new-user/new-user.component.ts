@@ -26,7 +26,7 @@ export class NewUserComponent {
   onSubmit(){
     this.newUser = {
       name: this.userForm.value.name,
-      userRoleId: 1,
+      userRoleId: 3,
       email: this.userForm.value.email,
       phone: this.userForm.value.phone,
       userName: this.userForm.value.userName,

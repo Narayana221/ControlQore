@@ -34,10 +34,11 @@ namespace HotelManagement.Commands.AddManager
 
 
             Hotel hotel = new Hotel
-            { 
+            {
                 Name = request.HotelName,
                 //Location = location,
-                LocationId = request.LocationId
+                LocationId = request.LocationId,
+                Rating = 5
                 
             };
 

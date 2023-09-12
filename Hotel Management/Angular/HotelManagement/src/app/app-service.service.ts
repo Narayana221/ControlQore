@@ -13,6 +13,8 @@ import { IRoomDetails } from './i-room-details';
 import { Ipreviousbooking } from './ipreviousbooking';
 import { Irating } from './irating';
 import { Ichechinout } from './ichechinout';
+import { Inoofrooms } from './inoofrooms';
+import { Iuserreq } from './iuserreq';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +55,14 @@ export class AppServiceService {
   emitData(value: Array<IFilterroom>) {
     this.dataSource.next(value);
   }
+
+  private tempNoOfRooms = new BehaviorSubject<number>(0);
+  noOfROoms = this.tempNoOfRooms.asObservable();
+
+  emitNoOfRooms(value: number){
+    this.tempNoOfRooms.next(value)
+  }
+
   tempRoomType: Iroomtype = {
     roomCost: 0,
     roomTypeId: 0,
@@ -66,10 +76,16 @@ export class AppServiceService {
     roomId: 0,
   };
 
-  private hotelId = new BehaviorSubject<IFilterroom>(this.tempHotelDetials);
+  tempnoofRooms: Inoofrooms = {
+    id: 0,
+    noofrooms: 0,
+    hotelName: ''
+  }
+
+  private hotelId = new BehaviorSubject<Inoofrooms>(this.tempnoofRooms);
   selectedHotelId = this.hotelId.asObservable();
 
-  emitHotelId(value: IFilterroom) {
+  emitHotelId(value : Inoofrooms ) {
     this.hotelId.next(value);
   }
 
@@ -78,6 +94,19 @@ export class AppServiceService {
 
   emitroomTypeId(value: Iroomtype) {
     this.roomTypeId.next(value);
+  }
+  tempUserReq1: Iuserreq = {
+    locationId: 0,
+    startDate: '',
+    endDate: '',
+    noOfRooms: 0,
+    rating: 0,
+  }
+  private tempUserReq = new BehaviorSubject<Iuserreq>(this.tempUserReq1)
+  userReq = this.tempUserReq.asObservable()
+
+  emitUserReq(value: Iuserreq){
+    this.tempUserReq.next(value)
   }
 
   addUser(user: Icustomer): Observable<object> {
@@ -92,15 +121,9 @@ export class AppServiceService {
     return this.http.post(`${this.baseUrl}/GetUser`, this.login);
   }
 
-  getHotelDetails(
-    locationId: number,
-    startDate: string,
-    endDate: string,
-    noOfRooms: number,
-    rating: number
-  ) {
+  getHotelDetails(userReq: Iuserreq) {
     return this.http.get<Array<IFilterroom>>(
-      `${this.baseUrl}/GetHotel?Rating=${rating}&LocationId=${locationId}&StartDate=${startDate}&EndDate=${endDate}&NoOfRooms=${noOfRooms}`
+      `${this.baseUrl}/GetHotel?Rating=${userReq.rating}&LocationId=${userReq.locationId}&StartDate=${userReq.startDate}&EndDate=${userReq.endDate}&NoOfRooms=${userReq.noOfRooms}`
     );
   }
 
@@ -120,9 +143,9 @@ export class AppServiceService {
     return this.http.post(`${this.baseUrl}/AddManager`, manager);
   }
 
-  getRoomType(hotelId: number) {
+  getRoomType(hotelIdNoRooms: Inoofrooms, userReq: Iuserreq) {
     return this.http.get<Array<Iroomtype>>(
-      `${this.baseUrl}/GetRoomType?HotelId=${hotelId}`
+      `${this.baseUrl}/GetRoomType?HotelId=${hotelIdNoRooms.id}&NoOfRooms=${hotelIdNoRooms.noofrooms}&Rating=${userReq.rating}&LocationId=${userReq.locationId}&StartDate=${userReq.startDate}&EndDate=${userReq.endDate}`
     );
   }
 

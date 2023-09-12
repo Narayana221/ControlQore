@@ -69,7 +69,7 @@ namespace HotelManagement.Queries.GetHotel
 
             var availRooms = await _context.Room
                 .Where(x => x.Hotel.LocationId == request.LocationId && x.Hotel.Rating > request.Rating
-           && !_context.BookedRoom
+            && !x.BookedRoom
            .Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) ||
             (request.StartDate < y.StartDate && request.EndDate > y.StartDate) ||
             (request.StartDate > y.StartDate && request.StartDate < y.EndDate)
