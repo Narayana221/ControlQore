@@ -126,9 +126,15 @@ export class AppServiceService {
     );
   }
 
-  getBookingDetailManager(userId: number,) {
+  getBookingDetailManager(userId: number) {
     return this.http.get<Array<IRoomDetails>>(
       `${this.baseUrl}/GetRoomDetails?id=${userId}`
+    );
+  }
+
+  getAllBookingDetailManager(userId: number, flag:boolean = true) {
+    return this.http.get<Array<IRoomDetails>>(
+      `${this.baseUrl}/GetRoomDetails?id=${userId}&flag=${flag}`
     );
   }
 
@@ -140,11 +146,12 @@ export class AppServiceService {
 
   checkInOut?: Ichechinout
 
-  updateCheckIn(checkIn: Date, checkOut: Date, roomId: number){
+  updateCheckIn(checkIn: Date, checkOut: Date, roomId: number, bookingId: number){
     this.checkInOut={
       checkIn: checkIn,
       checkOut: checkOut,
-      roomId: roomId
+      roomId: roomId,
+      bookingId: bookingId
     }
     return this.http.put(`${this.baseUrl}/UpdateBookedRoom`, this.checkInOut )
   }

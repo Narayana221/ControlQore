@@ -6,11 +6,12 @@
 <div class="master">
     <h1>Manager Portal</h1>
     
-    <button (click)="updateCurrentBooking()">View Current Bookings</button>
-    <button (click)="getCurrentBooking()">Update check-In/ Check-Out Status</button>
+    <button (click)="getAllBookings()">View All Bookings</button>
+    <button (click)="getCurrentBooking()">View Current Bookings</button>
+    <button (click)="updateCurrentBooking()">Update check-In/ Check-Out Status</button>
     
 </div>
-<table *ngIf="updateBookings">
+<table *ngIf="viewTableFlag">
         <tr>
             <th>Hotel Name</th>
             <th>Room No</th>
@@ -26,7 +27,7 @@
     </table>
 
 <ng-container [formGroup]="formGroup">
-    <table formArrayName="bookings" *ngIf="viewTableFlag">
+    <table formArrayName="bookings" *ngIf="updateBookings">
         <tr>
             <th>Hotel Name</th>
             <th>Room No</th>
@@ -49,7 +50,7 @@
                 <input formControlName="checkOut" type="date"/>
             </td>
             <td>
-                <button (click)="updateCheckIn(ind, rd.roomId)">Update</button>
+                <button (click)="updateCheckIn(ind, rd.roomId, rd.bookingId)">Update</button>
             </td>
         </tr>
     </table>

@@ -41,8 +41,9 @@ export class ManagerloginComponent {
   //   })
   // }
 
-  getCurrentBooking() {
-    this.viewTableFlag = true;
+  updateCurrentBooking() {
+    this.viewTableFlag = false;
+    this.updateBookings = true;
     this.subscription = this.apiService.userId.subscribe(
       (data: number) => {
         (this.userId = data)
@@ -66,11 +67,28 @@ export class ManagerloginComponent {
 
   private parseDate(date: Date) {
     // return `${date.getDay()+1}-${date.getMonth() + 1}-${date.getFullYear()}`
-    return `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate()}`;
+    return `${date.getFullYear()}-${date.getMonth() + 1 <= 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)}-${date.getDate() <= 9 ? '0' + date.getDate() : date.getDate()}`;
   }
-  updateCurrentBooking() {
-    this.updateBookings = true;
+  getCurrentBooking() {
+    this.updateBookings = false;
+    this.viewTableFlag = true;
+    this.subscription = this.apiService.userId.subscribe(
+      (data: number) => {
+        (this.userId = data)
+        this.apiService.getBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
+          this.RoomDetails = data;})})
   }
+
+  getAllBookings(){
+    this.updateBookings = false;
+    this.viewTableFlag = true;
+    this.subscription = this.apiService.userId.subscribe(
+      (data: number) => {
+        (this.userId = data)
+        this.apiService.getAllBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
+          this.RoomDetails = data;})})
+  }
+
 
   getFormGroup(index: number): FormGroup {
     return this.formArray.at(index) as FormGroup
@@ -90,12 +108,14 @@ export class ManagerloginComponent {
   checkOut: Date= new Date('1999-09-09');
   
 
-  updateCheckIn(index: number, roomId: number){
+  updateCheckIn(index: number, roomId: number, bookingId: number){
     this.checkIn = this.formArray.at(index).value.checkIn
     this.checkOut = this.formArray.at(index).value.checkOut
     console.log(this.checkIn)
     console.log(this.checkOut)
-    this.apiService.updateCheckIn(this.checkIn, this.checkOut, roomId).subscribe((data)=> data)
+    this.apiService.updateCheckIn(this.checkIn, this.checkOut, roomId, bookingId).subscribe((data)=> data)
+    window.alert(`You have successfully updated CheckIn and CheckOut
+    if you want to see the updated dates click on 'View current bookings'`)
     
   }
 }

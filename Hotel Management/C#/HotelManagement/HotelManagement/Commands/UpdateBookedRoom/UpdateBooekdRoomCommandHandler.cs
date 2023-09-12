@@ -20,7 +20,7 @@ namespace HotelManagement.Commands.UpdateBookedRoom
         {
             //var roomId = _Context.BookedRoom.Find(request.roomId);
 
-            var roomId = await _Context.BookedRoom.Where(x => x.RoomId == request.roomId ).Select(x => x).FirstOrDefaultAsync();
+            var roomId = await _Context.BookedRoom.Where(x => x.RoomId == request.roomId && x.BookingId == request.bookingId).Select(x => x).FirstOrDefaultAsync();
             
             roomId.StartDate = request.checkIn;
             roomId.EndDate = request.checkOut;
