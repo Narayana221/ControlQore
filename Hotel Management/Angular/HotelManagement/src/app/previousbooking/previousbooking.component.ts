@@ -23,6 +23,8 @@ export class PreviousbookingComponent {
   iteratorFour: number = 0;
   currdate = new Date();
 
+  tableDisplayFlag : boolean =false
+
   ratingFlag: Array<boolean> = [false];
   cancelFlag: Array<boolean> = [false];
   alreadyRated: Array<number> = [0];
@@ -39,7 +41,10 @@ export class PreviousbookingComponent {
         .subscribe((data: Array<Ipreviousbooking>) => {
           this.previousBookings = data;
           console.log(this.previousBookings);
-          
+          if(this.previousBookings.length != 0 )
+          {
+            this.tableDisplayFlag = true
+          }
 
 
           this.previousBookings.forEach((element,index) => {
@@ -97,8 +102,8 @@ export class PreviousbookingComponent {
     });
   }
 
-  cancel(bookingId: number) {
-    this.apiService.cancelBooking(bookingId).subscribe((data) => {
+  cancel(bookingId: number,bookedroomId : number) {
+    this.apiService.cancelBooking(bookingId,bookedroomId).subscribe((data) => {
       window.alert('Booking Canceled');
       this.fetchPreviousBookings();
     });

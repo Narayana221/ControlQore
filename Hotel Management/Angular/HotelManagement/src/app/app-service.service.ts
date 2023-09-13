@@ -127,8 +127,8 @@ export class AppServiceService {
     );
   }
 
-  cancelBooking(bookingId: number) {
-     return this.http.delete(`${this.baseUrl}/Cancel?BookingId=${bookingId}`);
+  cancelBooking(bookingId: number,bookedroomId:number) {
+     return this.http.delete(`${this.baseUrl}/Cancel?BookingId=${bookingId}&&BookedRoomId=${bookedroomId}`);
   }
 
   addBooking(booking: Ibooking) {

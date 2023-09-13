@@ -7,6 +7,8 @@ export interface Ipreviousbooking {
     totalPrice : number 
     checkOutStatus: boolean
     bookingId : number
+    roomId : number
+    bookedRoomId : number
     rating : number
 }
 

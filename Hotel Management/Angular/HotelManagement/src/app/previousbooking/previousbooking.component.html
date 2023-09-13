@@ -1,59 +1,67 @@
 <style>
-    table {
-      width: 60%;
-    
-    }
-    table,
-    td,
-    th {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-    tr:nth-child(1) {
-      background-color: rgb(163, 163, 163);
-      color: rgb(0, 0, 0);
-    }
-    td,
-    th {
-      text-align: left;
-      height: 30px;
-      padding: 10px;
-    }
-    input {
-      margin: 20px
-    }
+  table {
+    width: 60%;
+  }
+  table,
+  td,
+  th {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  tr:nth-child(1) {
+    background-color: rgb(163, 163, 163);
+    color: rgb(0, 0, 0);
+  }
+  td,
+  th {
+    text-align: left;
+    height: 30px;
+    padding: 10px;
+  }
+  input {
+    margin: 20px;
+  }
 </style>
 <h1>OYO</h1>
 <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
-<table>
+<div *ngIf="!tableDisplayFlag">
+  <p>You Have No Previous Bookings</p>
+</div>
+<div  *ngIf="tableDisplayFlag">
+  <table>
     <tr>
       <th>Booking ID</th>
+      <th>Room ID</th>
       <th>Hotel</th>
       <th>No: of Rooms</th>
       <th>Start date</th>
-      <th>End date</th>   
+      <th>End date</th>
       <th></th>
       <th></th>
-    </tr> 
-<tr *ngFor ="let i of previousBookings;let j = index;">
-    <td>{{ i.bookingId }}</td>
-    <td>{{ i.hotelName }}</td>
-    <td>{{ i.noOfRooms }}</td>
-    <td>{{ i.startDate }}</td>
-    <td>{{ i.endDate }}</td>
-    <td *ngIf="ratingFlag[j] && alreadyRated[j]==0"> <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
-        <label>Rate Us</label>
-        <input formControlName="rating" />
-        <button type="submit">Rate</button>
-        
-    </form></td>
-    <td *ngIf="alreadyRated[j]!=0">Already Rated</td>
-    <td *ngIf="!ratingFlag[j] && alreadyRated[j]==0">Can Rate only after checkout</td>
-  
+    </tr>
+    <tr *ngFor="let i of previousBookings; let j = index">
+      <td>{{ i.bookingId }}</td>
+      <td>{{ i.roomId }}</td>
+      <td>{{ i.hotelName }}</td>
+      <td>{{ i.noOfRooms }}</td>
+      <td>{{ i.startDate }}</td>
+      <td>{{ i.endDate }}</td>
+      <td *ngIf="ratingFlag[j] && alreadyRated[j] == 0">
+        <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
+          <label>Rate Us</label>
+          <input formControlName="rating" />
+          <button type="submit">Rate</button>
+        </form>
+      </td>
+      <td *ngIf="alreadyRated[j] != 0">Already Rated</td>
+      <td *ngIf="!ratingFlag[j] && alreadyRated[j] == 0">
+        Can Rate only after checkout
+      </td>
 
-    <td *ngIf="cancelFlag[j]"> 
-      <button (click)="cancel(i.bookingId)">Cancel</button>
-  </td>
-  <td *ngIf="!cancelFlag[j]">Cannot Cancel</td>
-   
-</tr>
+      <td *ngIf="cancelFlag[j]">
+        <button (click)="cancel(i.bookingId, i.bookedRoomId)">Cancel</button>
+      </td>
+      <td *ngIf="!cancelFlag[j]">Cannot Cancel</td>
+    </tr>
+  </table>
+</div>

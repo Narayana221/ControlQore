@@ -18,11 +18,12 @@ namespace HotelManagement.Commands.DeleteBooking
         }
         public async Task<bool> Handle(DeleteBookingCommand request, CancellationToken cancellationToken)
         {
-            Booking booking = new Booking();
+            BookedRoom bookedRoom = new BookedRoom();
             {
-                booking.BookingId = request.BookingId;
+                bookedRoom.BookedRoomId = request.BookedRoomId;
+               
             }
-            _dbContext.Remove(booking);
+            _dbContext.Remove(bookedRoom);
             await _dbContext.SaveChangesAsync(cancellationToken);
             return true;
         }
