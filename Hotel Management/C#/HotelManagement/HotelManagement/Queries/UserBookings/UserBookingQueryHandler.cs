@@ -31,7 +31,7 @@ namespace HotelManagement.Queries.UserBookings
                     BookingId = x.Booking.BookingId,
                     Rating = x.Booking.Rank
 
-                }).ToListAsync();
+                }).Distinct().ToListAsync();
         }
            
     }

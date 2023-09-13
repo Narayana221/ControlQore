@@ -94,12 +94,21 @@ export class PreviousbookingComponent {
       rating: Number(this.RatingForm.value.rating),
       bookingId: bookingId,
     };
+    if((this.ratingInfo.rating)%1 ===0)
+    {
+      this.apiService.addRating(this.ratingInfo).subscribe((data) => {
+        console.log(data);
+        window.alert('Successfully rated');
+        this.fetchPreviousBookings();
+      });
+    }
+    else
+    {
+      window.alert('Enter a whole number from 1-5');
+    }
 
-    this.apiService.addRating(this.ratingInfo).subscribe((data) => {
-      console.log(data);
-      window.alert('Successfully rated');
-      this.fetchPreviousBookings();
-    });
+
+   
   }
 
   cancel(bookingId: number,bookedroomId : number) {

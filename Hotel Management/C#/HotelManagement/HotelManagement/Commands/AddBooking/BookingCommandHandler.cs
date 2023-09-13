@@ -34,7 +34,7 @@ namespace HotelManagement.Commands.AddBooking
             //int scopeIdentity = book.BookingId;
             //List<int> Rooms = new List<int>();
            
-            var Rooms = _dbContext.Room.Where(x => x.HotelId == request.HotelId && x.RoomTypeId== request.RoomTypeId && !_dbContext.BookedRoom.
+            var Rooms = _dbContext.Room.Where(x => x.HotelId == request.HotelId && x.RoomTypeId== request.RoomTypeId && !x.BookedRoom.
             Any(y => (request.StartDate >= y.StartDate && request.EndDate <= y.EndDate) ||
             (request.StartDate < y.StartDate && request.EndDate > y.StartDate) ||
             (request.StartDate > y.StartDate && request.StartDate < y.EndDate)
