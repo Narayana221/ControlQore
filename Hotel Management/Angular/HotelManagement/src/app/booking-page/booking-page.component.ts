@@ -6,7 +6,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Ibookhome } from '../ibookhome';
 import { Iroomtype } from '../iroomtype';
-import { IFilterroom } from '../ifilterroom';
 import { Inoofrooms } from '../inoofrooms';
 
 @Component({
@@ -52,8 +51,9 @@ export class BookingPageComponent {
     this.subscription = this.apiService.selectedroomTypeId.subscribe((data: Iroomtype) => this.roomtype = data)
     this.subscription = this.apiService.selectedHotelId.subscribe((data: Inoofrooms) => this.HotelId = data)
   }
-
+  flag: boolean = true;
   onSubmit() {
+    this.flag = false;
     this.book = {
       StartDate: (this.bookingDetails?.StartDate),
       EndDate: (this.bookingDetails?.EndDate),

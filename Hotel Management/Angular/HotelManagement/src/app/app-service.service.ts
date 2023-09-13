@@ -139,7 +139,7 @@ export class AppServiceService {
     return this.http.put(`${this.baseUrl}/Rating`, rateInfo);
   }
 
-  addManager(manager: Imanager) {
+  addManager(manager: Imanager):  Observable<object> {
     return this.http.post(`${this.baseUrl}/AddManager`, manager);
   }
 

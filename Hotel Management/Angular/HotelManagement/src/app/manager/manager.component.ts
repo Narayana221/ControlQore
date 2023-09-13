@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Imanager } from '../imanager';
 import { AppServiceService } from '../app-service.service';
 import { Router } from '@angular/router';
@@ -11,12 +11,12 @@ import { Router } from '@angular/router';
 })
 export class ManagerComponent {
   managerForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    userName: new FormControl(''),
-    password: new FormControl(''),
-    hotelName: new FormControl(''),
+    name: new FormControl('',Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('[0-9]+')]),
+    userName: new FormControl('', Validators.required),
+    password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    hotelName: new FormControl('', Validators.required),
     locationId: new FormControl(0),
   });
 
@@ -26,6 +26,7 @@ export class ManagerComponent {
   }
 
   newManager! : Imanager
+  flag!: object;
 
   back()
   {   this.router.navigate(['']);}
@@ -44,8 +45,16 @@ export class ManagerComponent {
     }
     console.log(this.newManager);
      return this.apiService.addManager(this.newManager).subscribe((data)=>{
-      console.log(data);
-      window.alert("Created New Manager");
+      this.flag = data
+        if(!this.flag){
+          window.alert("Existing userId or Email")
+        }
+        else{
+          window.alert("Created New Manager");
+          this.router.navigate(['']);
+        }
+      
+      
     })
   }
 changeCity(e:any)
