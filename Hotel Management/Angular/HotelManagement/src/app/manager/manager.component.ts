@@ -33,29 +33,36 @@ export class ManagerComponent {
 
   onSubmit()
   {
-    this.newManager = {
-      name: this.managerForm.value.name,
-      userRoleId: 4,
-      email: this.managerForm.value.email,
-      phone: this.managerForm.value.phone,
-      userName: this.managerForm.value.userName,
-      password: this.managerForm.value.password,
-      hotelName: this.managerForm.value.hotelName,
-      locationId:this.managerForm.value.locationId
+    if(this.managerForm.valid){
+      this.newManager = {
+        name: this.managerForm.value.name,
+        userRoleId: 4,
+        email: this.managerForm.value.email,
+        phone: this.managerForm.value.phone,
+        userName: this.managerForm.value.userName,
+        password: this.managerForm.value.password,
+        hotelName: this.managerForm.value.hotelName,
+        locationId:this.managerForm.value.locationId
+      }
+      console.log(this.newManager);
+       return this.apiService.addManager(this.newManager).subscribe((data)=>{
+        this.flag = data
+          if(!this.flag){
+            window.alert("Existing userId or Email")
+          }
+          else{
+            window.alert("Created New Manager");
+            this.router.navigate(['']);
+          }
+        
+        
+      })
     }
-    console.log(this.newManager);
-     return this.apiService.addManager(this.newManager).subscribe((data)=>{
-      this.flag = data
-        if(!this.flag){
-          window.alert("Existing userId or Email")
-        }
-        else{
-          window.alert("Created New Manager");
-          this.router.navigate(['']);
-        }
-      
-      
-    })
+    else{
+      window.alert('Please fill out the form correctly.');
+      return 0;
+    }
+    
   }
 changeCity(e:any)
 {
