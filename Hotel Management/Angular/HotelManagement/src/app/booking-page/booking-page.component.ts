@@ -72,7 +72,7 @@ export class BookingPageComponent {
   }
 
   home() {
-    this.route.navigate([""]);
+    this.route.navigate(['./home'])
   }
 
 }
