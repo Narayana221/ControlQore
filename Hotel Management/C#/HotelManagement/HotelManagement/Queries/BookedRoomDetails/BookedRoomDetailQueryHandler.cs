@@ -33,7 +33,7 @@ namespace HotelManagement.Queries.BookedRoomDetails
                         EndDate = x.EndDate,
                         RoomId = x.RoomId,
                         BookingId = x.BookingId,
-                        HotelName = x.Room.Hotel.Name   
+                        HotelName = x.Room.Hotel.Name
                     }).ToListAsync();
             }
             else
@@ -48,14 +48,14 @@ namespace HotelManagement.Queries.BookedRoomDetails
                         HotelName = x.Room.Hotel.Name
                     }).ToListAsync();
             }
-            
 
-            
 
-            
 
-            
-            
+
+
+
+
+
         }
     }
 }

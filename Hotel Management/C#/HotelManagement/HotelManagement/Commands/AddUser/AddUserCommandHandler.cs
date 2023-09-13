@@ -16,20 +16,32 @@ namespace HotelManagement.Commands.AddStudent
 
         public async Task<bool> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
-            User user = new User
+            var flag = _dbContext.Users.Where(x => x.email == request.Email || x.userName == request.UserName).FirstOrDefault();
+
+            if (flag == null)
             {
-                name = request.Name,
-                userRoleId = request.UserRoleId,
-                email = request.Email,
-                phone = request.Phone,
-                userName = request.UserName,
-                password = request.Password,   
-            };
+                User user = new User
+                {
+                    name = request.Name,
+                    userRoleId = request.UserRoleId,
+                    email = request.Email,
+                    phone = request.Phone,
+                    userName = request.UserName,
+                    password = request.Password,
+                };
 
 
-            _dbContext.Users.Add(user);
-            await _dbContext.SaveChangesAsync(cancellationToken);
-            return true;
+                _dbContext.Users.Add(user);
+                await _dbContext.SaveChangesAsync(cancellationToken);
+                return true;
+
+            }
+            else 
+            { 
+                return false; 
+            }
+            
+            
         }
     }
 }

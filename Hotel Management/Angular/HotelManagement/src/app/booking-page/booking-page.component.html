@@ -3,13 +3,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 
-<div class="master">
+<div class="master" *ngIf="flag">
     <h1>Confirm Booking</h1>
     <p>hotel Name: {{HotelId.hotelName}}</p>
     <p>Number of Rooms Booked: {{bookingDetails.noOfRooms}}</p>
     <p>Start Date: {{bookingDetails.StartDate}}</p>
     <p>Start Date: {{bookingDetails.EndDate}}</p>
     <button (click)="onSubmit()">Confirm</button>
+</div>
+    
+<div class="master" *ngIf="!flag" >
+    <h2>You have successfully booked your Rooms</h2>
+    <p>hotel Name: {{HotelId.hotelName}}</p>
+    <p>Number of Rooms Booked: {{bookingDetails.noOfRooms}}</p>
+    <p>Start Date: {{bookingDetails.StartDate}}</p>
+    <p>Start Date: {{bookingDetails.EndDate}}</p>
 </div>
 
 <button (click)="home()">Home</button>
