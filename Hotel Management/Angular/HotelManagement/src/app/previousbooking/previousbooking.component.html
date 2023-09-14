@@ -44,8 +44,8 @@
       <td>{{ i.roomId }}</td>
       <td>{{ i.hotelName }}</td>
       <td>{{ i.noOfRooms }}</td>
-      <td>{{ i.startDate }}</td>
-      <td>{{ i.endDate }}</td>
+      <td>{{ i.startDate | date: 'fullDate'}}</td>
+      <td>{{ i.endDate | date: 'fullDate'}}</td>
       <td *ngIf="ratingFlag[j] && alreadyRated[j] == 0">
         <form [formGroup]="RatingForm" (ngSubmit)="rate(i.bookingId)">
           <label>Rate Us</label>
