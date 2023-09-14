@@ -5,6 +5,7 @@
 <div class="master">
     <h1>OYO</h1>
     <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
+    <h3>Hello {{userdata.name}}</h3>
 
 
     <form [formGroup]="HotelForm"    (ngSubmit)="onSubmit()">
@@ -39,3 +40,4 @@
    
 </div>
 <button (click)="previousBooking()">View Previous Bookings</button>
+<button  (click)="LogOut()">Log Out</button>

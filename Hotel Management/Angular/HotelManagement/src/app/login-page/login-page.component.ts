@@ -15,7 +15,7 @@ import { IUserDto } from '../i-user-dto';
 })
 export class LoginPageComponent {
 
-  constructor(private router: Router, private apiService: AppServiceService){}
+  constructor(private router: Router, private apiService: AppServiceService) { }
 
   loginForm = new FormGroup(
     {
@@ -23,43 +23,45 @@ export class LoginPageComponent {
       passWord: new FormControl('')
     }
   )
-  
+
   passUserName: string | undefined;
   passPassword: string | undefined;
-  userData?:  IUserDto
+  userData?: IUserDto
   loginFlag: boolean = true;
   loginedUser: boolean = false;
 
-  onSubmit(){
+  onSubmit() {
     this.passUserName = String(this.loginForm.value.userName)
     this.passPassword = String(this.loginForm.value.passWord)
-    this.apiService.getUserDetails(this.passUserName, this.passPassword).subscribe((data)=>{
+    this.apiService.getUserDetails(this.passUserName, this.passPassword).subscribe((data) => {
       this.userData = data;
-      if (this.userData == null){
+      if (this.userData == null) {
         this.loginFlag = false;
         this.loginedUser = false;
       }
-      else{
+      else {
         console.log(this.userData)
         this.loginFlag = true;
         this.loginedUser = true;
-        if (Number(this.userData.userRoleId) == 3)
-        {
-          this.apiService.emitUserId(this.userData.userId)  
+        if (Number(this.userData.userRoleId) == 3) {
+          this.apiService.emitUserId(this.userData.userId)
+
+          localStorage.setItem('session', JSON.stringify(this.userData))
+
           this.router.navigate(['./home'])
         }
-        else{
+        else {
           this.apiService.emitUserId(this.userData.userId)
           this.router.navigate(['./managerlogin'])
-        } 
-        
-      } 
-      
+        }
+
+      }
+
     })
 
   }
 
-  goToNewAccount(){
+  goToNewAccount() {
     this.router.navigate(['./new']);
   }
 

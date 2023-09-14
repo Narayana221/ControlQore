@@ -5,6 +5,7 @@ import { AppServiceService } from '../app-service.service';
 import { IFilterroom } from '../ifilterroom';
 import { Ibookhome } from '../ibookhome';
 import { Iuserreq } from '../iuserreq';
+import { IUserDto } from '../i-user-dto';
 
 @Component({
   selector: 'app-home',
@@ -40,6 +41,18 @@ export class HomeComponent {
     EndDate: '',
   };
 
+  
+  
+  tempData = localStorage.getItem('session')
+  userdata = JSON.parse(this.tempData? this.tempData: '')
+
+  LogOut(){
+    localStorage.clear()
+    this.router.navigate([''])
+  }
+  
+ 
+
   onSubmit() {
     
     this.userReq.startDate = this.HotelForm.value.startDate!;
@@ -67,6 +80,8 @@ export class HomeComponent {
     this.userReq.locationId = Number(e.target.value);
     //console.log(this.managerForm.value.locationId)
   }
+
+  
 
   previousBooking() {
     this.router.navigate(['./home/PreviousBooking']);

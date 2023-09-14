@@ -15,6 +15,7 @@ import { Irating } from './irating';
 import { Ichechinout } from './ichechinout';
 import { Inoofrooms } from './inoofrooms';
 import { Iuserreq } from './iuserreq';
+import { IUserDto } from './i-user-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -48,6 +49,8 @@ export class AppServiceService {
   emitUserId(value: number) {
     this.tempuserId.next(value);
   }
+
+  
 
   private dataSource = new BehaviorSubject<Array<IFilterroom>>([]);
   data = this.dataSource.asObservable();

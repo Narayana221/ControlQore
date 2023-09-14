@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Irating } from '../irating';
+import { IUserDto } from '../i-user-dto';
 
 @Component({
   selector: 'app-previousbooking',
@@ -33,9 +34,21 @@ export class PreviousbookingComponent {
     rating: new FormControl(''),
   });
 
+  tempData?: string | null
+  userdata: IUserDto ={
+    userId: 0,
+    userRoleId: 0,
+    name: '',
+    userName: '',
+    phone: '',
+    email: ''
+  } 
+
   private fetchPreviousBookings(): void {
-    this.subscription = this.apiService.userId.subscribe((x: number) => {
-      this.obtainedUserId = x;
+    
+    this.tempData = localStorage.getItem('session')
+    this.userdata = JSON.parse(this.tempData? this.tempData: '')
+      this.obtainedUserId = this.userdata.userId;
       this.apiService
         .getPreviousBooking(this.obtainedUserId)
         .subscribe((data: Array<Ipreviousbooking>) => {
@@ -81,8 +94,8 @@ export class PreviousbookingComponent {
             }
           });
         });
-    });
-  }
+    };
+  
 
   constructor(private apiService: AppServiceService, private router: Router) {}
   ngOnInit() {
