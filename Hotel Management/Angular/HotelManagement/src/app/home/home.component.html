@@ -1,6 +1,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<div class="outer">
+<div class="logout">
+    <button  (click)="LogOut()">Log Out</button>
+</div>
 
 <div class="master">
     <h1>OYO</h1>
@@ -36,8 +40,13 @@
         <td>{{ i.rating }}</td>
         <td>{{ i.roomId }}</td>
     </tr> -->
-   
-   
+    
+
 </div>
 <button (click)="previousBooking()">View Previous Bookings</button>
-<button  (click)="LogOut()">Log Out</button>
+
+</div>
+
+
+
+

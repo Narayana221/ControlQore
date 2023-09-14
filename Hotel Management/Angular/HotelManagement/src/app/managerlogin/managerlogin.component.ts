@@ -113,7 +113,11 @@ export class ManagerloginComponent {
   checkIn: Date = new Date('1999-09-09')
   checkOut: Date = new Date('1999-09-09');
 
-
+  LogOut(){
+    localStorage.clear()
+    this.router.navigate([''])
+  }
+  
   updateCheckIn(index: number, roomId: number, bookingId: number) {
     this.checkIn = this.formArray.at(index).value.checkIn
     this.checkOut = this.formArray.at(index).value.checkOut
