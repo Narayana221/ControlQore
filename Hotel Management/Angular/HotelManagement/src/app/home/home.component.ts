@@ -44,7 +44,7 @@ export class HomeComponent {
   
   
   tempData = localStorage.getItem('session')
-  userdata = JSON.parse(this.tempData? this.tempData: '')
+  userdata = JSON.parse(this.tempData? this.tempData: '{}');
 
   LogOut(){
     localStorage.clear()

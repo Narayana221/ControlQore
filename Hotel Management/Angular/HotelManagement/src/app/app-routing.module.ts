@@ -9,6 +9,7 @@ import { RoomtypeComponent } from './roomtype/roomtype.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ManagerloginComponent } from './managerlogin/managerlogin.component';
 import { PreviousbookingComponent } from './previousbooking/previousbooking.component';
+import { authGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
       {
         path: 'PreviousBooking',
         component: PreviousbookingComponent,
+        canActivate: [authGuardGuard]
       },
       {
         path: 'HotelList',
@@ -45,11 +47,15 @@ const routes: Routes = [
       {
         path: 'book',
         component: BookingPageComponent,
+        canActivate: [authGuardGuard]
       },
     ],
+    // canActivate: [authGuardGuard]
+
   },{
     path: 'managerlogin',
-    component: ManagerloginComponent
+    component: ManagerloginComponent,
+    canActivate: [authGuardGuard]
   }
 ];
 
