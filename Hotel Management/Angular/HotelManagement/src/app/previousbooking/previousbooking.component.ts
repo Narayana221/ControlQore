@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Irating } from '../irating';
 import { IUserDto } from '../i-user-dto';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-previousbooking',
@@ -34,8 +35,7 @@ export class PreviousbookingComponent {
     rating: new FormControl(''),
   });
 
-  tempData?: string | null
-  userdata: IUserDto ={
+  userdata?: IUserDto ={
     userId: 0,
     userRoleId: 0,
     name: '',
@@ -46,9 +46,8 @@ export class PreviousbookingComponent {
 
   private fetchPreviousBookings(): void {
     
-    this.tempData = localStorage.getItem('session')
-    this.userdata = JSON.parse(this.tempData? this.tempData: '')
-      this.obtainedUserId = this.userdata.userId;
+    this.userdata = this.authService.getUser();
+      this.obtainedUserId = this.userdata!.userId;
       this.apiService
         .getPreviousBooking(this.obtainedUserId)
         .subscribe((data: Array<Ipreviousbooking>) => {
@@ -97,7 +96,8 @@ export class PreviousbookingComponent {
     };
   
 
-  constructor(private apiService: AppServiceService, private router: Router) {}
+  constructor(private apiService: AppServiceService, private router: Router,
+    private authService: AuthService) {}
   ngOnInit() {
     this.fetchPreviousBookings();
   }

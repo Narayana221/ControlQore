@@ -4,6 +4,8 @@ import { AppServiceService } from '../app-service.service';
 import { Subscription } from 'rxjs';
 import { IRoomDetails } from '../i-room-details';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { IUserDto } from '../i-user-dto';
 
 @Component({
   selector: 'app-managerlogin',
@@ -11,8 +13,9 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./managerlogin.component.sass']
 })
 export class ManagerloginComponent {
+  user: IUserDto | undefined;
 
-  constructor(private router: Router, private apiService: AppServiceService) { }
+  constructor(private router: Router, private apiService: AppServiceService, private authService: AuthService) { }
 
   userId: number = 0;
   RoomDetails?: Array<IRoomDetails>;
@@ -41,28 +44,27 @@ export class ManagerloginComponent {
   //   })
   // }
 
+
   updateCurrentBooking() {
     this.viewTableFlag = false;
     this.updateBookings = true;
-    this.subscription = this.apiService.userId.subscribe(
-      (data: number) => {
-        (this.userId = data)
-        this.apiService.getBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
-          this.RoomDetails = data;
-          data.forEach((d, index) => {
-            const fg = this.getFormControlGroup(this.parseDate(new Date(d.startDate)),
+    this.user = this.authService.getUser()
+    if (this.user){
+      this.apiService.getBookingDetailManager(this.user?.userId).subscribe((data: Array<IRoomDetails>) => {
+        this.RoomDetails = data;
+        data.forEach((d, index) => {
+          const fg = this.getFormControlGroup(this.parseDate(new Date(d.startDate)),
             this.parseDate(new Date(d.endDate)));
-            this.formArray.push(fg);
-            // this.formArray.at(index).patchValue({
-            //   checkIn: d.startDate.toLocaleDateString(),
-            //   checkOut: d.endDate.toLocaleDateString()
-            // });
-          });
-          console.log(this.userId);
-          console.log(this.RoomDetails);
-        })
+          this.formArray.push(fg);
+          // this.formArray.at(index).patchValue({
+          //   checkIn: d.startDate.toLocaleDateString(),
+          //   checkOut: d.endDate.toLocaleDateString()
+          // });
+        });
+        console.log(this.userId);
+        console.log(this.RoomDetails);
       })
-
+    }
   }
 
   private parseDate(date: Date) {
@@ -76,17 +78,21 @@ export class ManagerloginComponent {
       (data: number) => {
         (this.userId = data)
         this.apiService.getBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
-          this.RoomDetails = data;})})
+          this.RoomDetails = data;
+        })
+      })
   }
 
-  getAllBookings(){
+  getAllBookings() {
     this.updateBookings = false;
     this.viewTableFlag = true;
     this.subscription = this.apiService.userId.subscribe(
       (data: number) => {
         (this.userId = data)
         this.apiService.getAllBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
-          this.RoomDetails = data;})})
+          this.RoomDetails = data;
+        })
+      })
   }
 
 
@@ -105,17 +111,17 @@ export class ManagerloginComponent {
     });
   }
   checkIn: Date = new Date('1999-09-09')
-  checkOut: Date= new Date('1999-09-09');
-  
+  checkOut: Date = new Date('1999-09-09');
 
-  updateCheckIn(index: number, roomId: number, bookingId: number){
+
+  updateCheckIn(index: number, roomId: number, bookingId: number) {
     this.checkIn = this.formArray.at(index).value.checkIn
     this.checkOut = this.formArray.at(index).value.checkOut
     console.log(this.checkIn)
     console.log(this.checkOut)
-    this.apiService.updateCheckIn(this.checkIn, this.checkOut, roomId, bookingId).subscribe((data)=> data)
+    this.apiService.updateCheckIn(this.checkIn, this.checkOut, roomId, bookingId).subscribe((data) => data)
     window.alert(`You have successfully updated CheckIn and CheckOut
     if you want to see the updated dates click on 'View current bookings'`)
-    
+
   }
 }
