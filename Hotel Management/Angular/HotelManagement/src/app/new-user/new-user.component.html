@@ -1,31 +1,57 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 
 <div class="master">
-    <h1>OYO</h1>
-    <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
+  <h1>OYO</h1>
+  <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
 
-    <h3>Be our new guest</h3>
+  <h3>Be our new guest</h3>
 
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-        <label>Name: </label>
-        <input formControlName="name" />
-        <label>Email: </label>
-        <input formControlName="email" />
-        <label>Phone: </label>
-        <input formControlName="phone" />
-        <label>Username: </label>
-        <input formControlName="userName" />
-        <label>Password: </label>
-        <input formControlName="password" />
-        <button type="submit">Submit</button>
-    </form>
-
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <label>Name: </label>
+    <div class ="validation"
+      *ngIf="
+        !userForm.controls.name?.valid &&
+        (userForm.controls.name?.dirty || userForm.controls.name?.touched)
+      "
+    >
+      First Name is not valid
+    </div>
+    <input formControlName="name" />
+    <label>Email: </label>
+    <div  class ="validation" *ngIf="!email?.valid && (email?.dirty || email?.touched)">
+      <div  class ="validation" [hidden]="!email?.errors?.required">Email is required</div>
+      <div  class ="validation"[hidden]="!email?.errors?.email">Invalid Email Id</div>
+    </div>
+    <input formControlName="email" />
+    <label>Phone: </label>
+    <div  class ="validation" *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)">
+        <div  class ="validation" [hidden]="!phone?.errors?.required">Phone number is required</div>
+        <div  class ="validation"[hidden]="!phone?.errors?.pattern">Enter Valid phone Number</div>
+      </div>
+    <input formControlName="phone" />
+    <label>Username: </label>
+    <div  class ="validation" *ngIf="!userName?.valid && (userName?.dirty || userName?.touched)">
+        <div  class ="validation" [hidden]="!userName?.errors?.required">Username is required</div>
+       
+      </div>
+    <input formControlName="userName" />
+    <label>Password: </label>
+    <div  class ="validation" *ngIf="!password?.valid && (password?.dirty || password?.touched)">
+        <div  class ="validation" [hidden]="!password?.errors?.required">Password is required</div>
+        <div  class ="validation"[hidden]="!password?.errors?.minlength">Enter Valid passwaord</div>
+      </div>
+    <input formControlName="password" />
+    <button type="submit" [disabled]="!userForm.valid">Submit</button>
+  </form>
 </div>
 <div class="hotelButton">
-    <button (click)="register()">Register Your Hotel</button>
+  <button (click)="register()">Register Your Hotel</button>
 </div>
 <div class="hotelButton">
-    <button (click)="back()">Back</button>
+  <button (click)="back()">Back</button>
 </div>

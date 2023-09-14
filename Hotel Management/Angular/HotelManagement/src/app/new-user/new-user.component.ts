@@ -21,6 +21,29 @@ export class NewUserComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
     }
   )
+
+  get name()
+  {
+    return this.userForm.get('name');
+  }
+  get email()
+  {
+    return this.userForm.get('email');
+  }
+  get phone()
+  {
+    return this.userForm.get('phone');
+  }
+  get userName()
+  {
+    return this.userForm.get('userName');
+  }
+  get password()
+  {
+    return this.userForm.get('password');
+  }
+ 
+
   newUser?: Icustomer;
   flag!: object;
 

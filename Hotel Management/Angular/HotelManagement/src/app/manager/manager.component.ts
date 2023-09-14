@@ -20,6 +20,31 @@ export class ManagerComponent {
     locationId: new FormControl(0),
   });
 
+  get name()
+  {
+    return this.managerForm.get('name');
+  }
+  get email()
+  {
+    return this.managerForm.get('email');
+  }
+  get phone()
+  {
+    return this.managerForm.get('phone');
+  }
+  get userName()
+  {
+    return this.managerForm.get('userName');
+  }
+  get password()
+  {
+    return this.managerForm.get('password');
+  }
+  get hotelName()
+  {
+    return this.managerForm.get('hotelName');
+  }
+
   constructor(private apiService:AppServiceService, private router:Router) {
     
     

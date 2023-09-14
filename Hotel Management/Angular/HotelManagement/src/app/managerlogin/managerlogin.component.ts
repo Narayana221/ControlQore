@@ -98,7 +98,7 @@ export class ManagerloginComponent {
     return this.formGroup.get('bookings') as FormArray;
   }
 
-  private getFormControlGroup(startDate: string, endDate: string): FormGroup {
+  private getFormControlGroup(startDate: string, endDate: string): FormGroup {0
     return new FormGroup({
       checkIn: new FormControl(startDate),
       checkOut: new FormControl(endDate)
