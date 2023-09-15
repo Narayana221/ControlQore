@@ -52,6 +52,7 @@ export class LoginPageComponent {
         }
         else {
           this.apiService.emitUserId(this.userData.userId)
+          localStorage.setItem('session', JSON.stringify(this.userData))
           this.router.navigate(['./managerlogin'])
         }
 

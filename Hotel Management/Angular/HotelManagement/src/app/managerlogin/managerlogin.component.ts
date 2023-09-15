@@ -74,25 +74,31 @@ export class ManagerloginComponent {
   getCurrentBooking() {
     this.updateBookings = false;
     this.viewTableFlag = true;
-    this.subscription = this.apiService.userId.subscribe(
-      (data: number) => {
-        (this.userId = data)
-        this.apiService.getBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
-          this.RoomDetails = data;
-        })
-      })
+        this.user = this.authService.getUser()
+        if(this.user){
+          this.apiService.getBookingDetailManager(this.user?.userId).subscribe((data: Array<IRoomDetails>) => {
+            this.RoomDetails = data;
+          })
+        }
+        else{
+          window.alert("Please login for view currrent bookings")
+        }
+        
+      
   }
 
   getAllBookings() {
     this.updateBookings = false;
     this.viewTableFlag = true;
-    this.subscription = this.apiService.userId.subscribe(
-      (data: number) => {
-        (this.userId = data)
-        this.apiService.getAllBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
-          this.RoomDetails = data;
-        })
-      })
+        this.user = this.authService.getUser()
+        if(this.user){
+          this.userId = this.user.userId
+          this.apiService.getAllBookingDetailManager(this.userId).subscribe((data: Array<IRoomDetails>) => {
+            this.RoomDetails = data;
+          })
+        }
+        
+      
   }
 
 
@@ -114,8 +120,8 @@ export class ManagerloginComponent {
   checkOut: Date = new Date('1999-09-09');
 
   LogOut(){
-    localStorage.clear()
-    this.router.navigate([''])
+    this.authService.logout();
+    
   }
   
   updateCheckIn(index: number, roomId: number, bookingId: number) {

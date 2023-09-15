@@ -13,6 +13,9 @@ import { RoomtypeComponent } from './roomtype/roomtype.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ManagerloginComponent } from './managerlogin/managerlogin.component';
 import { PreviousbookingComponent } from './previousbooking/previousbooking.component';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatDatepickerModule } from '@angular/material/datepicker';
+// import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -34,7 +37,10 @@ import { PreviousbookingComponent } from './previousbooking/previousbooking.comp
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+   // MatInputModule,
+    // MatDatepickerModule,
+    // MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
