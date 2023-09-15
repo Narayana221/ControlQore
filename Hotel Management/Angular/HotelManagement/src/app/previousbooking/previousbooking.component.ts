@@ -25,7 +25,7 @@ export class PreviousbookingComponent {
   iteratorFour: number = 0;
   currdate = new Date();
 
-  tableDisplayFlag : boolean =false
+  tableDisplayFlag!: boolean
 
   ratingFlag: Array<boolean> = [false];
   cancelFlag: Array<boolean> = [false];
@@ -56,6 +56,9 @@ export class PreviousbookingComponent {
           if(this.previousBookings.length != 0 )
           {
             this.tableDisplayFlag = true
+          }
+          else{
+            this.tableDisplayFlag = false;
           }
 
 

@@ -16,4 +16,10 @@ export class AuthService {
         this.user = JSON.parse(tempData!);
         return this.user;
     }
+
+    logout() {
+        this.user = undefined;
+        localStorage.clear()
+        this.router.navigate([''])
+    }
 }

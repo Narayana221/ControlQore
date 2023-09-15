@@ -1,40 +1,86 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <div class="outer">
-<div class="logout">
-    <button  (click)="LogOut()">Log Out</button>
-    <p> UserId: {{userdata.userId}}</p>
-    <p> Username: {{userdata.name}}</p>
-</div>
+  <div class="logout">
+    <button (click)="LogOut()">Log Out</button>
+    <p>UserId: {{ userdata.userId }}</p>
+    <p>Username: {{ userdata.name }}</p>
+  </div>
 
-<div class="master">
+  <div class="master">
     <h1>OYO</h1>
     <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
-    <h3>Welcome {{userdata.name}}</h3>
+    <h3>Welcome {{ userdata.name }}</h3>
 
-
-    <form [formGroup]="HotelForm"    (ngSubmit)="onSubmit()">
-        <label >Location: </label>
-        <select (change)="changeCity($event)" formControlname="locationId">
-            <option value="none" selected disabled hidden>Select Location</option>
-            <option value="7">Kochi</option>
-            <option value="8">Trivandrum</option>
-            <option value="9">Kollam</option>
-            <option value="10">Allapuzha</option>
-            <option value="11">Palakkad</option>
-           </select>
-        <label >Start Date: </label>
-        <input  type="date"  formControlName="startDate"/>
-        <label >End Date: </label>
-        <input  type="date"  formControlName="endDate"/>
-        <label >No: of Rooms </label>
-        <input type="number"  formControlName="noOfRooms"/>
-        <label >Min. Rating</label>
-        <input type="number"  formControlName="rating"/>
-        <button type="submit">Search</button>
+    <form [formGroup]="HotelForm" (ngSubmit)="onSubmit()">
+      <label>Location: </label>
+      <div
+        class="validation"
+        *ngIf="!locationId?.valid && (locationId?.dirty || locationId?.touched)"
+      >
+        <div class="validation" [hidden]="!locationId?.errors?.required">
+          location is required
+        </div>
+      </div>
+      <select (change)="changeCity($event)" formControlname="locationId">
+        <option value="none" selected disabled hidden>Select Location</option>
+        <option value="7">Kochi</option>
+        <option value="8">Trivandrum</option>
+        <option value="9">Kollam</option>
+        <option value="10">Allapuzha</option>
+        <option value="11">Palakkad</option>
+      </select>
+      <label>Start Date: </label>
+      <div
+        class="validation"
+        *ngIf="!startDate?.valid && (startDate?.dirty || startDate?.touched)"
+      >
+        <div class="validation" [hidden]="!startDate?.errors?.required">
+          startDate is required
+        </div>
+      </div>
+      <!-- <mat-form-field> -->
+      <input type="date"  [min]="currdate" formControlName="startDate" />
+      <!-- <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker #picker [max]="minDate"></mat-datepicker>
+       </mat-form-field> -->
+      <label>End Date: </label>
+      <div
+        class="validation"
+        *ngIf="!endDate?.valid && (endDate?.dirty || endDate?.touched)"
+      >
+        <div class="validation" [hidden]="!endDate?.errors?.required">
+          endDate is required
+        </div>
+      </div>
+      <input type="date"  [min]="currdate" formControlName="endDate" />
+      <label>No: of Rooms </label>
+      <div
+        class="validation"
+        *ngIf="!noOfRooms?.valid && (noOfRooms?.dirty || noOfRooms?.touched)"
+      >
+        <div class="validation" [hidden]="!noOfRooms?.errors?.required">
+          noOfRooms is required
+        </div>
+      </div>
+      <input type="number" formControlName="noOfRooms" />
+      <label>Min. Rating</label>
+      <div
+        class="validation"
+        *ngIf="!rating?.valid && (rating?.dirty || rating?.touched)"
+      >
+        <div class="validation" [hidden]="!rating?.errors?.required">
+          rating is required
+        </div>
+      </div>
+      <input type="number" formControlName="rating" />
+      <button type="submit" [disabled]="!HotelForm.valid">Search</button>
     </form>
-    
+
     <!-- <tr *ngFor ="let i of room">
         <td>{{ i.id }}</td>
         <td>{{ i.name }}</td>
@@ -42,13 +88,6 @@
         <td>{{ i.rating }}</td>
         <td>{{ i.roomId }}</td>
     </tr> -->
-    
-
+  </div>
+  <button (click)="previousBooking()">View Previous Bookings</button>
 </div>
-<button (click)="previousBooking()">View Previous Bookings</button>
-
-</div>
-
-
-
-
