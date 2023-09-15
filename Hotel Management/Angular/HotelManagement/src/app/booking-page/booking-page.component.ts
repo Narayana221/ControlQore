@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { Ibookhome } from '../ibookhome';
 import { Iroomtype } from '../iroomtype';
 import { Inoofrooms } from '../inoofrooms';
+import { IUserDto } from '../i-user-dto';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-booking-page',
@@ -15,7 +17,7 @@ import { Inoofrooms } from '../inoofrooms';
 })
 export class BookingPageComponent {
 
-  constructor(private route: Router, private apiService: AppServiceService) { }
+  constructor(private route: Router, private apiService: AppServiceService, private authService: AuthService) { }
 
   addBooking = new FormGroup({
     Start: new FormControl(''),
@@ -25,7 +27,7 @@ export class BookingPageComponent {
   book?: Ibooking
   sdate: Date = new Date(this.addBooking.value.Start!);
 
-  userId?: number
+  user: IUserDto | undefined;
   bookingDetails: Ibookhome = {
     noOfRooms: 0,
     StartDate: '',
@@ -43,10 +45,10 @@ export class BookingPageComponent {
     noofrooms: 0,
     hotelName: ''
   }
-
+ 
 
   ngOnInit() {
-    this.subscription = this.apiService.userId.subscribe((data: number) => this.userId = data)
+    this.user = this.authService.getUser()
     this.subscription = this.apiService.book.subscribe((data: Ibookhome) => this.bookingDetails = data)
     this.subscription = this.apiService.selectedroomTypeId.subscribe((data: Iroomtype) => this.roomtype = data)
     this.subscription = this.apiService.selectedHotelId.subscribe((data: Inoofrooms) => this.HotelId = data)
@@ -57,7 +59,7 @@ export class BookingPageComponent {
     this.book = {
       StartDate: (this.bookingDetails?.StartDate),
       EndDate: (this.bookingDetails?.EndDate),
-      UserId: this.userId,
+      UserId: this.user?.userId,
       NoOfRooms: this.bookingDetails?.noOfRooms,
       PaymentStatus: true,
       TotalPrice: (this.roomtype.roomCost * this.bookingDetails.noOfRooms),
