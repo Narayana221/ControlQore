@@ -4,12 +4,14 @@
 <div class="outer">
 <div class="logout">
     <button  (click)="LogOut()">Log Out</button>
+    <p> UserId: {{userdata.userId}}</p>
+    <p> Username: {{userdata.name}}</p>
 </div>
 
 <div class="master">
     <h1>OYO</h1>
     <h3>Hotels and homes across 800 cities, 24+ Countries</h3>
-    <h3>Hello {{userdata.name}}</h3>
+    <h3>Welcome {{userdata.name}}</h3>
 
 
     <form [formGroup]="HotelForm"    (ngSubmit)="onSubmit()">
