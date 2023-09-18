@@ -9,6 +9,7 @@ import { Iroomtype } from '../iroomtype';
 import { Inoofrooms } from '../inoofrooms';
 import { IUserDto } from '../i-user-dto';
 import { AuthService } from '../services/auth.service';
+//import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-booking-page',
